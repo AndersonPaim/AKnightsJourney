@@ -46,7 +46,7 @@ public class ObjectPooler : MonoBehaviour
         objectToSpawn = poolDictionary[id].Dequeue();
         poolDictionary[id].Enqueue(objectToSpawn);
 
-        for(int i = 0; i < pools[0].size; i++)
+        for(int i = 0; i < pools[id].size; i++)
         {
             GameObject obj = poolDictionary[id].Dequeue();
             poolDictionary[id].Enqueue(obj);
@@ -64,18 +64,18 @@ public class ObjectPooler : MonoBehaviour
 
         if (!isPoolAvailable)
         {
-            AddToPool();
+            AddToPool(id);
         }
 
         objectToSpawn.SetActive(true);
         return objectToSpawn;
     }
 
-    private void AddToPool()
+    private void AddToPool(int id)
     {
-        GameObject obj = Instantiate(pools[0].prefab);
+        GameObject obj = Instantiate(pools[id].prefab);
         objectToSpawn = obj;
         objectPool.Enqueue(obj);
-        pools[0].size++;
+        pools[id].size++;
     }
 }
