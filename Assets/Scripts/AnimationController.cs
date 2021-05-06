@@ -65,6 +65,13 @@ public class AnimationController : MonoBehaviour
 
     private void SetIsGrounded(bool isGrounded)
     {
+        /// Ao invés de vc mandar o parâmetro como string, crie uma classe estatica, que guarda os parâmetros do animator (normalmente chamada de AnimationParameters)...
+        /// ex:
+        /// Public const string ISGROUNDED = "isGrounded"
+        ///
+        /// e dai tu pode acessar esse parâmetro assim:     _animator.SetBool(AnimationParamaters.ISGROUNDED, isGrounded);
+        /// assim tu evita de escrever o parametro errado e, se tu por ventura mudar o nome do parâmetro é só tu mudar nessa classe estatica
+        
         _animator.SetBool("isGrounded", isGrounded);
         
         if(isGrounded == false && _animator.GetBool("isJumping") == false)

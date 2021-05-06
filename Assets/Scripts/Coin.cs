@@ -16,6 +16,8 @@ public class Coin : MonoBehaviour
         _coinParticle1.Stop();
         _coinParticle2.Play();
         StartCoroutine(DestroyObject());
+        
+        /// evite pegar um componente ddo seu proprio objecto no Trigger Enter/exit... See tu sabe que vai precisar desse componente no Trigger Enter, Pegue ele no Start e guarde em uma variavel.
         gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 

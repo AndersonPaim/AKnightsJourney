@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator JumpCount()
     {
         yield return new WaitForFixedUpdate();
-        _jumpsCount--; //a verificação de chão anulava esse comando | arrumar depois
+        _jumpsCount--; //a verificaï¿½ï¿½o de chï¿½o anulava esse comando | arrumar depois
         _isJumping = true;
     }
 

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
+    
+   
+    ///  Toda classe tem o seu proprio script, evite criar uma nova classe  dentro da outra....
+    /// Dito isso, eu até dou uma colher de chá no caso do Object Pooler / Save System  mas para todos os outros casos, crie a classe com seu proprio script.
 
     [System.Serializable]
     public class Pool

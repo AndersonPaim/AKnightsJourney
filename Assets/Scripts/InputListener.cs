@@ -24,6 +24,9 @@ public class InputListener : MonoBehaviour
 
     private InputData _inputData;
 
+  
+    ///  sempre deixe explicito que o metodo é privado.
+  
     void Awake()
     {
         Initialize();
@@ -69,6 +72,8 @@ public class InputListener : MonoBehaviour
     private void CreateInputStruct()
     {
         
+        /// se o _inputData.Jump e o Dash vão sempre ser setados, tira eles de dentro dos If/Else e coloca la em baixo junto do Run, Movemennt etc :p
+        /// ou melhor, joga equeles _inputData para o topo do metodo e só depois tu reseta os inputs com os If/Else...
         if (_jump)
         {
             _inputData.Jump = _jump;

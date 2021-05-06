@@ -5,6 +5,9 @@ using TMPro;
 
 public class LevelHighscore : MonoBehaviour
 {
+
+    /// peguei no pulo... cada o "_" na frente ? :p
+
     [SerializeField] private GameObject star1;
     [SerializeField] private GameObject star2;
     [SerializeField] private GameObject star3;

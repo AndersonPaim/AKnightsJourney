@@ -72,6 +72,8 @@ public class PlayerParticlesController : MonoBehaviour
 
     private void Running(float velocity, bool isGrounded)
     {
+        ///  Nunca use  "Var" sempre especifique qual Ã© a variavel.
+        
         var emission = _runParticle.emission;
 
         if (velocity > 0 && isGrounded)
@@ -91,7 +93,7 @@ public class PlayerParticlesController : MonoBehaviour
         }
     }
    
-    private void LandingParticle() //chama no evento de animação
+    private void LandingParticle() //chama no evento de animaï¿½ï¿½o
     {
         _landingParticle.Play();
     }

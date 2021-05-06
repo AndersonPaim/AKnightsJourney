@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int _respawns;
 
+   
+    /// evite variaveis publicas... se quiser colocar ela no inspector, use privada serializada e crie um metodo publico Get para pegar a referência dessa variavel.
+    
     public CheckpointManager checkpointManager;
 
     public PlayerController playerController;
@@ -59,6 +62,10 @@ public class GameManager : MonoBehaviour
         playerController.OnDeath += PlayerDeath;
         checkpointManager.OnSetRespawnPosition += SetPlayerRespawnPosition;
         checkpointManager.OnLastCheckpoint += Finish;
+        
+        /// se tu vai criar um metodo no Scene Controller para avisar a esse scene controller para atualizar a variavel dele de Current Scene mude essa logica... Pensa: se o Scene controller é quem controla as scenes
+        /// pq alguem (que não for um Scene Manager) precisa avisar para ele: "ow, acorda, a scene mudou, atualiza ai rapaz" é como se ele estivessse fazendo um trabalho bosta pq  bom, "He had one job " ==> Saber que scene vc esta :p
+        /// Pense nisso...
         SceneController.GetCurrentScene();
     }
 

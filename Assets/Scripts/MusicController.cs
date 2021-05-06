@@ -43,6 +43,10 @@ public class MusicController : MonoBehaviour
 
     private void SetMusicVolume(float volume)
     {
+        /// --> Sliders do volume, apenas ao mexer um pouquinho o volume cai completamente (sei que a unity trata os valores
+        ///de -80 a +20 mas então meu garoto, tu precisa pensar em um jeito de tornar esse slider  mais suave....
+       ///     metade do slider deve ser metade do volume )
+       
         _audioMixer.SetFloat("musicVolume", volume);
     }
 
