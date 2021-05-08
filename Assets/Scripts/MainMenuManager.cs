@@ -22,6 +22,4 @@ public class MainMenuManager : MonoBehaviour
             sInstance = this;
         }
     }
-
-
 }

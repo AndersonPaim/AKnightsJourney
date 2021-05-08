@@ -24,12 +24,12 @@ public class InputListener : MonoBehaviour
 
     private InputData _inputData;
 
-    void Awake()
+    private void Awake()
     {
         Initialize();
     }
 
-    void Update()
+    private void Update()
     { 
         CreateInputStruct();
         OnInput?.Invoke(_inputData);
@@ -37,12 +37,12 @@ public class InputListener : MonoBehaviour
         Movement();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         _input.Enable();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         _input.Disable();
     }
@@ -68,30 +68,21 @@ public class InputListener : MonoBehaviour
 
     private void CreateInputStruct()
     {
-        
+        _inputData.Dash = _dash;
+        _inputData.Jump = _jump;
+        _inputData.Run = _run;
+        _inputData.Movement = _movement;
+        _inputData.Walk = _walk;
+
         if (_jump)
         {
-            _inputData.Jump = _jump;
             _jump = false;
-        }
-        else
-        {
-            _inputData.Jump = _jump;
         }
 
         if (_dash)
         {
-            _inputData.Dash = _dash;
             _dash = false;
         }
-        else
-        {
-            _inputData.Dash = _dash;
-        }
-
-        _inputData.Run = _run;
-        _inputData.Movement = _movement;
-        _inputData.Walk = _walk;
     }
 
     private void Movement()

@@ -23,14 +23,14 @@ public class LevelParticlesController : MonoBehaviour
     private void SetupDelegates()
     {
         GameManager.sInstance.OnGetRespawnPosition += RespawnParticle;
-        GameManager.sInstance.checkpointManager.OnCheckpoint += CheckPointParticle;
+        GameManager.sInstance.GetCheckPointManager().OnCheckpoint += CheckPointParticle;
         GameManager.sInstance.OnFinish += FinishParticle;
     }
 
     private void RemoveDelegates()
     {
         GameManager.sInstance.OnGetRespawnPosition -= RespawnParticle;
-        GameManager.sInstance.checkpointManager.OnCheckpoint -= CheckPointParticle;
+        GameManager.sInstance.GetCheckPointManager().OnCheckpoint -= CheckPointParticle;
         GameManager.sInstance.OnFinish -= FinishParticle;
     }
 

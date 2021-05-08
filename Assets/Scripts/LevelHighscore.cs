@@ -5,9 +5,9 @@ using TMPro;
 
 public class LevelHighscore : MonoBehaviour
 {
-    [SerializeField] private GameObject star1;
-    [SerializeField] private GameObject star2;
-    [SerializeField] private GameObject star3;
+    [SerializeField] private GameObject _star1;
+    [SerializeField] private GameObject _star2;
+    [SerializeField] private GameObject _star3;
 
     [SerializeField] private TextMeshProUGUI _levelNumberText;
 
@@ -57,16 +57,16 @@ public class LevelHighscore : MonoBehaviour
         switch (SaveSystem.localData.stars[_levelSettings.levelNumber - 1])
         {
             case 1:
-                star1.SetActive(true);
+                _star1.SetActive(true);
                 break;
             case 2:
-                star1.SetActive(true);
-                star2.SetActive(true);
+                _star1.SetActive(true);
+                _star2.SetActive(true);
                 break;
             case 3:
-                star1.SetActive(true);
-                star2.SetActive(true);
-                star3.SetActive(true);
+                _star1.SetActive(true);
+                _star2.SetActive(true);
+                _star3.SetActive(true);
                 break;
          }
     }

@@ -10,7 +10,7 @@ public class AnimationController : MonoBehaviour
     {
         Initialize();
         SetupDelegates();
-        PauseInputStart();
+        SetupPauseDelegates();
     }
 
     private void OnDestroy()
@@ -21,22 +21,22 @@ public class AnimationController : MonoBehaviour
 
     private void SetupDelegates()
     {
-        GameManager.sInstance.playerController.OnPlayerInput += ReceiveInputs;
+        GameManager.sInstance.GetPlayerController().OnPlayerInput += ReceiveInputs;
     }
 
     private void RemoveDelegates()
     {
-        GameManager.sInstance.playerController.OnPlayerInput -= ReceiveInputs;
+        GameManager.sInstance.GetPlayerController().OnPlayerInput -= ReceiveInputs;
     }
 
-    private void PauseInputStart()
+    private void SetupPauseDelegates()
     {
-        GameManager.sInstance.inGameMenu.OnPause += PauseAnimation;
+        GameManager.sInstance.GetInGameMenu().OnPause += PauseAnimation;
     }
 
     private void PauseInputDestroy()
     {
-        GameManager.sInstance.inGameMenu.OnPause -= PauseAnimation;
+        GameManager.sInstance.GetInGameMenu().OnPause -= PauseAnimation;
     }
 
     private void Initialize()
@@ -65,9 +65,9 @@ public class AnimationController : MonoBehaviour
 
     private void SetIsGrounded(bool isGrounded)
     {
-        _animator.SetBool("isGrounded", isGrounded);
+        _animator.SetBool(AnimationParameters.ISGROUNDED, isGrounded);
         
-        if(isGrounded == false && _animator.GetBool("isJumping") == false)
+        if(isGrounded == false && _animator.GetBool(AnimationParameters.ISJUMPING) == false)
         {
             Falling(true);
         }
@@ -78,13 +78,13 @@ public class AnimationController : MonoBehaviour
         
         if (isGrounded)
         {
-            _animator.SetBool("isJumping", false);
+            _animator.SetBool(AnimationParameters.ISJUMPING, false);
         }
     }
     
     private void Falling(bool isFalling)
     {
-        _animator.SetBool("isFalling", isFalling);
+        _animator.SetBool(AnimationParameters.ISFALLING, isFalling);
     }
     
 
@@ -92,24 +92,24 @@ public class AnimationController : MonoBehaviour
     {
         if (direction != 0)
         {
-            _animator.SetBool("isWalking", true);
+            _animator.SetBool(AnimationParameters.ISWALKING, true);
         }
         else
         {
-            _animator.SetBool("isWalking", false);
+            _animator.SetBool(AnimationParameters.ISWALKING, false);
         }
 
-        _animator.SetFloat("Velocity", velocity);
+        _animator.SetFloat(AnimationParameters.VELOCITY, velocity);
     }
 
     private void Jump(bool isJumping)
     {
-        _animator.SetBool("isJumping", isJumping); 
+        _animator.SetBool(AnimationParameters.ISJUMPING, isJumping); 
     }
 
     private void DoubleJump(bool isDoubleJumping)
     {
-       _animator.SetBool("isDoubleJumping", isDoubleJumping);
+       _animator.SetBool(AnimationParameters.ISDOUBLEJUMPING, isDoubleJumping);
     }
 
 }

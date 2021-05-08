@@ -65,16 +65,16 @@ public class PlayerController : MonoBehaviour
 
     private void SetupDelegates()
     {
-        GameManager.sInstance.inputListener.OnInput += ReceiveInputs;
+        GameManager.sInstance.GetInputListener().OnInput += ReceiveInputs;
         GameManager.sInstance.OnGetRespawnPosition += DeathMovementDelay;
-        GameManager.sInstance.inGameMenu.OnPause += PauseInputs;
+        GameManager.sInstance.GetInGameMenu().OnPause += PauseInputs;
     }
 
     private void RemoveDelegates()
     {
-        GameManager.sInstance.inputListener.OnInput -= ReceiveInputs;
+        GameManager.sInstance.GetInputListener().OnInput -= ReceiveInputs;
         GameManager.sInstance.OnGetRespawnPosition -= DeathMovementDelay;
-        GameManager.sInstance.inGameMenu.OnPause -= PauseInputs;
+        GameManager.sInstance.GetInGameMenu().OnPause -= PauseInputs;
     }
 
     private void Initialize()

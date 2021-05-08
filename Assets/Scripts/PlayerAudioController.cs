@@ -24,6 +24,8 @@ public class PlayerAudioController : MonoBehaviour
     private bool _isDoubleJumping = false;
     private bool _isPaused = false;
 
+    private float _isMoving;
+
     private ObjectPooler _objectPooler;
 
     private void Start()
@@ -39,20 +41,20 @@ public class PlayerAudioController : MonoBehaviour
 
     private void Initialize()
     {
-        _objectPooler = GameManager.sInstance.objectPooler;
+        _objectPooler = GameManager.sInstance.GetObjectPooler();
         _audioMixer.SetFloat("playerVolume", 0);
     }
 
     private void SetupDelegates()
     {
-        GameManager.sInstance.playerController.OnPlayerInput += ReceiveInputs;
-        GameManager.sInstance.inGameMenu.OnPause += PauseAudio;
+        GameManager.sInstance.GetPlayerController().OnPlayerInput += ReceiveInputs;
+        GameManager.sInstance.GetInGameMenu().OnPause += PauseAudio;
     }
 
     private void RemoveDelegates()
     {
-        GameManager.sInstance.playerController.OnPlayerInput -= ReceiveInputs;
-        GameManager.sInstance.inGameMenu.OnPause -= PauseAudio;
+        GameManager.sInstance.GetPlayerController().OnPlayerInput -= ReceiveInputs;
+        GameManager.sInstance.GetInGameMenu().OnPause -= PauseAudio;
     }
 
     private void PauseAudio(bool isPaused)
@@ -85,11 +87,15 @@ public class PlayerAudioController : MonoBehaviour
         _isDashing = playerData.Dash;
         _isJumping = playerData.Jump;
         _isDoubleJumping = playerData.DoubleJump;
+        _isMoving = playerData.Movement;
     }
 
     private void Landing()
     {
-        PlayAudio(_runAudio, 1);
+        if (_isMoving == 0)
+        {
+            PlayAudio(_runAudio, 1);
+        }
     }
 
     private void Movement(float velocity, bool isGrounded)

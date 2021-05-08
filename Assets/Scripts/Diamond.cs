@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : Colletables
+public class Diamond : Colletables
 {
-    [SerializeField] private ParticleSystem _coinParticle1;
-    [SerializeField] private ParticleSystem _coinParticle2;
-
     private BoxCollider _collider;
 
     private void Start()
@@ -17,21 +14,19 @@ public class Coin : Colletables
     private void Initialize()
     {
         _collider = gameObject.GetComponent<BoxCollider>();
-        itemPoints = 1;
+        itemPoints = 3;
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
         CollectItem();
-        _coinParticle1.Stop();
-        _coinParticle2.Play();
         _collider.enabled = false;
         StartCoroutine(DestroyObject());
     }
 
     protected override IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
 }

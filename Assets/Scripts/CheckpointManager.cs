@@ -30,13 +30,13 @@ public class CheckpointManager : MonoBehaviour
 
     private void SetupDelegates()
     {
-        GameManager.sInstance.playerController.OnSetCheckpoint += SetCheckpoint;
+        GameManager.sInstance.GetPlayerController().OnSetCheckpoint += SetCheckpoint;
         GameManager.sInstance.OnGetRespawnPosition += SetRespawnPosition;
     }
 
     private void RemoveDelegates()
     {
-        GameManager.sInstance.playerController.OnSetCheckpoint -= SetCheckpoint;
+        GameManager.sInstance.GetPlayerController().OnSetCheckpoint -= SetCheckpoint;
         GameManager.sInstance.OnGetRespawnPosition -= SetRespawnPosition;
     }
 

@@ -30,13 +30,13 @@ public class HUDController : MonoBehaviour
 
     private void SetupDelegates()
     {
-        GameManager.sInstance.playerController.OnDeath += PlayerDie;
+        GameManager.sInstance.GetPlayerController().OnDeath += PlayerDie;
 
     }
 
     private void RemoveDelegates()
     {
-        GameManager.sInstance.playerController.OnDeath -= PlayerDie;
+        GameManager.sInstance.GetPlayerController().OnDeath -= PlayerDie;
     }
 
     private void PlayerDie()

@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void Start()
     {
-        _playerID = GameManager.sInstance.playerController.transform.GetInstanceID();
+        _playerID = GameManager.sInstance.GetPlayerController().transform.GetInstanceID();
     }
 
     private void OnTriggerEnter(Collider other)

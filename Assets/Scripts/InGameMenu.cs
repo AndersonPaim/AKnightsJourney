@@ -31,16 +31,16 @@ public class InGameMenu : MonoBehaviour
 
     private void SetupDelegates()
     {
-        GameManager.sInstance.inputListener.OnPause += PauseInput;
-        GameManager.sInstance.scoreManager.OnSetScore += SetScore;
+        GameManager.sInstance.GetInputListener().OnPause += PauseInput;
+        GameManager.sInstance.GetScoreManager().OnSetScore += SetScore;
         GameManager.sInstance.OnFinish += Finish;
         GameManager.sInstance.OnGameOver += GameOver;
     }
 
     private void RemoveDelegates()
     {
-        GameManager.sInstance.inputListener.OnPause -= PauseInput;
-        GameManager.sInstance.scoreManager.OnSetScore -= SetScore;
+        GameManager.sInstance.GetInputListener().OnPause -= PauseInput;
+        GameManager.sInstance.GetScoreManager().OnSetScore -= SetScore;
         GameManager.sInstance.OnFinish += Finish;
         GameManager.sInstance.OnGameOver -= GameOver;
     }

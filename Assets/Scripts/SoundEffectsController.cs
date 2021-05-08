@@ -21,6 +21,7 @@ public class SoundEffectsController : MonoBehaviour
 
     private AudioSource _audioSource;
 
+
     void Start()
     {
         SetupDelegates();
@@ -34,7 +35,7 @@ public class SoundEffectsController : MonoBehaviour
 
     private void Initialize()
     {
-        _objectPooler = GameManager.sInstance.objectPooler;
+        _objectPooler = GameManager.sInstance.GetObjectPooler();
         _audioMixer.SetFloat("effectsVolume", SaveSystem.localData.soundfxVolume);
         _audioMixer.SetFloat("levelVolume", 0);
     }
@@ -43,25 +44,25 @@ public class SoundEffectsController : MonoBehaviour
     {
         GameManager.sInstance.OnFinish += Finish;
         GameManager.sInstance.OnGameOver += GameOver;
-        GameManager.sInstance.checkpointManager.OnCheckpoint += CheckPoint;
-        Coin.OnCollectCoin += CollectCoin;
-        GameManager.sInstance.inGameMenu.OnPause += PauseAudio;
-        GameManager.sInstance.settingsMenu.OnSetEffectsVolume += SetEffectsVolume;
+        GameManager.sInstance.GetCheckPointManager().OnCheckpoint += CheckPoint;
+        Colletables.OnCollectItem += CollectItem;
+        GameManager.sInstance.GetInGameMenu().OnPause += PauseAudio;
+        GameManager.sInstance.GetSettingsMenu().OnSetEffectsVolume += SetEffectsVolume;
     }
 
     private void RemoveDelegates()
     {
         GameManager.sInstance.OnFinish -= Finish;
         GameManager.sInstance.OnGameOver -= GameOver;
-        GameManager.sInstance.checkpointManager.OnCheckpoint += CheckPoint;
-        Coin.OnCollectCoin -= CollectCoin;
-        GameManager.sInstance.inGameMenu.OnPause -= PauseAudio;
-        GameManager.sInstance.settingsMenu.OnSetEffectsVolume += SetEffectsVolume;
+        GameManager.sInstance.GetCheckPointManager().OnCheckpoint -= CheckPoint;
+        Colletables.OnCollectItem -= CollectItem;
+        GameManager.sInstance.GetInGameMenu().OnPause -= PauseAudio;
+        GameManager.sInstance.GetSettingsMenu().OnSetEffectsVolume += SetEffectsVolume;
     }
 
     private void SetEffectsVolume(float volume)
     {
-        _audioMixer.SetFloat("effectsVolume", volume);
+        _audioMixer.SetFloat("effectsVolume", Mathf.Log10(volume) * 20);
     }
 
     private void PauseAudio(bool isPaused)
@@ -81,7 +82,7 @@ public class SoundEffectsController : MonoBehaviour
         PlayAudio(_checkpointAudio, 1, _effectsAudioMixer);
     }
 
-    private void CollectCoin()
+    private void CollectItem(int points)
     {
         PlayAudio(_coinAudio, 1, _effectsAudioMixer);
     }
@@ -96,7 +97,6 @@ public class SoundEffectsController : MonoBehaviour
         PlayAudio(_finishAudio, 0.5f, _finishAudioMixer);
     }
 
-
     private void PlayAudio(AudioClip audio, float volume, AudioMixerGroup audioMixer)
     {
         GameObject obj = _objectPooler.SpawnFromPool(1);
@@ -107,6 +107,8 @@ public class SoundEffectsController : MonoBehaviour
 
         _audioSource.clip = audio;
         _audioSource.volume = volume;
+
+        obj.GetComponent<AudioSourceObject>().Disable();
 
         if (!_audioSource.isPlaying)
         {

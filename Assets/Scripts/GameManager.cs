@@ -21,19 +21,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int _respawns;
 
-    public CheckpointManager checkpointManager;
+    [SerializeField] private CheckpointManager checkpointManager;
 
-    public PlayerController playerController;
+    [SerializeField] private PlayerController playerController;
 
-    public InGameMenu inGameMenu;
+    [SerializeField] private InGameMenu inGameMenu;
 
-    public InputListener inputListener;
+    [SerializeField] private InputListener inputListener;
 
-    public ScoreManager scoreManager;
+    [SerializeField] private ScoreManager scoreManager;
 
-    public SettingsMenu settingsMenu;
+    [SerializeField] private SettingsMenu settingsMenu;
 
-    public ObjectPooler objectPooler;
+    [SerializeField] private ObjectPooler objectPooler;
 
     private void Awake()
     {
@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
         playerController.OnDeath += PlayerDeath;
         checkpointManager.OnSetRespawnPosition += SetPlayerRespawnPosition;
         checkpointManager.OnLastCheckpoint += Finish;
-        SceneController.GetCurrentScene();
     }
 
     private void RemoveDelegates()
@@ -68,7 +67,41 @@ public class GameManager : MonoBehaviour
         checkpointManager.OnSetRespawnPosition -= SetPlayerRespawnPosition;
         checkpointManager.OnLastCheckpoint -= Finish;
     }
-   
+
+    public CheckpointManager GetCheckPointManager()
+    {
+        return checkpointManager;
+    }
+
+    public PlayerController GetPlayerController()
+    {
+        return playerController;
+    }
+
+    public InGameMenu GetInGameMenu()
+    {
+        return inGameMenu;
+    }
+
+    public InputListener GetInputListener()
+    {
+        return inputListener;
+    }
+
+    public ScoreManager GetScoreManager()
+    {
+        return scoreManager;
+    }
+
+    public SettingsMenu GetSettingsMenu()
+    {
+        return settingsMenu;
+    }
+
+    public ObjectPooler GetObjectPooler()
+    {
+        return objectPooler;
+    }
 
     private void PlayerDeath()
     {

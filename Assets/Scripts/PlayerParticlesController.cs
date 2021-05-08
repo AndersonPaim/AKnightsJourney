@@ -27,12 +27,12 @@ public class PlayerParticlesController : MonoBehaviour
 
     private void SetupDelegates()
     {
-        GameManager.sInstance.playerController.OnPlayerInput += ReceiveInputs;
+        GameManager.sInstance.GetPlayerController().OnPlayerInput += ReceiveInputs;
     }
 
     private void RemoveDelegates()
     {
-        GameManager.sInstance.playerController.OnPlayerInput -= ReceiveInputs;
+        GameManager.sInstance.GetPlayerController().OnPlayerInput -= ReceiveInputs;
     }
 
     private void ReceiveInputs(PlayerData playerData)
@@ -72,7 +72,7 @@ public class PlayerParticlesController : MonoBehaviour
 
     private void Running(float velocity, bool isGrounded)
     {
-        var emission = _runParticle.emission;
+        ParticleSystem.EmissionModule emission = _runParticle.emission;
 
         if (velocity > 0 && isGrounded)
         {

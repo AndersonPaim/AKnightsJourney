@@ -27,15 +27,15 @@ public class ScoreManager : MonoBehaviour
     private void SetupDelegates()
     {
         GameManager.sInstance.OnSetScore += SetScore;
-        GameManager.sInstance.playerController.OnDeath += Death;
-        Coin.OnCollectCoin += CollectCoin;
+        GameManager.sInstance.GetPlayerController().OnDeath += Death;
+        Colletables.OnCollectItem += CollectItem;
     }
 
     private void RemoveDelegates()
     {
         GameManager.sInstance.OnSetScore += SetScore;
-        GameManager.sInstance.playerController.OnDeath -= Death;
-        Coin.OnCollectCoin -= CollectCoin;
+        GameManager.sInstance.GetPlayerController().OnDeath -= Death;
+        Colletables.OnCollectItem -= CollectItem;
     }
 
     private void SaveScore()
@@ -50,9 +50,9 @@ public class ScoreManager : MonoBehaviour
         SaveSystem.Save();
     }
 
-    private void CollectCoin()
+    private void CollectItem(int points)
     {
-        _score++;
+        _score += points;
     }
 
     private void SetScore()
