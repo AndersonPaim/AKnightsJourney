@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class Diamond : Colletables
 {
-    private BoxCollider _collider;
+    [SerializeField] private ParticleSystem _diamondParticle;
+    [SerializeField] private GameObject _diamondObject;
+    private Animator _anim;
 
-    private void Start()
+    protected override void Initialize()
     {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        _collider = gameObject.GetComponent<BoxCollider>();
+        base.Initialize();
+        _anim = _diamondObject.GetComponent<Animator>();
         itemPoints = 3;
+        destroyDelay = 0.6f;
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
-        CollectItem();
-        _collider.enabled = false;
-        StartCoroutine(DestroyObject());
+        base.OnEnterTrigger(other);
+        _diamondParticle.Play();
+        _anim.enabled = false;
     }
 
     protected override IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
     }
 }

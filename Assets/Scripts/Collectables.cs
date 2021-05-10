@@ -9,11 +9,40 @@ public abstract class Colletables : MonoBehaviour
 
     public int itemPoints;
 
+    public float destroyDelay;
+
+    private Collider _collider;
+
+    public virtual void Start()
+    {
+        Initialize();
+    }
+
+    protected virtual void Initialize()
+    {
+        _collider = GetComponent<Collider>();
+    }
+
     protected void CollectItem()
     {
         OnCollectItem?.Invoke(itemPoints);
     }
-    protected abstract void OnTriggerEnter(Collider other);
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        OnEnterTrigger(other);
+    }
+
+    protected virtual void OnEnterTrigger(Collider other)
+    {
+        CollectItem();
+        Collider.enabled = false;
+        StartCoroutine(DestroyObject());
+    }
 
     protected abstract IEnumerator DestroyObject();
+
+    public Collider Collider
+    {
+        get { return _collider; }
+    }
 }
