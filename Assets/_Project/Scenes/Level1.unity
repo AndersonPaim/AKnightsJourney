@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44777054, g: 0.49774903, b: 0.5754199, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2209,11 +2209,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6860a8b8da7584b4a90b1b2061284c17, type: 3}
---- !u!4 &304943522 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-  m_PrefabInstance: {fileID: 3262919461932562459}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &311443930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2347129200456455451, guid: ca4813179be748843b2afc5baa8ff094, type: 3}
@@ -3410,7 +3405,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: You Win
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2830636965969884548, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5532,7 +5527,6 @@ Transform:
   - {fileID: 361182248}
   - {fileID: 7467507035432698139}
   - {fileID: 1487609495}
-  - {fileID: 304943522}
   - {fileID: 768364101}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -6141,7 +6135,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: PAUSE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2830636965969884548, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -6513,7 +6507,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Over
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2830636965969884548, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7844,7 +7838,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sound Effects Volume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -6360588970910393389, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -8488,7 +8482,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Music Volume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -6360588970910393389, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13480,7 +13474,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2830636965969884548, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14210,7 +14204,7 @@ AudioSource:
   m_GameObject: {fileID: 1608524096}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2629281075772926779, guid: 8497b53abf86f424aaf71983a50220b3, type: 2}
+  OutputAudioMixerGroup: {fileID: 815177189668691609, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -14312,7 +14306,7 @@ MonoBehaviour:
   _audioSource: {fileID: 1608524098}
   _bgMusic: {fileID: 8300000, guid: 56c1216fae36ac4439f66b18175dee80, type: 3}
   _settingsMenu: {fileID: 2097735853}
-  _audioMixer: {fileID: 24100000, guid: 8497b53abf86f424aaf71983a50220b3, type: 2}
+  _audioMixer: {fileID: 24100000, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
 --- !u!4 &1609761856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6880600594296095870, guid: 01db271ebae3b2b4bbff784f451b2c00, type: 3}
@@ -18966,9 +18960,9 @@ MonoBehaviour:
   _gameOverAudio: {fileID: 8300000, guid: 8d0b169e97e50534ba2533f1ca53f8fe, type: 3}
   _coinAudio: {fileID: 8300000, guid: 9e39f8fbe5c8dc549bd26030daeae21e, type: 3}
   _checkpointAudio: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
-  _effectsAudioMixer: {fileID: 8329262134241470284, guid: 8497b53abf86f424aaf71983a50220b3, type: 2}
-  _finishAudioMixer: {fileID: -7909130965757838860, guid: 8497b53abf86f424aaf71983a50220b3, type: 2}
-  _audioMixer: {fileID: 24100000, guid: 8497b53abf86f424aaf71983a50220b3, type: 2}
+  _effectsAudioMixer: {fileID: 2470931837589216953, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
+  _finishAudioMixer: {fileID: 2470931837589216953, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
+  _audioMixer: {fileID: 24100000, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
   _player: {fileID: 2508964430879719602}
 --- !u!4 &2126519622 stripped
 Transform:
@@ -19463,143 +19457,6 @@ PrefabInstance:
     - {fileID: 4619160912863498847, guid: ca4813179be748843b2afc5baa8ff094, type: 3}
     - {fileID: 6625113192396583037, guid: ca4813179be748843b2afc5baa8ff094, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ca4813179be748843b2afc5baa8ff094, type: 3}
---- !u!1 &2143064867 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7585837614455618428, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-  m_PrefabInstance: {fileID: 3262919461932562459}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &2143064871
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143064867}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 8329262134241470284, guid: 8497b53abf86f424aaf71983a50220b3, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 997f12b4c844a264b8a6ffa303a28abe, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 25
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.04
-      value: 1
-      inSlope: -25.00996
-      outSlope: -25.00996
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.08
-      value: 0.5
-      inSlope: -6.25249
-      outSlope: -6.25249
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.16
-      value: 0.25
-      inSlope: -1.5631225
-      outSlope: -1.5631225
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.32
-      value: 0.125
-      inSlope: -0.39078063
-      outSlope: -0.39078063
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.6355902
-      value: 0.036468506
-      inSlope: -0.09769516
-      outSlope: -0.09769516
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.9955902
-      value: 0
-      inSlope: -0.04001595
-      outSlope: -0.04001595
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &2144355905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 675103393118589550, guid: 8524155fdc54f734ab60f4a0ac869b20, type: 3}
@@ -19943,7 +19800,7 @@ PrefabInstance:
     - target: {fileID: 2573718696665811977, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
       propertyPath: _playerBalancer
       value: 
-      objectReference: {fileID: 11400000, guid: 96585fbd1fc018e43a44d3effe275141, type: 2}
+      objectReference: {fileID: 11400000, guid: d88a3af119d77874e82ce7544fbb9fef, type: 2}
     - target: {fileID: 2611268621667023512, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -19999,7 +19856,7 @@ PrefabInstance:
     - target: {fileID: 3420139037374439459, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
       propertyPath: _audioMixer
       value: 
-      objectReference: {fileID: 24100000, guid: 8497b53abf86f424aaf71983a50220b3, type: 2}
+      objectReference: {fileID: 24100000, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
     - target: {fileID: 3420139037374439459, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
       propertyPath: _effectsMixer
       value: 
@@ -20015,7 +19872,7 @@ PrefabInstance:
     - target: {fileID: 3420139037374439460, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 6487739325279322186, guid: 8497b53abf86f424aaf71983a50220b3, type: 2}
+      objectReference: {fileID: 2470931837589216953, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
     - target: {fileID: 4087802704733851090, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -20822,89 +20679,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &3262919461932562459
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 676577438}
-    m_Modifications:
-    - target: {fileID: 2655152892061929858, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2810844462239680513, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 21.299995
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.471594
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 394.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3084037292569681759, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361447368327081646, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6540336395092162907, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7585837614455618428, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_Name
-      value: Portal
-      objectReference: {fileID: 0}
-    - target: {fileID: 7585837614455618428, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168865007297730725, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2045522052450596410, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-    - {fileID: 3048016472252362227, guid: e7280395880c72e48a4e1bd637796167, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: e7280395880c72e48a4e1bd637796167, type: 3}
 --- !u!114 &3319372873181129881 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2573718696665811977, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
@@ -21437,7 +21211,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2830636965969884548, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -21949,7 +21723,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2830636965969884548, guid: 605433b68313d491a8ab88bc03a41651, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -22256,7 +22030,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507035399882057
@@ -22376,7 +22150,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507035438026135
@@ -22458,7 +22232,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507035625936065
@@ -22556,7 +22330,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507035744997761
@@ -22653,7 +22427,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507035766761096
@@ -22736,7 +22510,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507035806544917
@@ -22836,7 +22610,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507035903772660
@@ -22949,7 +22723,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507035911193315
@@ -23032,7 +22806,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036071875413
@@ -23130,7 +22904,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036088797422
@@ -23228,7 +23002,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036332155457
@@ -23328,7 +23102,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036501823182
@@ -23426,7 +23200,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036518174710
@@ -23526,7 +23300,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036526887510
@@ -23641,7 +23415,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507036530149398
@@ -23724,7 +23498,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036542917985
@@ -23824,7 +23598,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036575168282
@@ -23937,7 +23711,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507036695922592
@@ -24069,7 +23843,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507036974364522
@@ -24135,7 +23909,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507036974364524
@@ -24235,7 +24009,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507037169482716
@@ -24333,7 +24107,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507037170886304
@@ -24416,7 +24190,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7467507037329936462
@@ -24498,7 +24272,7 @@ SpriteRenderer:
   m_Size: {x: 20, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7467507037362487194

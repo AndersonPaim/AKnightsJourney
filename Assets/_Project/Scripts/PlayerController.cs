@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Initialize();
-        
+
         Gravity();
     }
 
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
         PlayerRotation(direction);
         SetVelocity(direction);
 
-        if (direction != 0 && _isDashing == false) 
+        if (direction != 0 && _isDashing == false)
         {
             vel.z = direction * _playerBalancer.speedMultiplier * _velocity;
             _rb.velocity = vel;
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
         else if(direction == 0 && _isDashing == false)
         {
             vel.z = _lastDirection * _playerBalancer.speedMultiplier * _velocity;
-        
+
             _rb.velocity = vel;
         }
     }
@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator JumpCount()
     {
         yield return new WaitForFixedUpdate();
-        _jumpsCount--; //a verificação de chão anulava esse comando | arrumar depois
+        _jumpsCount--; //a verificaï¿½ï¿½o de chï¿½o anulava esse comando | arrumar depois
         _isJumping = true;
     }
 
