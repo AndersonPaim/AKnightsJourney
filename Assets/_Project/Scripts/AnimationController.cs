@@ -61,12 +61,13 @@ public class AnimationController : MonoBehaviour
         SetIsGrounded(playerData.OnGround);
         Jump(playerData.Jump);
         DoubleJump(playerData.DoubleJump);
+        Attack(playerData.Attack);
     }
 
     private void SetIsGrounded(bool isGrounded)
     {
         _animator.SetBool(AnimationParameters.ISGROUNDED, isGrounded);
-        
+
         if(isGrounded == false && _animator.GetBool(AnimationParameters.ISJUMPING) == false)
         {
             Falling(true);
@@ -75,18 +76,18 @@ public class AnimationController : MonoBehaviour
         {
             Falling(false);
         }
-        
+
         if (isGrounded)
         {
             _animator.SetBool(AnimationParameters.ISJUMPING, false);
         }
     }
-    
+
     private void Falling(bool isFalling)
     {
         _animator.SetBool(AnimationParameters.ISFALLING, isFalling);
     }
-    
+
 
     private void Movement(float direction, float velocity)
     {
@@ -104,12 +105,17 @@ public class AnimationController : MonoBehaviour
 
     private void Jump(bool isJumping)
     {
-        _animator.SetBool(AnimationParameters.ISJUMPING, isJumping); 
+        _animator.SetBool(AnimationParameters.ISJUMPING, isJumping);
     }
 
     private void DoubleJump(bool isDoubleJumping)
     {
        _animator.SetBool(AnimationParameters.ISDOUBLEJUMPING, isDoubleJumping);
+    }
+
+    private void Attack(bool isAttacking)
+    {
+       _animator.SetBool(AnimationParameters.ATTACK, isAttacking);
     }
 
 }

@@ -11,4 +11,5 @@ public struct PlayerData
     public bool DoubleJump;
     public bool Dash;
     public bool OnGround;
+    public bool Attack;
 }

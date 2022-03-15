@@ -20,5 +20,5 @@ MonoBehaviour:
   jumpForce: 8
   dashForce: 10
   dashTime: 0.15
-  dashDirection: {x: 0, y: 0, z: 5}
-  gravity: {x: 0, y: -9, z: 0}
+  dashDirection: {x: 0, y: 0.2, z: 5}
+  gravity: {x: 0, y: -13, z: 0}

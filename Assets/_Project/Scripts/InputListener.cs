@@ -17,6 +17,7 @@ public class InputListener : MonoBehaviour
 
     [SerializeField] private bool _jump;
     [SerializeField] private bool _dash;
+    [SerializeField] private bool _attack;
     [SerializeField] private bool _run;
     [SerializeField] private bool _walk;
 
@@ -30,7 +31,7 @@ public class InputListener : MonoBehaviour
     }
 
     private void Update()
-    { 
+    {
         CreateInputStruct();
         OnInput?.Invoke(_inputData);
         _inputData = new InputData();
@@ -54,6 +55,7 @@ public class InputListener : MonoBehaviour
         _input.Player.Run.performed -= ctx => Run(ctx);
         _input.Player.Run.canceled -= ctx => Run(ctx);
         _input.Player.Pause.performed -= _ => Pause();
+        _input.Player.Attack.performed -= ctx => Attack(ctx);
     }
 
     private void Initialize()
@@ -64,6 +66,7 @@ public class InputListener : MonoBehaviour
         _input.Player.Run.performed += ctx => Run(ctx);
         _input.Player.Run.canceled += ctx => Run(ctx);
         _input.Player.Pause.performed += _ => Pause();
+        _input.Player.Attack.performed += ctx => Attack(ctx);
     }
 
     private void CreateInputStruct()
@@ -73,6 +76,7 @@ public class InputListener : MonoBehaviour
         _inputData.Run = _run;
         _inputData.Movement = _movement;
         _inputData.Walk = _walk;
+        _inputData.Attack = _attack;
 
         if (_jump)
         {
@@ -82,6 +86,11 @@ public class InputListener : MonoBehaviour
         if (_dash)
         {
             _dash = false;
+        }
+
+        if (_attack)
+        {
+            _attack = false;
         }
     }
 
@@ -111,6 +120,14 @@ public class InputListener : MonoBehaviour
         if (ctx.performed)
         {
             _dash = true;
+        }
+    }
+
+    private void Attack(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            _attack = true;
         }
     }
 

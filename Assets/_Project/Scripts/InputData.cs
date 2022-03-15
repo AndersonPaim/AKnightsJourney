@@ -9,4 +9,5 @@ public struct InputData
     public bool Dash;
     public bool Run;
     public bool Walk;
+    public bool Attack;
 }

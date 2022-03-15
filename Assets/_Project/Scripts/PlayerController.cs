@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded = true;
     private bool _canDash = false;
     private bool _isDashing = false;
+    private bool _isAttacking = false;
     private bool _isWalking = false;
     private bool _isRunning = false;
     private bool _isJumping = false;
@@ -117,6 +118,7 @@ public class PlayerController : MonoBehaviour
             Jump(inputData.Jump);
             Dash(inputData.Dash);
             Run(inputData.Run);
+            Attack(inputData.Attack);
         }
     }
 
@@ -129,6 +131,7 @@ public class PlayerController : MonoBehaviour
         _playerData.DoubleJump = _isDoubleJumping;
         _playerData.Movement = _movement;
         _playerData.Velocity = _velocity;
+        _playerData.Attack = _isAttacking;
     }
 
 
@@ -250,6 +253,11 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(JumpCount());
             }
         }
+    }
+
+    private void Attack(bool isAttacking)
+    {
+        _isAttacking = isAttacking;
     }
 
     private IEnumerator JumpCount()
