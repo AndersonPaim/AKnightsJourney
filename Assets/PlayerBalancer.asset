@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe4528ce3854884b9f9aa9b5855fb98, type: 3}
   m_Name: PlayerBalancer
   m_EditorClassIdentifier: 
-  acceleration: 10
+  acceleration: 8
   deceleration: 10
-  walkSpeed: 5
-  runSpeed: 6
+  walkSpeed: 4
+  runSpeed: 4
   speedMultiplier: 2
   jumpForce: 8
   dashForce: 10
