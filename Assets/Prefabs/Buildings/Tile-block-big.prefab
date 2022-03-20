@@ -1793,6 +1793,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dungeon-floor-big
       objectReference: {fileID: 0}
+    - target: {fileID: 1123584395368773095, guid: edb1853d1c657094b82d71cf7348d0c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2589455266978428992, guid: edb1853d1c657094b82d71cf7348d0c4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1807,7 +1811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2666798046534411851, guid: edb1853d1c657094b82d71cf7348d0c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.4134903
+      value: -6.417158
       objectReference: {fileID: 0}
     - target: {fileID: 2666798046534411851, guid: edb1853d1c657094b82d71cf7348d0c4, type: 3}
       propertyPath: m_LocalPosition.z
