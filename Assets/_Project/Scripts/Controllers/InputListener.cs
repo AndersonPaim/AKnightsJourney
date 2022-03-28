@@ -15,6 +15,7 @@ public class InputListener : MonoBehaviour
 
     [SerializeField] private float _movementY;
     [SerializeField] private float _movementX;
+    [SerializeField] private Vector2 _movementXY;
 
     [SerializeField] private bool _jump;
     [SerializeField] private bool _dash;
@@ -75,8 +76,18 @@ public class InputListener : MonoBehaviour
         _inputData.Dash = _dash;
         _inputData.Jump = _jump;
         _inputData.Run = _run;
-        _inputData.MovementY = _movementY;
-        _inputData.MovementX = _movementX;
+
+        if(_movementXY.x != 0 || _movementXY.y != 0)
+        {
+            _inputData.MovementY = _movementY;
+            _inputData.MovementX = _movementX;
+        }
+        else
+        {
+            _inputData.MovementY = _movementXY.y;
+            _inputData.MovementX = _movementXY.x;
+        }
+
         _inputData.Walk = _walk;
         _inputData.Attack = _attack;
 
@@ -101,7 +112,15 @@ public class InputListener : MonoBehaviour
         _movementY = _input.Player.MovementY.ReadValue<float>();
         _movementX = _input.Player.MovementX.ReadValue<float>();
 
-        if (_movementY != 0)
+        _movementXY = _input.Player.MovementXY.ReadValue<Vector2>();
+
+        if(_movementXY.x != 0 || _movementXY.y != 0)
+        {
+            _movementY = _movementXY.y;
+            _movementX = _movementXY.x;
+        }
+
+        if (_movementY != 0 || _movementXY.x != 0)
         {
             _walk = true;
         }

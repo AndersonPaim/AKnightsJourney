@@ -203,19 +203,19 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerRotation(float direction)
     {
-        switch (direction)
+        if(direction < 0)
         {
-            case -1:
-                transform.rotation = Quaternion.Slerp(transform.rotation, _playerRotationLeft, 1f);
-                _isWalking = true;
-                break;
-            case 1:
-                transform.rotation = Quaternion.Slerp(transform.rotation, _playerRotationRight, 1f);
-                _isWalking = true;
-                break;
-            default:
-                _isWalking = false;
-                break;
+            transform.rotation = Quaternion.Slerp(transform.rotation, _playerRotationLeft, 1f);
+            _isWalking = true;
+        }
+        else if(direction > 0)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, _playerRotationRight, 1f);
+            _isWalking = true;
+        }
+        else
+        {
+            _isWalking = false;
         }
     }
 

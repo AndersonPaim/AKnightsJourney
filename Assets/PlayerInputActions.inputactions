@@ -1,14 +1,22 @@
 {
-    "name": "Bootcamp",
+    "name": "PlayerInputActions",
     "maps": [
         {
             "name": "Player",
             "id": "62a84f0a-7a65-4eac-a26d-e02ab3fafe28",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "MovementX",
                     "type": "Value",
                     "id": "be793f17-cf91-4808-bdea-8790c46bdaf8",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MovementY",
+                    "type": "Value",
+                    "id": "8fa7e2e3-3918-4a4e-8c0a-b907a251b9bf",
                     "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": ""
@@ -52,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "MovementXY",
+                    "type": "PassThrough",
+                    "id": "2bbfd1a1-3597-4906-8bc7-7e72948a56a1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -62,7 +78,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "MovementX",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -72,8 +88,8 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Movement",
+                    "groups": "Keyboard&Mouse",
+                    "action": "MovementX",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -83,8 +99,8 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Movement",
+                    "groups": "Keyboard&Mouse",
+                    "action": "MovementX",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -101,8 +117,30 @@
                 },
                 {
                     "name": "",
+                    "id": "5baec01c-d5d2-4b51-bf9f-afad5eac6dd0",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a7ef956f-0856-4924-b541-57949c3a99af",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13df6fe8-64de-4113-9cc6-a82a264e5d50",
+                    "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -140,6 +178,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "97f8c062-a85b-451b-8643-3102e7ea028e",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovementY",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "6b8e8721-2eda-4e96-8e3d-ebb8d4e90567",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovementY",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "357d74bc-707f-4151-b6af-b2d85280c61b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovementY",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "b03f5d04-8ac9-458b-9df5-d50ccd263de6",
+                    "path": "<XInputController>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovementXY",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
