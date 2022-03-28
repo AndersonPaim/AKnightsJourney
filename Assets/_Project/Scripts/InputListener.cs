@@ -13,7 +13,8 @@ public class InputListener : MonoBehaviour
     public delegate void PauseHandler();
     public PauseHandler OnPause;
 
-    [SerializeField] private float _movement;
+    [SerializeField] private float _movementY;
+    [SerializeField] private float _movementX;
 
     [SerializeField] private bool _jump;
     [SerializeField] private bool _dash;
@@ -74,7 +75,8 @@ public class InputListener : MonoBehaviour
         _inputData.Dash = _dash;
         _inputData.Jump = _jump;
         _inputData.Run = _run;
-        _inputData.Movement = _movement;
+        _inputData.MovementY = _movementY;
+        _inputData.MovementX = _movementX;
         _inputData.Walk = _walk;
         _inputData.Attack = _attack;
 
@@ -96,8 +98,10 @@ public class InputListener : MonoBehaviour
 
     private void Movement()
     {
-        _movement = _input.Player.Movement.ReadValue<float>();
-        if (_movement != 0)
+        _movementY = _input.Player.MovementY.ReadValue<float>();
+        _movementX = _input.Player.MovementX.ReadValue<float>();
+
+        if (_movementY != 0)
         {
             _walk = true;
         }

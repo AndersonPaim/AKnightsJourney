@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerBalancer _playerBalancer;
 
     private float _jumpsCount = 2;
-    private float _movement = 0;
+    private float _movementX = 0;
+    private float _movementY = 0;
     private float _velocity = 0;
     private float _lastDirection;
 
@@ -99,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         _isPaused = true;
         _velocity = 0;
-        _movement = 0;
+        _movementX = 0;
         ResetForces();
         StartCoroutine(MovementDelay());
     }
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_isPaused)
         {
-            Movement(inputData.Movement);
+            Movement(inputData.MovementX, inputData.MovementY);
             Jump(inputData.Jump);
             Dash(inputData.Dash);
             Run(inputData.Run);
@@ -129,29 +130,30 @@ public class PlayerController : MonoBehaviour
         _playerData.Jump = _isJumping;
         _playerData.Dash = _isDashing;
         _playerData.DoubleJump = _isDoubleJumping;
-        _playerData.Movement = _movement;
+        _playerData.Movement = _movementX;
         _playerData.Velocity = _velocity;
         _playerData.Attack = _isAttacking;
     }
 
 
-    private void Movement(float direction)
+    private void Movement(float directionX, float directionY)
     {
-        _movement = direction;
+        _movementX = directionX;
+        _movementY = directionY;
 
         Vector3 vel = _rb.velocity;
 
-        PlayerRotation(direction);
-        SetVelocity(direction);
+        PlayerRotation(directionX);
+        SetVelocity(directionX);
 
-        if (direction != 0 && _isDashing == false)
+        if (directionX != 0 && _isDashing == false)
         {
-            vel.z = direction * _playerBalancer.speedMultiplier * _velocity;
+            vel.z = directionX * _playerBalancer.speedMultiplier * _velocity;
             _rb.velocity = vel;
 
-            _lastDirection = direction;
+            _lastDirection = directionX;
         }
-        else if(direction == 0 && _isDashing == false)
+        else if(directionX == 0 && _isDashing == false)
         {
             vel.z = _lastDirection * _playerBalancer.speedMultiplier * _velocity;
 
@@ -275,7 +277,26 @@ public class PlayerController : MonoBehaviour
             _isDashing = true;
             ResetForces();
             CameraShake(3, 1);
-            _rb.AddRelativeForce(_playerBalancer.dashDirection * _playerBalancer.dashForce, ForceMode.Impulse);
+
+            Vector3 dir = new Vector3(0, 0, 0);
+
+            if(_movementY > 0 && _movementX != 0)
+            {
+                dir.y = Mathf.Abs(_movementY * 0.5f);
+                dir.z = Mathf.Abs(_movementX * 0.5f);
+            }
+            else if(_movementY > 0)
+            {
+                dir.y = _movementY * 0.7f;
+            }
+            else
+            {
+                dir.z = 1;
+            }
+
+            Debug.Log("DASH: " + dir.y);
+
+            _rb.AddRelativeForce(dir * _playerBalancer.dashForce, ForceMode.Impulse);
             StartCoroutine(StopDash(_playerBalancer.dashTime));
         }
     }

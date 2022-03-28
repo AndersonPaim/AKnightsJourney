@@ -4,7 +4,8 @@ using UnityEngine;
 
 public struct InputData
 {
-    public float Movement;
+    public float MovementY;
+    public float MovementX;
     public bool Jump;
     public bool Dash;
     public bool Run;
