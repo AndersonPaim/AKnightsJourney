@@ -294,8 +294,6 @@ public class PlayerController : MonoBehaviour
                 dir.z = 1;
             }
 
-            Debug.Log("DASH: " + dir.y);
-
             _rb.AddRelativeForce(dir * _playerBalancer.dashForce, ForceMode.Impulse);
             StartCoroutine(StopDash(_playerBalancer.dashTime));
         }

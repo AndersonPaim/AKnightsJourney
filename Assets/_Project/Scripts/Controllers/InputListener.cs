@@ -77,16 +77,8 @@ public class InputListener : MonoBehaviour
         _inputData.Jump = _jump;
         _inputData.Run = _run;
 
-        if(_movementXY.x != 0 || _movementXY.y != 0)
-        {
-            _inputData.MovementY = _movementY;
-            _inputData.MovementX = _movementX;
-        }
-        else
-        {
-            _inputData.MovementY = _movementXY.y;
-            _inputData.MovementX = _movementXY.x;
-        }
+        _inputData.MovementY = _movementY;
+        _inputData.MovementX = _movementX;
 
         _inputData.Walk = _walk;
         _inputData.Attack = _attack;
@@ -120,7 +112,7 @@ public class InputListener : MonoBehaviour
             _movementX = _movementXY.x;
         }
 
-        if (_movementY != 0 || _movementXY.x != 0)
+        if (_movementY != 0 || _movementX != 0)
         {
             _walk = true;
         }
