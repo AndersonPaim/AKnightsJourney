@@ -12,8 +12,20 @@ public class PlayerParticlesController : MonoBehaviour
 
     [SerializeField] private float _runningEmissionRate;
 
+    [SerializeField] private GameObject _attackTrailObject;
+
     private bool _isJumping = false;
     private bool _isDoubleJumping = false;
+
+    public void EnableAttackTrail()
+    {
+        _attackTrailObject.SetActive(true);
+    }
+
+    public void DisableAttackTrail()
+    {
+        _attackTrailObject.SetActive(false);
+    }
 
     private void Start()
     {
@@ -90,8 +102,8 @@ public class PlayerParticlesController : MonoBehaviour
             _runParticle.Stop();
         }
     }
-   
-    private void LandingParticle() //chama no evento de animação
+
+    private void LandingParticle() //chama no evento de animaï¿½ï¿½o
     {
         _landingParticle.Play();
     }
