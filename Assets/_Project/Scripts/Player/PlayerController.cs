@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     public delegate void SetCheckpointHandler();
     public SetCheckpointHandler OnSetCheckpoint;
@@ -43,16 +43,19 @@ public class PlayerController : MonoBehaviour
 
     private CinemachineBasicMultiChannelPerlin _cameraNoise;
 
+    public void TakeDamage(float damage)
+    {
+        OnDeath?.Invoke();
+    }
 
-    void Start()
+    private void Start()
     {
         Initialize();
 
         Gravity();
     }
 
-
-    void Update()
+    private void Update()
     {
         CreatePlayerStruct();
         GroundCheck();

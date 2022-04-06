@@ -7,7 +7,12 @@ public class EnemyPatrolAI : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rayDistance;
     [SerializeField] private float _detectPlayerDistance;
+    [SerializeField] private float _hitPlayerDistance;
     [SerializeField] private Transform _rayPos;
+    [SerializeField] protected float _attackDelay;
+    [SerializeField] protected Animator _anim;
+    [SerializeField] protected Collider _hitCollider;
+
     private Rigidbody _rb;
     private bool _isPatrolling = true;
     private int _direction = 1;
@@ -16,17 +21,25 @@ public class EnemyPatrolAI : MonoBehaviour
 
     protected GameObject _player;
     protected bool _canSeePlayer = false;
+    protected bool _canHitPlayer = false;
+    protected bool _canMove = true;
+    protected bool _isDead = false;
+    protected bool _canAttack = true;
 
-    private void Start()
+    protected virtual void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _enemyRotationLeft = Quaternion.Euler(0, 180, 0);
         _enemyRotationRight = Quaternion.Euler(0, 0, 0);
     }
 
-
     protected virtual void FixedUpdate()
     {
+        if(_canMove && !_isDead)
+        {
+            _rb.velocity += transform.forward * _moveSpeed;
+        }
+
         LookForPlayer();
 
         if(IsHittingWall() || IsNearEdge())
@@ -40,8 +53,6 @@ public class EnemyPatrolAI : MonoBehaviour
                 ChangeEnemyRotation(1);
             }
         }
-
-        _rb.velocity += transform.forward * _moveSpeed;
     }
 
     private bool IsHittingWall()
@@ -70,15 +81,12 @@ public class EnemyPatrolAI : MonoBehaviour
         bool ground = Physics.Linecast(_rayPos.position, targetPos, 1 << LayerMask.NameToLayer("Ground"));
         bool player = Physics.Linecast(_rayPos.position, targetPos, 1 << LayerMask.NameToLayer("Player"));
 
-        Debug.Log("IS NEAR EDGE: " + ground + " : " + player);
-
         if(ground || player)
         {
             return false;
         }
         else
         {
-            Debug.Log("NEAR EDGE: ");
             return true;
         }
     }
@@ -95,6 +103,20 @@ public class EnemyPatrolAI : MonoBehaviour
             case 1:
                 transform.rotation = Quaternion.Slerp(transform.rotation, _enemyRotationRight, 1f);
                 break;
+        }
+    }
+
+    protected bool CanAttackPlayer()
+    {
+        float dist = Vector3.Distance(_player.transform.position, transform.position);
+
+        if(dist < _hitPlayerDistance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -118,11 +140,10 @@ public class EnemyPatrolAI : MonoBehaviour
         if (ray1)
         {
             player = hit.transform.gameObject.GetComponent<PlayerController>();
-            _canSeePlayer = true;
+            CanSeePlayer(true);
+
             if(player != null)
             {
-                Debug.Log("FIND PLAYER: FRENTE");
-
                 _canSeePlayer = true;
                 _player = player.gameObject;
             }
@@ -131,10 +152,10 @@ public class EnemyPatrolAI : MonoBehaviour
         if(ray2)
         {
             player2 = hit2.transform.gameObject.GetComponent<PlayerController>();
-            _canSeePlayer = true;
+            CanSeePlayer(true);
+
             if(player2 != null)
             {
-                Debug.Log("FIND PLAYER: COSTAS");
                 _canSeePlayer = true;
                 _player = player2.gameObject;
             }
@@ -144,13 +165,17 @@ public class EnemyPatrolAI : MonoBehaviour
         {
             if(_canSeePlayer)
             {
-                Debug.Log("CANT SEE PLAYER");
-                _canSeePlayer = false;
+                CanSeePlayer(false);
             }
         }
         else if(player == null && player2 == null)
         {
-            _canSeePlayer = false;
+            CanSeePlayer(false);
         }
+    }
+
+    protected virtual void CanSeePlayer(bool canSee)
+    {
+        _canSeePlayer = canSee;
     }
 }
