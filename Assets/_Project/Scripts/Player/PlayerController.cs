@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     public delegate void DeathHandler();
     public DeathHandler OnDeath;
 
+    public delegate void TakeDamageHandler();
+    public TakeDamageHandler OnTakeDamage;
+
     [SerializeField] private CinemachineVirtualCamera _camera;
 
     [SerializeField] private PlayerBalancer _playerBalancer;
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private bool _isJumping = false;
     private bool _isDoubleJumping = false;
     private bool _isPaused = false;
+    private bool _isVulnerable = true;
 
     private Rigidbody _rb;
 
@@ -45,7 +49,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        OnDeath?.Invoke();
+        if(!_isVulnerable)
+        {
+            return;
+        }
+
+        StartCoroutine(VurnerabilityDelay());
+        OnTakeDamage?.Invoke();
+        Debug.Log("TAKE DAMAGE");
     }
 
     private void Start()
@@ -310,6 +321,13 @@ public class PlayerController : MonoBehaviour, IDamageable
         ResetForces();
     }
 
+    private IEnumerator VurnerabilityDelay()
+    {
+        _isVulnerable = false;
+        yield return new WaitForSeconds(1);
+        _isVulnerable = true;
+    }
+
     private void CameraShake(float amplitude, float frequency)
     {
         _cameraNoise.m_AmplitudeGain = amplitude;
@@ -336,6 +354,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Death()
     {
+        if(!_isVulnerable)
+        {
+            return;
+        }
+
+        StartCoroutine(VurnerabilityDelay());
         OnDeath?.Invoke();
     }
 

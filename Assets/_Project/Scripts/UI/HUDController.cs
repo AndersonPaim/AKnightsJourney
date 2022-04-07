@@ -31,17 +31,18 @@ public class HUDController : MonoBehaviour
     private void SetupDelegates()
     {
         GameManager.sInstance.GetPlayerController().OnDeath += PlayerDie;
-
+        GameManager.sInstance.GetPlayerController().OnTakeDamage += PlayerDie;
     }
 
     private void RemoveDelegates()
     {
         GameManager.sInstance.GetPlayerController().OnDeath -= PlayerDie;
+        GameManager.sInstance.GetPlayerController().OnTakeDamage -= PlayerDie;
     }
 
     private void PlayerDie()
     {
-        _hearts[_heartIndex].color = _blackColor;          
+        _hearts[_heartIndex].color = _blackColor;
         _heartIndex--;
     }
 }

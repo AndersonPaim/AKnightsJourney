@@ -13,7 +13,7 @@ public class EnemyPatrolAI : MonoBehaviour
     [SerializeField] protected Animator _anim;
     [SerializeField] protected Collider _hitCollider;
 
-    private Rigidbody _rb;
+    protected Rigidbody _rb;
     private bool _isPatrolling = true;
     private int _direction = 1;
     private Quaternion _enemyRotationLeft;

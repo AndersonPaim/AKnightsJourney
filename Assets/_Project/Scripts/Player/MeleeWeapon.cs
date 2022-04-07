@@ -11,8 +11,28 @@ public class MeleeWeapon : MonoBehaviour
 
         if(damageable != null)
         {
+            Debug.Log("HIT ENEMY");
             damageable.TakeDamage(100);
-            Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
+            //Knockback(other.gameObject);
+            //Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
         }
+    }
+
+    private void Knockback(GameObject obj)
+    {
+        Vector3 dir;
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+
+
+        if(obj.transform.eulerAngles.y < 90)
+        {
+            dir = new Vector3(0, 0, -1);
+        }
+        else
+        {
+            dir = new Vector3(0, 0, 1);
+        }
+
+        rb.AddForce(dir * 30, ForceMode.Impulse);
     }
 }

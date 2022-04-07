@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     private void SetupDelegates()
     {
         playerController.OnDeath += PlayerDeath;
+        playerController.OnTakeDamage += PlayerDamage;
         checkpointManager.OnSetRespawnPosition += SetPlayerRespawnPosition;
         checkpointManager.OnLastCheckpoint += Finish;
     }
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
     private void RemoveDelegates()
     {
         playerController.OnDeath -= PlayerDeath;
+        playerController.OnTakeDamage -= PlayerDamage;
         checkpointManager.OnSetRespawnPosition -= SetPlayerRespawnPosition;
         checkpointManager.OnLastCheckpoint -= Finish;
     }
@@ -101,6 +103,16 @@ public class GameManager : MonoBehaviour
     public ObjectPooler GetObjectPooler()
     {
         return objectPooler;
+    }
+
+    private void PlayerDamage()
+    {
+        _respawns--;
+
+        if (_respawns == 0)
+        {
+            GameOver();
+        }
     }
 
     private void PlayerDeath()

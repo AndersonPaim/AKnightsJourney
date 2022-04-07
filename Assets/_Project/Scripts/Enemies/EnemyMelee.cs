@@ -10,6 +10,9 @@ public class EnemyMelee : EnemyPatrolAI, IDamageable
         _anim.SetTrigger("Die");
         _isDead = true;
         StartCoroutine(DestroyDelay(2));
+        GetComponent<Collider>().enabled = false;
+        _hitCollider.enabled = false;
+        _rb.isKinematic = true;
     }
 
     public void EnableHitCollider()
@@ -71,9 +74,9 @@ public class EnemyMelee : EnemyPatrolAI, IDamageable
 
     private IEnumerator AttackDelay(float delay)
     {
-        yield return new WaitForSeconds(1);
-        _anim.SetTrigger("Attack");
         _canAttack = false;
+        yield return new WaitForSeconds(0.5f);
+        _anim.SetTrigger("Attack");
         yield return new WaitForSeconds(delay);
         _canAttack = true;
     }
