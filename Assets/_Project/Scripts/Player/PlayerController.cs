@@ -49,16 +49,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private CinemachineBasicMultiChannelPerlin _cameraNoise;
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, GameObject attacker)
     {
         if(!_isVulnerable)
         {
             return;
         }
 
+        Vector3 knockbackDirection = new Vector3(0, 0, gameObject.transform.position.z - attacker.transform.position.z);
+        _rb.velocity = new Vector3(0, 0, knockbackDirection.z) * 40;
+
         StartCoroutine(VurnerabilityDelay());
         OnTakeDamage?.Invoke();
-        Debug.Log("TAKE DAMAGE");
     }
 
     private void Start()
@@ -289,6 +291,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (isDashing && _canDash)
         {
+            Physics.IgnoreLayerCollision(8, 10, true);
+            _isVulnerable = false;
             _dashCollider.SetActive(true);
             _canDash = false;
             _isDashing = true;
@@ -316,9 +320,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator StopDash(float waitTime)
+    public IEnumerator StopDash(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        Physics.IgnoreLayerCollision(8, 10, false);
+        _isVulnerable = true;
         _isDashing = false;
         _dashCollider.SetActive(false);
         CameraShake(0, 0);

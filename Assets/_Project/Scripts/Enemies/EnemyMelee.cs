@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMelee : EnemyPatrolAI, IDamageable
+public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
 {
+    [SerializeField] private float _health;
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, GameObject attacker)
     {
-        _anim.SetTrigger("Die");
-        _isDead = true;
-        StartCoroutine(DestroyDelay(2));
-        GetComponent<Collider>().enabled = false;
-        _hitCollider.enabled = false;
-        _rb.isKinematic = true;
+        _health -= damage;
+
+        if(_health > 0)
+        {
+            _anim.SetTrigger("TakeDamage");
+            Knockback(attacker);
+        }
+        else
+        {
+            _anim.SetTrigger("Die");
+            _isDead = true;
+            StartCoroutine(DestroyDelay(2));
+            GetComponent<Collider>().enabled = false;
+            _hitCollider.enabled = false;
+            _rb.isKinematic = true;
+        }
     }
 
     public void EnableHitCollider()
@@ -23,6 +34,12 @@ public class EnemyMelee : EnemyPatrolAI, IDamageable
     public void DisableHitCollider()
     {
         _hitCollider.enabled = false;
+    }
+
+    private void Knockback(GameObject attacker)
+    {
+        Vector3 knockbackDirection = new Vector3(0, 0, gameObject.transform.position.z - attacker.transform.position.z);
+        _rb.velocity = new Vector3(0, 0, knockbackDirection.z) * 40;
     }
 
     protected override void FixedUpdate()

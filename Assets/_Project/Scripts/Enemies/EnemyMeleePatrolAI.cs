@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPatrolAI : MonoBehaviour
+public class EnemyMeleePatrolAI : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rayDistance;
@@ -35,7 +35,7 @@ public class EnemyPatrolAI : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if(_canMove && !_isDead)
+        if(_canMove && !_isDead && !IsNearEdge())
         {
             _rb.velocity += transform.forward * _moveSpeed;
         }
