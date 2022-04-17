@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField] private PlayerBalancer _playerBalancer;
 
+    [SerializeField] private GameObject _dashCollider;
+
     private float _jumpsCount = 2;
     private float _movementX = 0;
     private float _movementY = 0;
@@ -285,8 +287,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Dash(bool isDashing)
     {
-        if (isDashing && !_isGrounded && _canDash)
+        if (isDashing && _canDash)
         {
+            _dashCollider.SetActive(true);
             _canDash = false;
             _isDashing = true;
             ResetForces();
@@ -317,6 +320,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(waitTime);
         _isDashing = false;
+        _dashCollider.SetActive(false);
         CameraShake(0, 0);
         ResetForces();
     }
