@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private PlayerBalancer _playerBalancer;
 
     [SerializeField] private GameObject _dashCollider;
+    [SerializeField] private GameObject _weaponTrail;
 
     private float _jumpsCount = 2;
     private float _movementX = 0;
@@ -296,6 +297,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             _dashCollider.SetActive(true);
             _canDash = false;
             _isDashing = true;
+            _weaponTrail.SetActive(true);
             ResetForces();
             CameraShake(3, 1);
 
@@ -329,6 +331,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         _dashCollider.SetActive(false);
         CameraShake(0, 0);
         ResetForces();
+
+        yield return new WaitForSeconds(0.5f);
+
+        if(!_isAttacking)
+        {
+            _weaponTrail.SetActive(false);
+        }
+
     }
 
     private IEnumerator VurnerabilityDelay()
