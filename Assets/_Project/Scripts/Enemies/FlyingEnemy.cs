@@ -8,11 +8,13 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
     [SerializeField] private List<Transform> _projectilePosList;
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Animator _anim;
+    [SerializeField] private Animator _pathAnim;
     [SerializeField] private Collider _hitCollider;
     [SerializeField] private float _shootDelay;
     [SerializeField] private float _shootForce;
     [SerializeField] private float _health;
 
+    private Coroutine _lastRoutine = null;
     private bool _isDead = false;
 
     public void TakeDamage(float damage, GameObject attacker)
@@ -25,6 +27,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
         }
         else
         {
+            _pathAnim.enabled = false;
             _anim.SetTrigger("Die");
             StartCoroutine(DestroyDelay(2));
             GetComponent<Collider>().enabled = false;
@@ -37,7 +40,8 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        StartCoroutine(Shoot());
+        Coroutine coroutine = StartCoroutine(Shoot());
+        _lastRoutine = coroutine;
     }
 
     private IEnumerator Shoot()
@@ -63,6 +67,11 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
 
     private IEnumerator DestroyDelay(float delay)
     {
+        if(_lastRoutine != null)
+        {
+            StopCoroutine(_lastRoutine);
+        }
+
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
