@@ -62,7 +62,6 @@ public class EnemyMeleePatrolAI : MonoBehaviour
 
         if(Physics.Linecast(_rayPos.position, targetPos, 1 << LayerMask.NameToLayer("Ground")))
         {
-            Debug.Log("HIT WALL");
             return true;
         }
         else

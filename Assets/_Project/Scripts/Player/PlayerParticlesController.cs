@@ -21,6 +21,10 @@ public class PlayerParticlesController : MonoBehaviour
     public void EnableAttackTrail()
     {
         _attackTrailObject.SetActive(true);
+    }
+
+    public void EnableAttackCollider()
+    {
         _hitCollider.SetActive(true);
     }
 

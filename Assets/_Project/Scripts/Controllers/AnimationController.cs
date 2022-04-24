@@ -62,6 +62,7 @@ public class AnimationController : MonoBehaviour
         Jump(playerData.Jump);
         DoubleJump(playerData.DoubleJump);
         Attack(playerData.Attack);
+        Dash(playerData.Dash);
     }
 
     private void SetIsGrounded(bool isGrounded)
@@ -118,4 +119,8 @@ public class AnimationController : MonoBehaviour
        _animator.SetBool(AnimationParameters.ATTACK, isAttacking);
     }
 
+    private void Dash(bool isDashing)
+    {
+       _animator.SetBool(AnimationParameters.DASH, isDashing);
+    }
 }

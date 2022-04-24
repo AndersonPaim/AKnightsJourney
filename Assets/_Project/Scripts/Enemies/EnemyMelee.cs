@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
 {
     [SerializeField] private float _health;
+    private Coroutine _lastRoutine = null;
 
     public void TakeDamage(float damage, GameObject attacker)
     {
@@ -24,6 +25,9 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
             _hitCollider.enabled = false;
             _rb.isKinematic = true;
         }
+
+        CancelAttack();
+        _canAttack = true;
     }
 
     public void EnableHitCollider()
@@ -55,12 +59,21 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
                 _canMove = false;
                 Attack();
             }
+            else if(CanAttackPlayer())
+            {
+                _canMove = false;
+            }
+            else if(!CanAttackPlayer() && !_canAttack)
+            {
+                CancelAttack();
+            }
         }
 
         if(!_canMove)
         {
             if(!CanAttackPlayer())
             {
+                CancelAttack();
                 _canMove = true;
             }
         }
@@ -86,7 +99,7 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
 
     private void Attack()
     {
-        StartCoroutine(AttackDelay(_attackDelay));
+        _lastRoutine = StartCoroutine(AttackDelay(_attackDelay));
     }
 
     private IEnumerator AttackDelay(float delay)
@@ -102,5 +115,14 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
     {
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
+    }
+
+    private void CancelAttack()
+    {
+        if(_lastRoutine != null)
+        {
+            StopCoroutine(_lastRoutine);
+            _canAttack = true;
+        }
     }
 }

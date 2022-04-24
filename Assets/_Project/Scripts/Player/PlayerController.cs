@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private bool _isDoubleJumping = false;
     private bool _isPaused = false;
     private bool _isVulnerable = true;
+    private bool _canMove = true;
 
     private Rigidbody _rb;
 
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         StartCoroutine(VurnerabilityDelay());
         OnTakeDamage?.Invoke();
+        Knockback(attacker);
     }
 
     private void Start()
@@ -115,6 +117,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         _isPaused = isPaused;
     }
 
+    private void Knockback(GameObject attacker)
+    {
+        Vector3 knockbackDirection = new Vector3(0, 0, gameObject.transform.position.z - attacker.transform.position.z);
+        ResetForces();
+        StartCoroutine(MoveCooldown());
+        Debug.Log("KNOCKBACK: " + knockbackDirection.z);
+        _rb.velocity = new Vector3(0, 0, knockbackDirection.z) * 20;
+    }
+
     private void DeathMovementDelay()
     {
         _isPaused = true;
@@ -164,6 +175,11 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         PlayerRotation(directionX);
         SetVelocity(directionX);
+
+        if(!_canMove)
+        {
+            return;
+        }
 
         if (directionX != 0 && _isDashing == false)
         {
@@ -288,6 +304,13 @@ public class PlayerController : MonoBehaviour, IDamageable
         _isJumping = true;
     }
 
+    private IEnumerator MoveCooldown()
+    {
+        _canMove = false;
+        yield return new WaitForSeconds(0.1f);
+        _canMove = true;
+    }
+
     private void Dash(bool isDashing)
     {
         if (isDashing && _canDash)
@@ -317,6 +340,8 @@ public class PlayerController : MonoBehaviour, IDamageable
                 dir.z = 1;
             }
 
+            _rb.useGravity = false;
+
             _rb.AddRelativeForce(dir * _playerBalancer.dashForce, ForceMode.Impulse);
             StartCoroutine(StopDash(_playerBalancer.dashTime));
         }
@@ -329,10 +354,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         _isVulnerable = true;
         _isDashing = false;
         _dashCollider.SetActive(false);
+        _rb.useGravity = true;
         CameraShake(0, 0);
         ResetForces();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         if(!_isAttacking)
         {
@@ -350,8 +376,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void CameraShake(float amplitude, float frequency)
     {
-        _cameraNoise.m_AmplitudeGain = amplitude;
-        _cameraNoise.m_FrequencyGain = frequency;
+        //TODO REVIEW CAMERA SHAKE
+        //_cameraNoise.m_AmplitudeGain = amplitude;
+        //_cameraNoise.m_FrequencyGain = frequency;
     }
 
     private void Gravity()
