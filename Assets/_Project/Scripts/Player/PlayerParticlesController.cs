@@ -17,6 +17,7 @@ public class PlayerParticlesController : MonoBehaviour
 
     private bool _isJumping = false;
     private bool _isDoubleJumping = false;
+    private bool _isDashing = false;
 
     public void EnableAttackTrail()
     {
@@ -64,9 +65,12 @@ public class PlayerParticlesController : MonoBehaviour
 
     private void Dash(bool isDashing)
     {
+        _isDashing = isDashing;
+
         if (isDashing)
         {
             _dashParticle.Play();
+            _runParticle.Play();
         }
     }
 
@@ -103,6 +107,10 @@ public class PlayerParticlesController : MonoBehaviour
             {
                 emission.rateOverTime = velocity * _runningEmissionRate;
             }
+        }
+        else if(_isDashing && isGrounded)
+        {
+            _runParticle.Play();
         }
         else
         {

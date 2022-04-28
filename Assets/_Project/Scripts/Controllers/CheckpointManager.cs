@@ -41,7 +41,7 @@ public class CheckpointManager : MonoBehaviour
     }
 
     private void SetRespawnPosition()
-    {    
+    {
         OnSetRespawnPosition?.Invoke(_checkpoints[_currentCheckpoint].transform.position);
     }
 

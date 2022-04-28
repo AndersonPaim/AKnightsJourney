@@ -13,7 +13,18 @@ public class MeleeWeapon : MonoBehaviour
         if(damageable != null)
         {
             damageable.TakeDamage(100, gameObject);
-            //Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
+
+            if(_hitParticle != null)
+            {
+                ParticleSystem particle = Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
+                StartCoroutine(DestroyParticle(particle.gameObject, particle.main.duration));
+            }
         }
+    }
+
+    private IEnumerator DestroyParticle(GameObject particle, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(particle);
     }
 }

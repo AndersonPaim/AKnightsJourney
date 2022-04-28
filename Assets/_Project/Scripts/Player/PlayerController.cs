@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private bool _isGrounded = true;
     private bool _canDash = false;
+    private bool _canJump = true;
     private bool _isDashing = false;
     private bool _isAttacking = false;
     private bool _isWalking = false;
@@ -64,6 +65,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         StartCoroutine(VurnerabilityDelay());
         OnTakeDamage?.Invoke();
         Knockback(attacker);
+    }
+
+    public void OnStartAttack()
+    {
+        _canJump = false;
+        ResetForces();
+        _rb.useGravity = false;
+    }
+
+    public void OnStopAttack()
+    {
+        _canJump = true;
+        _rb.useGravity = true;
     }
 
     private void Start()
@@ -279,6 +293,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (isJumping)
         {
+            if(!_canJump)
+            {
+                return;
+            }
+
             if (_jumpsCount > 0)
             {
                 if(_jumpsCount == 1)
@@ -286,6 +305,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                     _isDoubleJumping = true;
                 }
                 ResetForces();
+
                 _rb.AddForce(transform.up * _playerBalancer.jumpForce, ForceMode.Impulse);
                 StartCoroutine(JumpCount());
             }
