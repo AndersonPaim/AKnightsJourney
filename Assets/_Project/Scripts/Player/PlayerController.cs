@@ -71,13 +71,14 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         _canJump = false;
         ResetForces();
-        _rb.useGravity = false;
+        _playerBalancer.runSpeed *= 0.5f;
+        _velocity *= 0.5f;
     }
 
     public void OnStopAttack()
     {
+        _playerBalancer.runSpeed *= 2;
         _canJump = true;
-        _rb.useGravity = true;
     }
 
     private void Start()
