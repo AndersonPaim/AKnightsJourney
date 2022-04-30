@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -343,7 +344,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             _isDashing = true;
             _weaponTrail.SetActive(true);
             ResetForces();
-            CameraShake(3, 1);
+            CameraShake(5, 0.1f);
 
             Vector3 dir = new Vector3(0, 0, 0);
 
@@ -376,8 +377,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         _isDashing = false;
         _dashCollider.SetActive(false);
         _rb.useGravity = true;
-        CameraShake(0, 0);
         ResetForces();
+        CameraShake(0, 0);
 
         yield return new WaitForSeconds(0.2f);
 
@@ -397,9 +398,11 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void CameraShake(float amplitude, float frequency)
     {
-        //TODO REVIEW CAMERA SHAKE
-        //_cameraNoise.m_AmplitudeGain = amplitude;
-        //_cameraNoise.m_FrequencyGain = frequency;
+        //_camera.transform.DOComplete();
+        //_camera.transform.DOShakePosition(0.2f, 0.5f, 14, 90, false, true);
+        _cameraNoise.m_AmplitudeGain = amplitude;
+        _cameraNoise.m_FrequencyGain = frequency;
+
     }
 
     private void Gravity()
