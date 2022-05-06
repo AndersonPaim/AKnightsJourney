@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Initialize()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         _rb = GetComponent<Rigidbody>();
         _playerRotationLeft = Quaternion.Euler(0, 180, 0);
         _playerRotationRight = Quaternion.Euler(0, 0, 0);

@@ -16,10 +16,19 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
 
     private Coroutine _lastRoutine = null;
     private bool _isDead = false;
+    private bool _isVulnerable = true;
 
     public void TakeDamage(float damage, GameObject attacker)
     {
+        if(!_isVulnerable)
+        {
+            return;
+        }
+
+        _isVulnerable = false;
         _health -= damage;
+
+        StartCoroutine(VulnerabilityDelay());
 
         if(_health > 0)
         {
@@ -30,11 +39,10 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
             _pathAnim.enabled = false;
             _anim.SetTrigger("Die");
             StartCoroutine(DestroyDelay(2));
-            GetComponent<Collider>().enabled = false;
             _hitCollider.enabled = false;
             _isDead = true;
             _rb.useGravity = true;
-            _rb.isKinematic = true;
+            Physics.IgnoreLayerCollision(8, 10, true);
         }
     }
 
@@ -74,5 +82,11 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
 
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
+    }
+
+    private IEnumerator VulnerabilityDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _isVulnerable = true;
     }
 }

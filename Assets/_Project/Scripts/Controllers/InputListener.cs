@@ -24,8 +24,14 @@ public class InputListener : MonoBehaviour
     [SerializeField] private bool _walk;
 
     private PlayerInputActions _input;
+    private bool _inputsPaused = false;
 
     private InputData _inputData;
+
+    public void PauseInput(bool isPaused)
+    {
+        _inputsPaused = isPaused;
+    }
 
     private void Awake()
     {
@@ -34,7 +40,11 @@ public class InputListener : MonoBehaviour
 
     private void Update()
     {
-        CreateInputStruct();
+        if(!_inputsPaused)
+        {
+            CreateInputStruct();
+        }
+
         OnInput?.Invoke(_inputData);
         _inputData = new InputData();
         Movement();
