@@ -9,6 +9,7 @@ public class MeleeWeapon : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+        DamageFlash flash = other.gameObject.GetComponent<DamageFlash>();
 
         if(damageable != null)
         {
@@ -19,6 +20,11 @@ public class MeleeWeapon : MonoBehaviour
                 ParticleSystem particle = Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
                 StartCoroutine(DestroyParticle(particle.gameObject, particle.main.duration));
             }
+        }
+
+        if(flash != null)
+        {
+            flash.Flash();
         }
     }
 

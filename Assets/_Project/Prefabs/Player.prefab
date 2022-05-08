@@ -5148,7 +5148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062d865ddf61df0488ec9df5a2be03a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitParticle: {fileID: 7516004826788876446, guid: fe8624b8239b6d44e8dba978b745de2a, type: 3}
+  _hitParticle: {fileID: 2242307151870375819, guid: e73fa8383752f10479a811e96abf8c8c, type: 3}
 --- !u!135 &1827393758
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10689,6 +10689,7 @@ GameObject:
   - component: {fileID: 3420139037374439460}
   - component: {fileID: 983868903364408049}
   - component: {fileID: 2508964430879719610}
+  - component: {fileID: 2508964430879719611}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -10940,6 +10941,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.6135765, z: 1}
   m_Center: {x: 0, y: 0.94321173, z: 0}
+--- !u!114 &2508964430879719611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3420139037374439458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38105e9f1a0047243ab6530d5c0cccb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 1052474095982148135}
+  _defaultMaterial: {fileID: 2100000, guid: 1820a4b3b5848a24aa0f00c877d9af7a, type: 2}
+  _flashMaterial: {fileID: 2100000, guid: a9b13fbc3f0d8224ba7b1137a6094372, type: 2}
 --- !u!1 &3912903273242760507
 GameObject:
   m_ObjectHideFlags: 0
