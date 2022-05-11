@@ -24,13 +24,18 @@ public class InputListener : MonoBehaviour
     [SerializeField] private bool _walk;
 
     private PlayerInputActions _input;
-    private bool _inputsPaused = false;
+    private bool _inputsPaused = true;
 
     private InputData _inputData;
 
     public void PauseInput(bool isPaused)
     {
         _inputsPaused = isPaused;
+        _run = false;
+        _walk = false;
+        _attack = false;
+        _dash = false;
+        _jump = false;
     }
 
     private void Awake()
