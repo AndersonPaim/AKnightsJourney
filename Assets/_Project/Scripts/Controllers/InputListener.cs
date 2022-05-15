@@ -23,9 +23,9 @@ public class InputListener : MonoBehaviour
     [SerializeField] private bool _run;
     [SerializeField] private bool _walk;
 
-    private PlayerInputActions _input;
-    private bool _inputsPaused = true;
+    [SerializeField] private bool _inputsPaused = true;
 
+    private PlayerInputActions _input;
     private InputData _inputData;
 
     public void PauseInput(bool isPaused)

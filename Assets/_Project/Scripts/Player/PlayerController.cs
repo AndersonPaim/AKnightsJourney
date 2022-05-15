@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private bool _isPaused = false;
     private bool _isVulnerable = true;
     private bool _canMove = true;
+    private bool _isDead = false;
 
     private Rigidbody _rb;
 
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         GameManager.sInstance.GetInputListener().OnInput += ReceiveInputs;
         GameManager.sInstance.OnGetRespawnPosition += DeathMovementDelay;
         GameManager.sInstance.GetInGameMenu().OnPause += PauseInputs;
+        GameManager.sInstance.OnFinish += FinishGame;
     }
 
     private void RemoveDelegates()
@@ -114,6 +116,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         GameManager.sInstance.GetInputListener().OnInput -= ReceiveInputs;
         GameManager.sInstance.OnGetRespawnPosition -= DeathMovementDelay;
         GameManager.sInstance.GetInGameMenu().OnPause -= PauseInputs;
+        GameManager.sInstance.OnFinish -= FinishGame;
     }
 
     private void Initialize()
@@ -131,6 +134,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void PauseInputs(bool isPaused)
     {
         _isPaused = isPaused;
+    }
+
+    private void FinishGame()
+    {
+        _isDead = true;
     }
 
     private void Knockback(GameObject attacker)
@@ -337,56 +345,37 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (isDashing && _canDash)
         {
+            Vector3 dir = Vector3.forward * _lastDirection;
+            dir.y = _movementY;
+
+            if(_movementX > 0)
+            {
+                dir.z = 1;
+            }
+            else if(_movementX < 0)
+            {
+                dir.z = -1;
+            }
+
+            transform.DOMove(transform.position + (dir * 5), 0.2f).OnComplete(StopDash);
             Physics.IgnoreLayerCollision(8, 10, true);
             _isVulnerable = false;
             _dashCollider.SetActive(true);
             _canDash = false;
             _isDashing = true;
-            _weaponTrail.SetActive(true);
-            ResetForces();
             CameraShake(5, 0.1f);
-
-            Vector3 dir = new Vector3(0, 0, 0);
-
-            if(_movementY > 0 && _movementX != 0)
-            {
-                dir.y = Mathf.Abs(_movementY * 0.5f);
-                dir.z = Mathf.Abs(_movementX * 0.5f);
-            }
-            else if(_movementY > 0)
-            {
-                dir.y = _movementY * 0.7f;
-            }
-            else
-            {
-                dir.z = 1;
-            }
-
-            _rb.useGravity = false;
-
-            _rb.AddRelativeForce(dir * _playerBalancer.dashForce, ForceMode.Impulse);
-            StartCoroutine(StopDash(_playerBalancer.dashTime));
         }
     }
 
-    public IEnumerator StopDash(float waitTime)
+    private void StopDash()
     {
-        yield return new WaitForSeconds(waitTime);
+        ResetForces();
+        CameraShake(0, 0);
+
         Physics.IgnoreLayerCollision(8, 10, false);
         _isVulnerable = true;
         _isDashing = false;
         _dashCollider.SetActive(false);
-        _rb.useGravity = true;
-        ResetForces();
-        CameraShake(0, 0);
-
-        yield return new WaitForSeconds(0.2f);
-
-        if(!_isAttacking)
-        {
-            _weaponTrail.SetActive(false);
-        }
-
     }
 
     private IEnumerator VurnerabilityDelay()
