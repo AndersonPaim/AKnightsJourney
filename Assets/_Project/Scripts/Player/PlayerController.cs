@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField] private GameObject _dashCollider;
     [SerializeField] private GameObject _weaponTrail;
+    [SerializeField] private VisualEffect _slashEffect;
 
     private float _jumpsCount = 2;
     private float _movementX = 0;
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         ResetForces();
         _playerBalancer.runSpeed *= 0.5f;
         _velocity *= 0.5f;
+        _slashEffect.Play();
     }
 
     public void OnStopAttack()

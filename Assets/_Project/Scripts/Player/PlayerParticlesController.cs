@@ -12,17 +12,11 @@ public class PlayerParticlesController : MonoBehaviour
 
     [SerializeField] private float _runningEmissionRate;
 
-    [SerializeField] private GameObject _attackTrailObject;
     [SerializeField] private GameObject _hitCollider;
 
     private bool _isJumping = false;
     private bool _isDoubleJumping = false;
     private bool _isDashing = false;
-
-    public void EnableAttackTrail()
-    {
-        _attackTrailObject.SetActive(true);
-    }
 
     public void EnableAttackCollider()
     {
@@ -31,7 +25,6 @@ public class PlayerParticlesController : MonoBehaviour
 
     public void DisableAttackTrail()
     {
-        _attackTrailObject.SetActive(false);
         _hitCollider.SetActive(false);
     }
 
