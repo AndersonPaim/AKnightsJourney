@@ -30,6 +30,11 @@ public class TutorialNarrativeController : MonoBehaviour
         _tutorialObject.SetActive(false);
     }
 
+    public void LoadNextLevel(string scene)
+    {
+        SceneController.SetScene(scene);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Cursor.lockState = CursorLockMode.None;
