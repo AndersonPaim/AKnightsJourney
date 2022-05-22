@@ -18,7 +18,7 @@ public class CheckpointManager : MonoBehaviour
 
     [SerializeField] private GameObject[] _checkpoints;
 
-    private void Awake()
+    private void Start()
     {
         SetupDelegates();
     }

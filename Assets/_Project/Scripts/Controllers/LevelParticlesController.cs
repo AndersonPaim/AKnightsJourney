@@ -37,7 +37,8 @@ public class LevelParticlesController : MonoBehaviour
 
     private void CheckPointParticle(int currentCheckpoint)
     {
-        _checkpointParticle[currentCheckpoint].Play();
+        //TODO
+        //_checkpointParticle[currentCheckpoint].Play();
     }
 
     private void FinishParticle()
@@ -48,7 +49,7 @@ public class LevelParticlesController : MonoBehaviour
 
     private void RespawnParticle()
     {
-        _respawnParticle.Play();
+        //_respawnParticle.Play();
     }
 
 }
