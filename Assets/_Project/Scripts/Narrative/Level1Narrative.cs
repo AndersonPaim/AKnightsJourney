@@ -5,12 +5,18 @@ using UnityEngine.Playables;
 
 public class Level1Narrative : MonoBehaviour
 {
+    [SerializeField] private GameObject _map;
     [SerializeField] private GameObject _finishFlowchart;
     [SerializeField] private Animator _uiOverlayAnimator;
 
     public void LoadNextLevel(string scene)
     {
         SceneController.SetScene(scene);
+    }
+
+    public void OpenMap()
+    {
+        _map.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

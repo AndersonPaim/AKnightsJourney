@@ -16,8 +16,9 @@ public class MainMenu : MonoBehaviour
 
     public void PlayButton()
     {
-        _mainMenu.SetActive(false);
-        _levelSelection.SetActive(true);
+        //_mainMenu.SetActive(false);
+        //_levelSelection.SetActive(true);
+        SceneController.SetScene("LevelTutorial");
     }
 
     public void ControlsButton()

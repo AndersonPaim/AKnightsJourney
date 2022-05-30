@@ -102,6 +102,10 @@ namespace Fungus
                 {
                     SetClickAnywhereClickedFlag();
                 }
+                else if(Input.anyKey)
+                {
+                    SetClickAnywhereClickedFlag();
+                }
                 break;
             case ClickMode.ClickOnDialog:
                 if (dialogClickedFlag)

@@ -32,6 +32,7 @@ public class InGameMenu : MonoBehaviour
     private void SetupDelegates()
     {
         GameManager.sInstance.GetInputListener().OnPause += PauseInput;
+        GameManager.sInstance.GetInputListener().OnBack += BackInput;
         GameManager.sInstance.GetScoreManager().OnSetScore += SetScore;
         GameManager.sInstance.OnFinish += Finish;
         GameManager.sInstance.OnGameOver += GameOver;
@@ -40,6 +41,7 @@ public class InGameMenu : MonoBehaviour
     private void RemoveDelegates()
     {
         GameManager.sInstance.GetInputListener().OnPause -= PauseInput;
+        GameManager.sInstance.GetInputListener().OnBack -= BackInput;
         GameManager.sInstance.GetScoreManager().OnSetScore -= SetScore;
         GameManager.sInstance.OnFinish += Finish;
         GameManager.sInstance.OnGameOver -= GameOver;
@@ -52,6 +54,14 @@ public class InGameMenu : MonoBehaviour
             Pause();
         }
         else if (_isPaused == true && _canResume == true)
+        {
+            Resume();
+        }
+    }
+
+    private void BackInput()
+    {
+        if(_isPaused && _canResume)
         {
             Resume();
         }

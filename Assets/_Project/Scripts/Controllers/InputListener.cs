@@ -13,6 +13,9 @@ public class InputListener : MonoBehaviour
     public delegate void PauseHandler();
     public PauseHandler OnPause;
 
+    public delegate void BackHandler();
+    public BackHandler OnBack;
+
     [SerializeField] private float _movementY;
     [SerializeField] private float _movementX;
     [SerializeField] private Vector2 _movementXY;
@@ -72,6 +75,7 @@ public class InputListener : MonoBehaviour
         _input.Player.Run.performed -= ctx => Run(ctx);
         _input.Player.Run.canceled -= ctx => Run(ctx);
         _input.Player.Pause.performed -= _ => Pause();
+        _input.Player.Back.performed -= _ => Pause();
         _input.Player.Attack.performed -= ctx => Attack(ctx);
     }
 
@@ -83,6 +87,7 @@ public class InputListener : MonoBehaviour
         _input.Player.Run.performed += ctx => Run(ctx);
         _input.Player.Run.canceled += ctx => Run(ctx);
         _input.Player.Pause.performed += _ => Pause();
+        _input.Player.Back.performed += _ => Back();
         _input.Player.Attack.performed += ctx => Attack(ctx);
     }
 
@@ -177,5 +182,10 @@ public class InputListener : MonoBehaviour
     private void Pause()
     {
         OnPause?.Invoke();
+    }
+
+    private void Back()
+    {
+        OnBack?.Invoke();
     }
 }
