@@ -34594,7 +34594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1645025009
 Transform:
   m_ObjectHideFlags: 0
@@ -51240,10 +51240,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 886573639}
     m_Modifications:
-    - target: {fileID: 443269826, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
-      propertyPath: TriggerModule.primitives.Array.data[0]
+    - target: {fileID: 1264747190, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 607013054}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706321218, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2573718696665811977, guid: 9f9acad77ef56da4d849796d8287a0ce, type: 3}
       propertyPath: _camera
       value: 

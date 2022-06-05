@@ -58,5 +58,4 @@ public class CheckpointManager : MonoBehaviour
             OnCheckpoint?.Invoke(_currentCheckpoint);
         }
     }
-
 }

@@ -25,7 +25,7 @@ public static class SaveSystem
             BinaryFormatter formatter = new BinaryFormatter();
 
             FileStream stream = new FileStream(path, FileMode.Open);
-             
+
             SaveData data = formatter.Deserialize(stream) as SaveData;
             stream.Close();
 
@@ -45,6 +45,19 @@ public static class SaveSystem
             {
                 localData.stars.Add(0);
             }
+
+            for (int i = 0; i < 4; i++)
+            {
+                if(i == 0)
+                {
+                    localData.weaponsUnlocked.Add(true);
+                }
+                else
+                {
+                    localData.weaponsUnlocked.Add(false);
+                }
+            }
+
             Debug.Log("Carregou save novo");
         }
 

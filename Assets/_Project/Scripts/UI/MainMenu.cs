@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _controlsMenu;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _levelSelection;
+    [SerializeField] private GameObject _equipmentMenu;
     [SerializeField] private GameObject _settingsMenu;
 
     public void Start()
@@ -38,7 +39,14 @@ public class MainMenu : MonoBehaviour
         _levelSelection.SetActive(false);
         _settingsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
+        _equipmentMenu.SetActive(false);
         _mainMenu.SetActive(true);
+    }
+
+    public void EquipmentButton()
+    {
+        _mainMenu.SetActive(false);
+        _equipmentMenu.SetActive(true);
     }
 
     public void QuitButton()
