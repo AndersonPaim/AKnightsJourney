@@ -7,6 +7,7 @@ public class Level1Narrative : MonoBehaviour
 {
     [SerializeField] private GameObject _map;
     [SerializeField] private GameObject _finishFlowchart;
+    [SerializeField] private GameObject _finishNpc;
     [SerializeField] private Animator _uiOverlayAnimator;
 
     public void LoadNextLevel(string scene)
@@ -24,6 +25,7 @@ public class Level1Narrative : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         _uiOverlayAnimator.SetTrigger("Open");
         _finishFlowchart.SetActive(true);
+        _finishNpc.SetActive(true);
         GameManager.sInstance.GetInputListener().PauseInput(true);
     }
 }
