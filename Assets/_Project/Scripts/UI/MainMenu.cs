@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private SceneController _sceneController;
+
     [SerializeField] private GameObject _controlsMenu;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _levelSelection;
@@ -19,7 +21,7 @@ public class MainMenu : MonoBehaviour
     {
         //_mainMenu.SetActive(false);
         //_levelSelection.SetActive(true);
-        SceneController.SetScene("LevelTutorial");
+        _sceneController.SetScene("LevelTutorial");
     }
 
     public void ControlsButton()
@@ -56,6 +58,6 @@ public class MainMenu : MonoBehaviour
 
     public void LevelSelection(string scene)
     {
-        SceneController.SetScene(scene);
+        _sceneController.SetScene(scene);
     }
 }

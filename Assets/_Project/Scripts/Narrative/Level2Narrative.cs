@@ -44,7 +44,7 @@ public class Level2Narrative : MonoBehaviour
     {
         _flowchart.gameObject.SetActive(false);
         _swordSelection.SetActive(false);
-        SceneController.SetScene("Menu");
+        GameManager.sInstance.GetSceneController().SetScene("Menu");
     }
 
     private void Start()

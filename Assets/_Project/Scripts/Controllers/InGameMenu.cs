@@ -119,12 +119,12 @@ public class InGameMenu : MonoBehaviour
 
     public void Restart()
     {
-        SceneController.RestartScene();
+        GameManager.sInstance.GetSceneController().RestartScene();
     }
 
     public void Quit()
     {
-        SceneController.SetScene("Menu");
+        GameManager.sInstance.GetSceneController().SetScene("Menu");
     }
 
     public void SetScore(float starsScore)

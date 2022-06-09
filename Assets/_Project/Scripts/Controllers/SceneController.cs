@@ -1,42 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class SceneController
+public class SceneController : MonoBehaviour
 {
+    public static Action OnStartLoading;
+    public static Action OnFinishLoading;
     public delegate void LoadingProgressHandler(float progress);
     public static LoadingProgressHandler OnUpdateProgress;
 
     public static int currentScene;
-    public static void SetScene(string scene)
+    public void SetScene(string scene)
     {
-        SceneManager.LoadScene(scene);
+        OnStartLoading?.Invoke();
+        StartCoroutine(LoadASync(scene));
         GetCurrentScene();
     }
 
-    public static void GetCurrentScene()
+    public void GetCurrentScene()
     {
         Scene scene = SceneManager.GetActiveScene();
         currentScene = scene.buildIndex;
     }
 
-    public static void RestartScene()
+    public void RestartScene()
     {
         Scene scene = SceneManager.GetActiveScene();
         SetScene(scene.name);
     }
 
-    private static IEnumerator LoadASync(string scene)
+    private IEnumerator LoadASync(string scene)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
 
-        while(!operation.isDone) //update loading screen progress while is loading
+        while(!operation.isDone)
         {
-            float loadingProgress = Mathf.Clamp01(operation.progress / 0.9f); //convert progress to % numbers
+            float loadingProgress = Mathf.Clamp01(operation.progress / 0.9f);
             OnUpdateProgress?.Invoke(loadingProgress);
 
             yield return null;
         }
+
+        OnFinishLoading?.Invoke();
     }
 }

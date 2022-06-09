@@ -12,7 +12,7 @@ public class Level1Narrative : MonoBehaviour
 
     public void LoadNextLevel(string scene)
     {
-        SceneController.SetScene(scene);
+        GameManager.sInstance.GetSceneController().SetScene(scene);
     }
 
     public void OpenMap()

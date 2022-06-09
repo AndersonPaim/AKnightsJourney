@@ -49,7 +49,7 @@ public class LevelHighscore : MonoBehaviour
 
     public void SetScene()
     {
-        SceneController.SetScene(_levelSettings.levelScene);
+        GameManager.sInstance.GetSceneController().SetScene(_levelSettings.levelScene);
     }
 
     private void LoadHighscore()

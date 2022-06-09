@@ -32,7 +32,7 @@ public class TutorialNarrativeController : MonoBehaviour
 
     public void LoadNextLevel(string scene)
     {
-        SceneController.SetScene(scene);
+        GameManager.sInstance.GetSceneController().SetScene(scene);
     }
 
     private void OnTriggerEnter(Collider other)

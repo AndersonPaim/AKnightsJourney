@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private ObjectPooler objectPooler;
 
+    [SerializeField] private SceneController sceneController;
+
     private void Awake()
     {
         if(sInstance != null)
@@ -103,6 +105,11 @@ public class GameManager : MonoBehaviour
     public ObjectPooler GetObjectPooler()
     {
         return objectPooler;
+    }
+
+    public SceneController GetSceneController()
+    {
+        return sceneController;
     }
 
     private void PlayerDamage()
