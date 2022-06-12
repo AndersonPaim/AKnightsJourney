@@ -36,7 +36,6 @@ public class LoadingScreen : MonoBehaviour
 
     private void UpdateLoadingProgress(float progress)
     {
-        Debug.Log("PROGRESS: " + progress);
         _loadingBar.value = progress * 100;
         _loadingProgressText.text = "Loading..." + ((int)(progress * 100)).ToString() + "%" ;
     }

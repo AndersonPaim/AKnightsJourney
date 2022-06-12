@@ -6,6 +6,8 @@ public class MeleeWeapon : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitParticle;
 
+    private bool _canDamage = true;
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
@@ -15,7 +17,7 @@ public class MeleeWeapon : MonoBehaviour
         {
             damageable.TakeDamage(100, gameObject);
 
-            if(_hitParticle != null)
+            if(_hitParticle != null && _canDamage)
             {
                 ParticleSystem particle = Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
                 StartCoroutine(DestroyParticle(particle.gameObject, particle.main.duration));
@@ -26,6 +28,15 @@ public class MeleeWeapon : MonoBehaviour
         {
             flash.Flash();
         }
+
+        StartCoroutine(DamageDelay());
+    }
+
+    private IEnumerator DamageDelay()
+    {
+        _canDamage = false;
+        yield return new WaitForSeconds(0.5f);
+        _canDamage = true;
     }
 
     private IEnumerator DestroyParticle(GameObject particle, float delay)

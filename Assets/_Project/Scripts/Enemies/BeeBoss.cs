@@ -1,0 +1,160 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using DG.Tweening;
+using System.Threading.Tasks;
+
+public class BeeBoss : MonoBehaviour, IDamageable
+{
+    public delegate void BossHPHandler(float health);
+    public BossHPHandler OnStartBossHP;
+    public BossHPHandler OnUpdateBossHP;
+
+    public enum bossState
+    {
+        Idle,
+        Attacking,
+        Returning,
+        AttackCooldown,
+        Dead,
+        None,
+    }
+
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _damageCollider;
+    [SerializeField] private List<Transform> _idlePosition;
+    [SerializeField] private float _health;
+
+    private float _direction = -1;
+    private bool _isAttacking = false;
+    private Vector3 _attackPos;
+    private bossState _bossState = bossState.None;
+    private Animator _anim;
+    private Rigidbody _rb;
+
+    public bool IsVulnerable { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    public void TakeDamage(float damage, GameObject attacker)
+    {
+        _health -= damage;
+
+        if(_health <= 0)
+        {
+            ChangeState(bossState.Dead);
+            _anim.SetTrigger("Die");
+            GetComponent<Collider>().isTrigger = false;
+            _rb.useGravity = true;
+            //_rb.isKinematic = true;
+        }
+
+        OnUpdateBossHP?.Invoke(_health);
+    }
+
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
+        StartCoroutine(AttackCooldown());
+
+        OnStartBossHP?.Invoke(_health);
+    }
+
+    private void Attack()
+    {
+        if(_bossState == bossState.Dead)
+        {
+            return;
+        }
+
+        _attackPos = _player.transform.position;
+        _bossState = bossState.Attacking;
+
+        _anim.SetBool("isIdle", false);
+        _anim.SetBool("isAttacking", true);
+        _damageCollider.SetActive(true);
+
+        transform.DOMove(_attackPos, 1).OnComplete(() => { ChangeState(bossState.AttackCooldown); });
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        _damageCollider.SetActive(false);
+        _anim.SetBool("isAttacking", false);
+        _anim.SetBool("isIdle", true);
+        yield return new WaitForSeconds(3);
+
+        if(_bossState != bossState.Dead)
+        {
+            ChangeState(bossState.Returning);
+        }
+    }
+
+    private IEnumerator Idle()
+    {
+        _anim.SetBool("isMoving", false);
+        _anim.SetBool("isIdle", true);
+        yield return new WaitForSeconds(1.5f);
+
+        if(_bossState != bossState.Dead)
+        {
+            ChangeState(bossState.Attacking);
+        }
+    }
+
+    private void Returning()
+    {
+        if(_bossState == bossState.Dead)
+        {
+            return;
+        }
+
+        _anim.SetBool("isAttacking", false);
+        _anim.SetBool("isIdle", false);
+        _anim.SetBool("isMoving", true);
+        int pos = Random.Range(0, 4);
+        _attackPos = _idlePosition[pos].position;
+        RotateBee(pos);
+
+        transform.DOMove(_attackPos, 1).OnComplete(delegate {ChangeState(bossState.Idle);});
+    }
+
+    private async Task RotateBee(int pos)
+    {
+        await Task.Delay(1800);
+
+        Quaternion rotation;
+
+        if(pos == 1 || pos == 3)
+        {
+            rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
+    }
+
+    private void ChangeState(bossState state)
+    {
+        _bossState = state;
+
+        if(state == bossState.AttackCooldown)
+        {
+            StartCoroutine(AttackCooldown());
+        }
+        else if(state == bossState.Returning)
+        {
+            Returning();
+        }
+        else if(state == bossState.Idle)
+        {
+            StartCoroutine(Idle());
+        }
+        else if(state == bossState.Attacking)
+        {
+            Attack();
+        }
+    }
+}

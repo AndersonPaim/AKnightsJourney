@@ -4,23 +4,24 @@ using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine.Playables;
+using Fungus;
 
 public class TutorialNarrativeController : MonoBehaviour
 {
     [SerializeField] private GameObject _tutorialObject;
-    [SerializeField] private GameObject _finishTutorialFlowchart;
+    [SerializeField] private Flowchart _flowchart;
     [SerializeField] private PlayableDirector _npcLeavingTimeline;
     [SerializeField] private Animator _uiOverlayAnimator;
 
     private Vector3 _finishPos = new Vector3(133, 0.125f, 302);
 
-    public async Task FinishStartDialog()
+    public async System.Threading.Tasks.Task FinishStartDialog()
     {
         Cursor.lockState = CursorLockMode.Locked;
         _uiOverlayAnimator.SetTrigger("Close");
         _npcLeavingTimeline.Play();
 
-        await Task.Delay(3500);
+        await System.Threading.Tasks.Task.Delay(3500);
 
         GameManager.sInstance.GetInputListener().PauseInput(false);
     }
@@ -35,11 +36,16 @@ public class TutorialNarrativeController : MonoBehaviour
         GameManager.sInstance.GetSceneController().SetScene(scene);
     }
 
+    private void Start()
+    {
+        _flowchart.SendFungusMessage("Start");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Cursor.lockState = CursorLockMode.None;
         _uiOverlayAnimator.SetTrigger("Open");
-        _finishTutorialFlowchart.SetActive(true);
+        _flowchart.SendFungusMessage("Finish");
         GameManager.sInstance.GetInputListener().PauseInput(true);
     }
 

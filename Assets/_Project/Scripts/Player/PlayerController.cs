@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private CinemachineBasicMultiChannelPerlin _cameraNoise;
 
+    public bool IsVulnerable => _isVulnerable;
+
     public void TakeDamage(float damage, GameObject attacker)
     {
         if(!_isVulnerable)
