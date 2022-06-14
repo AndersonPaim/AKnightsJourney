@@ -542,7 +542,7 @@ MonoBehaviour:
     m_Start: 0.65
     m_ClipIn: 0
     m_Asset: {fileID: 6227756142979337945}
-    m_Duration: 1
+    m_Duration: 1.6
     m_TimeScale: 1
     m_ParentTrack: {fileID: -4523470591116089300}
     m_EaseInDuration: 0
@@ -604,9 +604,9 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 0.9666666666666668
+    m_PostExtrapolationTime: 0.3666666666666667
     m_PreExtrapolationTime: 0.65
-    m_DisplayName: WalkFWD
+    m_DisplayName: RunFWD
   - m_Version: 1
     m_Start: 2.6166666666666667
     m_ClipIn: 0
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 7400000, guid: f5d4d1a7dadc5a84d910c492d947ca4f, type: 3}
+  m_Clip: {fileID: 7400000, guid: dbf4e442d523220489ca9531ab20161f, type: 3}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
