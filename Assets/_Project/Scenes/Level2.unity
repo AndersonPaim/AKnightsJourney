@@ -49900,7 +49900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 43
   indentLevel: 0
-  storyText: "[NPC1] \xE9 uma velha amiga, confio nela, gostaria de ti ajudar."
+  storyText: "Avelyn \xE9 uma velha amiga, confio nela, gostaria de ti ajudar."
   description: 
   character: {fileID: 2012610015}
   portrait: {fileID: 0}
@@ -49927,7 +49927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 42
   indentLevel: 0
-  storyText: "Os [INIMIGOS] n\xE3o me assutam, estou aqui para derrot\xE1-los!\n\n "
+  storyText: "Os monstros n\xE3o me assutam, estou aqui para derrot\xE1-los!\n\n "
   description: 
   character: {fileID: 965151106}
   portrait: {fileID: 0}
@@ -50163,7 +50163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 30
   indentLevel: 0
-  storyText: "Venho do [REINO,  [ NPC1] e eu temos um plano para derrot\xE1-los."
+  storyText: "Venho do reino de Exilon, Avelyn e eu temos um plano para derrot\xE1-los."
   description: 
   character: {fileID: 965151106}
   portrait: {fileID: 0}
@@ -50261,9 +50261,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 152.0886
-    y: 134.81078
-    width: 72.41378
+    x: 154.36133
+    y: 135.94714
+    width: 71.590904
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -50291,9 +50291,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -60.047806
-    y: 133.52898
-    width: 72.41378
+    x: -73.68414
+    y: 135.80171
+    width: 72.72727
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -50320,8 +50320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 2
   indentLevel: 0
-  storyText: "Este lugar est\xE1 ficando muito perigoso, estes [INIMIGOS] est\xE3o
-    cada vez se aproximando mais."
+  storyText: "Este lugar est\xE1 ficando muito perigoso, os monstros est\xE3o cada
+    vez se aproximando mais."
   description: 
   character: {fileID: 2012610015}
   portrait: {fileID: 0}
@@ -50365,7 +50365,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 37.724136
     y: 54.231876
-    width: 75.86205
+    width: 78.40909
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -50398,11 +50398,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 399.97595, y: 50.60578}
+  scrollPos: {x: 233.08891, y: 76.06966}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 425
-  zoom: 0.5800004
+  zoom: 0.8800001
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -50410,9 +50410,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1317867126}
+  - {fileID: 1317867137}
   selectedCommands:
-  - {fileID: 1317867118}
+  - {fileID: 1317867131}
   variables:
   - {fileID: 1317867134}
   description: 
@@ -50807,7 +50807,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 33.34158
     y: 244.96582
-    width: 82.7586
+    width: 82.954544
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -69868,7 +69868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: '[NPC2]'
+  nameText: Robin
   nameColor: {r: 1, g: 0, b: 0, a: 1}
   soundEffect: {fileID: 0}
   portraits: []

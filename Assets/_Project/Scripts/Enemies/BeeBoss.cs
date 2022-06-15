@@ -24,6 +24,8 @@ public class BeeBoss : MonoBehaviour, IDamageable
     [SerializeField] private GameObject _damageCollider;
     [SerializeField] private List<Transform> _idlePosition;
     [SerializeField] private float _health;
+    [SerializeField] private Animator _screenFadeAnim;
+    [SerializeField] private SceneController _sceneController;
 
     private float _direction = -1;
     private bool _isAttacking = false;
@@ -44,7 +46,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
             _anim.SetTrigger("Die");
             GetComponent<Collider>().isTrigger = false;
             _rb.useGravity = true;
-            //_rb.isKinematic = true;
+            StartCoroutine(FinishLevel());
         }
 
         OnUpdateBossHP?.Invoke(_health);
@@ -74,6 +76,14 @@ public class BeeBoss : MonoBehaviour, IDamageable
         _damageCollider.SetActive(true);
 
         transform.DOMove(_attackPos, 1).OnComplete(() => { ChangeState(bossState.AttackCooldown); });
+    }
+
+    private IEnumerator FinishLevel()
+    {
+        yield return new WaitForSeconds(2);
+        _screenFadeAnim.SetTrigger("Fade2");
+        yield return new WaitForSeconds(3);
+        _sceneController.SetScene("Level6");
     }
 
     private IEnumerator AttackCooldown()
