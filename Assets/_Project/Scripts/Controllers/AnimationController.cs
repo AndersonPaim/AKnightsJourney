@@ -11,9 +11,19 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private GameObject _hitCollider;
     private Animator _animator;
 
+    private int _attackComboIndex = 1;
+
     public void StartAttack()
     {
         OnStartAttack?.Invoke();
+        StopAllCoroutines();
+
+        _attackComboIndex++;
+
+        if(_attackComboIndex > 4)
+        {
+            _attackComboIndex = 1;
+        }
     }
 
     public void EnableAttackCollider()
@@ -25,6 +35,7 @@ public class AnimationController : MonoBehaviour
     {
         _hitCollider.SetActive(false);
         OnStopAttack?.Invoke();
+        StartCoroutine(StopAttackCombo());
     }
 
     private void Start()
@@ -137,7 +148,49 @@ public class AnimationController : MonoBehaviour
 
     private void Attack(bool isAttacking)
     {
-       _animator.SetBool(AnimationParameters.ATTACK, isAttacking);
+        if(isAttacking)
+        {
+            switch(_attackComboIndex)
+            {
+                case 1:
+                    _animator.SetBool("isAttacking1", true);
+                    _animator.SetBool("isAttacking2", false);
+                    _animator.SetBool("isAttacking3", false);
+                    _animator.SetBool("isAttacking4", false);
+                    break;
+                case 2:
+                    _animator.SetBool("isAttacking1", false);
+                    _animator.SetBool("isAttacking2", true);
+                    _animator.SetBool("isAttacking3", false);
+                    _animator.SetBool("isAttacking4", false);
+                    break;
+                case 3:
+                    _animator.SetBool("isAttacking1", false);
+                    _animator.SetBool("isAttacking2", false);
+                    _animator.SetBool("isAttacking3", true);
+                    _animator.SetBool("isAttacking4", false);
+                    break;
+                case 4:
+                    _animator.SetBool("isAttacking1", false);
+                    _animator.SetBool("isAttacking2", false);
+                    _animator.SetBool("isAttacking3", false);
+                    _animator.SetBool("isAttacking4", true);
+                    break;
+            }
+        }
+        else
+        {
+            _animator.SetBool("isAttacking1", false);
+            _animator.SetBool("isAttacking2", false);
+            _animator.SetBool("isAttacking3", false);
+            _animator.SetBool("isAttacking4", false);
+        }
+    }
+
+    private IEnumerator StopAttackCombo()
+    {
+        yield return new WaitForSeconds(1);
+        _attackComboIndex = 1;
     }
 
     private void Dash(bool isDashing)
