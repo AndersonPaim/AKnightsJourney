@@ -26,7 +26,7 @@ public class Final1Narrative : MonoBehaviour
     {
         _flowchart.gameObject.SetActive(false);
         _screenFadeAnimator.SetTrigger("Fade");
-        await System.Threading.Tasks.Task.Delay(3000);
+        await System.Threading.Tasks.Task.Delay(6000);
         GameManager.sInstance.GetSceneController().SetScene("Menu");
     }
 

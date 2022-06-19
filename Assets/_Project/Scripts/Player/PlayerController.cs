@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private PlayerBalancer _playerBalancer;
 
     [SerializeField] private GameObject _dashCollider;
-    [SerializeField] private VisualEffect _slashEffect;
+    [SerializeField] private List<VisualEffect> _slashEffects;
 
     private float _jumpsCount = 2;
     private float _movementX = 0;
@@ -134,17 +134,17 @@ public class PlayerController : MonoBehaviour, IDamageable
         _isDead = true;
     }
 
-    private void OnStartAttack()
+    private void OnStartAttack(int attack)
     {
         _canJump = false;
         ResetForces();
         _playerBalancer.runSpeed *= 0.5f;
         _velocity *= 0.5f;
-        _slashEffect.Play();
+
+        _slashEffects[attack - 1].Play();
     }
 
-
-    private void OnStopAttack()
+    private void OnStopAttack(int attack)
     {
         _playerBalancer.runSpeed *= 2;
         _canJump = true;
@@ -218,8 +218,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             vel.z = directionX * _playerBalancer.speedMultiplier * _velocity;
             _rb.velocity = vel;
-
-            Debug.Log("MOVEMENT: ");
 
             _lastDirection = directionX;
         }

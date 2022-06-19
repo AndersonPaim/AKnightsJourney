@@ -12,7 +12,7 @@ public class Final2Narrative : MonoBehaviour
     {
         await System.Threading.Tasks.Task.Delay(12000);
         _screenFadeAnimator.SetTrigger("Fade");
-        await System.Threading.Tasks.Task.Delay(3000);
+        await System.Threading.Tasks.Task.Delay(6000);
         GameManager.sInstance.GetSceneController().SetScene("Menu");
     }
 

@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    public Action OnStartAttack;
-    public Action OnStopAttack;
+    public delegate void AttackHandler(int attack);
+    public AttackHandler OnStartAttack;
+    public AttackHandler OnStopAttack;
 
     [SerializeField] private GameObject _hitCollider;
     private Animator _animator;
@@ -15,7 +16,7 @@ public class AnimationController : MonoBehaviour
 
     public void StartAttack()
     {
-        OnStartAttack?.Invoke();
+        OnStartAttack?.Invoke(_attackComboIndex);
         StopAllCoroutines();
 
         _attackComboIndex++;
@@ -34,7 +35,7 @@ public class AnimationController : MonoBehaviour
     public void DisableAttackCollider()
     {
         _hitCollider.SetActive(false);
-        OnStopAttack?.Invoke();
+        OnStopAttack?.Invoke(_attackComboIndex);
         StartCoroutine(StopAttackCombo());
     }
 

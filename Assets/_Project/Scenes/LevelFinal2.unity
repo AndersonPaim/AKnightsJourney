@@ -19252,6 +19252,7 @@ MonoBehaviour:
   _jump: 0
   _dash: 0
   _attack: 0
+  _rangeAttack: 0
   _run: 0
   _walk: 0
   _inputsPaused: 1
@@ -19377,15 +19378,15 @@ RectTransform:
   m_GameObject: {fileID: 1463770912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.526, y: 2.526, z: 2.526}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1635394128}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.0015869, y: 0}
+  m_SizeDelta: {x: 760.1, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1463770914
 MonoBehaviour:
@@ -19407,9 +19408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FIM
-
-'
+  m_text: A  Knight's Journey
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a22863d1c67a5141b22c03fe7829c68, type: 2}
   m_sharedMaterial: {fileID: 1404631083440639604, guid: 9a22863d1c67a5141b22c03fe7829c68, type: 2}
@@ -19436,8 +19435,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -24882,6 +24881,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 413614341}
   objectPooler: {fileID: 1162508203}
   sceneController: {fileID: 685066067}
+  animationController: {fileID: 0}
 --- !u!4 &1858027174
 Transform:
   m_ObjectHideFlags: 0
