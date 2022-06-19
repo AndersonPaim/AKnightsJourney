@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private PlayerBalancer _playerBalancer;
 
     [SerializeField] private GameObject _dashCollider;
-    [SerializeField] private GameObject _weaponTrail;
     [SerializeField] private VisualEffect _slashEffect;
 
     private float _jumpsCount = 2;
@@ -73,21 +72,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         Knockback(attacker);
     }
 
-    public void OnStartAttack()
-    {
-        _canJump = false;
-        ResetForces();
-        _playerBalancer.runSpeed *= 0.5f;
-        _velocity *= 0.5f;
-        _slashEffect.Play();
-    }
-
-    public void OnStopAttack()
-    {
-        _playerBalancer.runSpeed *= 2;
-        _canJump = true;
-    }
-
     private void Start()
     {
         Initialize();
@@ -113,6 +97,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         GameManager.sInstance.GetInputListener().OnInput += ReceiveInputs;
         GameManager.sInstance.OnGetRespawnPosition += DeathMovementDelay;
         GameManager.sInstance.GetInGameMenu().OnPause += PauseInputs;
+        GameManager.sInstance.GetAnimationController().OnStartAttack += OnStartAttack;
+        GameManager.sInstance.GetAnimationController().OnStopAttack += OnStopAttack;
         GameManager.sInstance.OnFinish += FinishGame;
     }
 
@@ -121,6 +107,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         GameManager.sInstance.GetInputListener().OnInput -= ReceiveInputs;
         GameManager.sInstance.OnGetRespawnPosition -= DeathMovementDelay;
         GameManager.sInstance.GetInGameMenu().OnPause -= PauseInputs;
+        GameManager.sInstance.GetAnimationController().OnStartAttack -= OnStartAttack;
+        GameManager.sInstance.GetAnimationController().OnStopAttack -= OnStopAttack;
         GameManager.sInstance.OnFinish -= FinishGame;
     }
 
@@ -144,6 +132,22 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void FinishGame()
     {
         _isDead = true;
+    }
+
+    private void OnStartAttack()
+    {
+        _canJump = false;
+        ResetForces();
+        _playerBalancer.runSpeed *= 0.5f;
+        _velocity *= 0.5f;
+        _slashEffect.Play();
+    }
+
+
+    private void OnStopAttack()
+    {
+        _playerBalancer.runSpeed *= 2;
+        _canJump = true;
     }
 
     private void Knockback(GameObject attacker)
@@ -214,6 +218,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             vel.z = directionX * _playerBalancer.speedMultiplier * _velocity;
             _rb.velocity = vel;
+
+            Debug.Log("MOVEMENT: ");
 
             _lastDirection = directionX;
         }

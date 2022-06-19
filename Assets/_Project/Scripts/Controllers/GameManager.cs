@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ObjectPooler objectPooler;
 
     [SerializeField] private SceneController sceneController;
+    [SerializeField] private AnimationController animationController;
 
     private void Awake()
     {
@@ -110,6 +111,11 @@ public class GameManager : MonoBehaviour
     public SceneController GetSceneController()
     {
         return sceneController;
+    }
+
+    public AnimationController GetAnimationController()
+    {
+        return animationController;
     }
 
     private void PlayerDamage()

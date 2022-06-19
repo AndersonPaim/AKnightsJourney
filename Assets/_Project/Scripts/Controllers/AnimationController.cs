@@ -1,10 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
+    public Action OnStartAttack;
+    public Action OnStopAttack;
+
+    [SerializeField] private GameObject _hitCollider;
     private Animator _animator;
+
+    public void StartAttack()
+    {
+        OnStartAttack?.Invoke();
+    }
+
+    public void EnableAttackCollider()
+    {
+        _hitCollider.SetActive(true);
+    }
+
+    public void DisableAttackCollider()
+    {
+        _hitCollider.SetActive(false);
+        OnStopAttack?.Invoke();
+    }
 
     private void Start()
     {

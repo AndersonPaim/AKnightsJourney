@@ -23,6 +23,7 @@ public class InputListener : MonoBehaviour
     [SerializeField] private bool _jump;
     [SerializeField] private bool _dash;
     [SerializeField] private bool _attack;
+    [SerializeField] private bool _rangeAttack;
     [SerializeField] private bool _run;
     [SerializeField] private bool _walk;
 

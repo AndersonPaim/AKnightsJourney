@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class DamageFlash : MonoBehaviour
 {
-    [SerializeField] private Renderer _meshRenderer;
+    [SerializeField] private List<Renderer> _meshRenderer;
     [SerializeField] private Material _defaultMaterial;
     [SerializeField] private Material _flashMaterial;
-
     public void Flash()
     {
         StartCoroutine(FlashDelay());
@@ -15,9 +14,16 @@ public class DamageFlash : MonoBehaviour
 
     private IEnumerator FlashDelay()
     {
-        _meshRenderer.material = _flashMaterial;
-        yield return new WaitForSeconds(0.125f);
-        _meshRenderer.material = _defaultMaterial;
-    }
+        foreach(Renderer mesh in _meshRenderer)
+        {
+            mesh.material = _flashMaterial;
+        }
 
+        yield return new WaitForSeconds(0.125f);
+
+        foreach(Renderer mesh in _meshRenderer)
+        {
+            mesh.material = _defaultMaterial;
+        }
+    }
 }

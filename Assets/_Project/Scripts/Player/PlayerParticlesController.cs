@@ -12,21 +12,9 @@ public class PlayerParticlesController : MonoBehaviour
 
     [SerializeField] private float _runningEmissionRate;
 
-    [SerializeField] private GameObject _hitCollider;
-
     private bool _isJumping = false;
     private bool _isDoubleJumping = false;
     private bool _isDashing = false;
-
-    public void EnableAttackCollider()
-    {
-        _hitCollider.SetActive(true);
-    }
-
-    public void DisableAttackTrail()
-    {
-        _hitCollider.SetActive(false);
-    }
 
     private void Start()
     {
