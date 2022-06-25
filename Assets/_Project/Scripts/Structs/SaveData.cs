@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
+    public string username = "Player";
     public List<float> stars = new List<float>();
     //audio
     public float musicVolume = 0.8f;
@@ -12,5 +13,6 @@ public class SaveData
     //weapons
     public List<bool> weaponsUnlocked = new List<bool>();
     public int weaponEquiped = 0;
+
 }
 

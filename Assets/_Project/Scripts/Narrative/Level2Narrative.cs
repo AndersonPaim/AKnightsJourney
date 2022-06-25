@@ -37,14 +37,13 @@ public class Level2Narrative : MonoBehaviour
 
     public void SetSword()
     {
-        FinishFlowchart();
+        _swordSelection.SetActive(false);
+        _flowchart.SendFungusMessage("WeaponSelected");
     }
 
-    public void FinishFlowchart()
+    public void LoadNextLevel(string scene)
     {
-        _flowchart.gameObject.SetActive(false);
-        _swordSelection.SetActive(false);
-        GameManager.sInstance.GetSceneController().SetScene("Level5");
+        GameManager.sInstance.GetSceneController().SetScene(scene);
     }
 
     private void Start()

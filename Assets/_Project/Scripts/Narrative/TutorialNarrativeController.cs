@@ -5,6 +5,7 @@ using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine.Playables;
 using Fungus;
+using TMPro;
 
 public class TutorialNarrativeController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class TutorialNarrativeController : MonoBehaviour
     [SerializeField] private Flowchart _flowchart;
     [SerializeField] private PlayableDirector _npcLeavingTimeline;
     [SerializeField] private Animator _uiOverlayAnimator;
+    [SerializeField] private TMP_InputField _usernameInput;
+    [SerializeField] private Character _playerCharacter;
 
     private Vector3 _finishPos = new Vector3(133, 0.125f, 302);
 
@@ -24,6 +27,14 @@ public class TutorialNarrativeController : MonoBehaviour
         await System.Threading.Tasks.Task.Delay(3500);
 
         GameManager.sInstance.GetInputListener().PauseInput(false);
+    }
+
+    public void SetUsername()
+    {
+        SaveData data = SaveSystem.localData;
+        data.username = _usernameInput.text;
+        SaveSystem.Save();
+        _playerCharacter.SetStandardText(_usernameInput.text);
     }
 
     public void DisableTutorial()
