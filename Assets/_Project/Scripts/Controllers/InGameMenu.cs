@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class InGameMenu : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject[] _starBg;
     [SerializeField] private GameObject[] _star;
+    [SerializeField] private TextMeshProUGUI _coinsText;
 
     private bool _isPaused = false;
     private bool _canResume = true;
@@ -34,6 +36,7 @@ public class InGameMenu : MonoBehaviour
         GameManager.sInstance.GetInputListener().OnPause += PauseInput;
         GameManager.sInstance.GetInputListener().OnBack += BackInput;
         GameManager.sInstance.GetScoreManager().OnSetScore += SetScore;
+        GameManager.sInstance.GetScoreManager().OnGetCoin += GetCoin;
         GameManager.sInstance.OnFinish += Finish;
         GameManager.sInstance.OnGameOver += GameOver;
     }
@@ -43,8 +46,14 @@ public class InGameMenu : MonoBehaviour
         GameManager.sInstance.GetInputListener().OnPause -= PauseInput;
         GameManager.sInstance.GetInputListener().OnBack -= BackInput;
         GameManager.sInstance.GetScoreManager().OnSetScore -= SetScore;
+        GameManager.sInstance.GetScoreManager().OnGetCoin -= GetCoin;
         GameManager.sInstance.OnFinish += Finish;
         GameManager.sInstance.OnGameOver -= GameOver;
+    }
+
+    private void GetCoin(float coins)
+    {
+        _coinsText.text = coins.ToString();
     }
 
     private void PauseInput()

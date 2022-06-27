@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public delegate void SetScoreHandler(float stars);
     public SetScoreHandler OnSetScore;
+    public SetScoreHandler OnGetCoin;
 
     [SerializeField] private float _score;
     [SerializeField] private float _scoreTarget1;
@@ -13,6 +14,12 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private float _scoreTarget3;
 
     public float starsScore;
+    public int coinMultiplier = 1;
+
+    public void SetCoinMultiplier(int multiplier)
+    {
+        coinMultiplier = multiplier;
+    }
 
     private void Start()
     {
@@ -52,7 +59,8 @@ public class ScoreManager : MonoBehaviour
 
     private void CollectItem(int points)
     {
-        _score += points;
+        _score += points * coinMultiplier;
+        OnGetCoin?.Invoke(_score);
     }
 
     private void SetScore()
@@ -73,14 +81,14 @@ public class ScoreManager : MonoBehaviour
         {
             starsScore = 3;
         }
-       
+
         OnSetScore?.Invoke(starsScore);
         SaveScore();
     }
 
     private void Death()
     {
-        _score -= 5;
+        //_score -= 5;
     }
 
 }
