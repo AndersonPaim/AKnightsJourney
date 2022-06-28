@@ -6,6 +6,7 @@ using UnityEngine;
 public class SaveData
 {
     public string username = "Player";
+    public float coins = 0;
     public List<float> stars = new List<float>();
     //audio
     public float musicVolume = 0.8f;
@@ -13,6 +14,5 @@ public class SaveData
     //weapons
     public List<bool> weaponsUnlocked = new List<bool>();
     public int weaponEquiped = 0;
-
 }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _levelSelection;
     [SerializeField] private GameObject _equipmentMenu;
     [SerializeField] private GameObject _settingsMenu;
+    [SerializeField] private TextMeshProUGUI _coinsText;
 
     public void Start()
     {
@@ -59,5 +61,11 @@ public class MainMenu : MonoBehaviour
     public void LevelSelection(string scene)
     {
         _sceneController.SetScene(scene);
+    }
+
+    private void OnEnable()
+    {
+        SaveData data = SaveSystem.Load();
+        _coinsText.text = data.coins.ToString();
     }
 }

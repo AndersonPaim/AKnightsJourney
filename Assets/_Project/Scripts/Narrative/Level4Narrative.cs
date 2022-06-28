@@ -13,6 +13,7 @@ public class Level4Narrative : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        GameManager.sInstance.GetScoreManager().SaveCoins();
         GameManager.sInstance.GetSceneController().SetScene("Level6");
     }
 }

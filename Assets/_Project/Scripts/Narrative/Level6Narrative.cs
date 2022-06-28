@@ -13,6 +13,7 @@ public class Level6Narrative : MonoBehaviour
     {
         _screenFade.SetTrigger("Fade2");
         yield return new WaitForSeconds(3);
+        GameManager.sInstance.GetScoreManager().SaveCoins();
         GameManager.sInstance.GetSceneController().SetScene(scene);
     }
 

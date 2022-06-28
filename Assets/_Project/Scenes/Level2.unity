@@ -13252,13 +13252,29 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1269663835194437159, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2343602455501804414, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2807995921401192360, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3466829789659595923, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7574918338581731673, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.0000733534
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160603169707120099, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
@@ -13287,6 +13303,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c209e23dee0012145a3915e0bf39e3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &273596870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 748130899189526235, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
+  m_PrefabInstance: {fileID: 273596866}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5027a52888818444f8fe1d26e2ab49ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &273757637
@@ -14208,9 +14235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
+  m_BindingMode: 0
   m_FollowOffset: {x: 10.24, y: 3.6, z: 0}
-  m_XDamping: 2
+  m_XDamping: 1
   m_YDamping: 5
   m_ZDamping: 1
   m_AngularDampingMode: 0
@@ -16264,6 +16291,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 474573523}
     m_Modifications:
+    - target: {fileID: 108095440, guid: 643d5b3f355d342418b87c7cbdeb6b6d, type: 3}
+      propertyPath: _meshRenderer.Array.data[0]
+      value: 
+      objectReference: {fileID: 595786873}
     - target: {fileID: 3247530185262667859, guid: 643d5b3f355d342418b87c7cbdeb6b6d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -16401,6 +16432,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7819506046418694111, guid: 8305d627f19daf947b1e615b02724bd5, type: 3}
   m_PrefabInstance: {fileID: 570912644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &595786873 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3050346677310024207, guid: 643d5b3f355d342418b87c7cbdeb6b6d, type: 3}
+  m_PrefabInstance: {fileID: 546020833}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &598914430 stripped
 Transform:
@@ -35877,11 +35913,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1387937053}
         m_TargetAssemblyTypeName: Level2Narrative, Assembly-CSharp
         m_MethodName: SetSword
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -37019,7 +37055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 589.9828, y: -18.736235}
+  scrollPos: {x: 221.89787, y: -121.92773}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 429
@@ -37031,9 +37067,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1317867123}
+  - {fileID: 1317867143}
   selectedCommands:
-  - {fileID: 1317867156}
+  - {fileID: 1317867132}
   variables:
   - {fileID: 1317867134}
   description: 
@@ -38688,6 +38724,7 @@ MonoBehaviour:
   _startTimeline: {fileID: 989088779}
   _npcLeavingTimeline: {fileID: 163621743}
   _uiOverlayAnimator: {fileID: 1739179247}
+  _playerWeapons: {fileID: 273596870}
 --- !u!65 &1387937054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45772,11 +45809,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1387937053}
         m_TargetAssemblyTypeName: Level2Narrative, Assembly-CSharp
         m_MethodName: SetSword
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -48104,8 +48141,8 @@ Transform:
   - {fileID: 6880600594827253663}
   - {fileID: 6880600594234396120}
   - {fileID: 1473896052}
-  - {fileID: 1283882461}
   - {fileID: 5260881888804195774}
+  - {fileID: 1283882461}
   m_Father: {fileID: 2002567104}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48138,12 +48175,12 @@ Transform:
   m_Children:
   - {fileID: 1999772093}
   - {fileID: 8665925293653012254}
-  - {fileID: 1236709077}
-  - {fileID: 1060230666}
-  - {fileID: 183254880}
   - {fileID: 285158671}
-  - {fileID: 959335001}
+  - {fileID: 1060230666}
+  - {fileID: 1236709077}
   - {fileID: 2125550505}
+  - {fileID: 959335001}
+  - {fileID: 183254880}
   m_Father: {fileID: 676577438}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48192,7 +48229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6955156075639168021, guid: e13a052fccefb79459b620cbf5c38567, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.86
+      value: -27.21
       objectReference: {fileID: 0}
     - target: {fileID: 6955156075639168021, guid: e13a052fccefb79459b620cbf5c38567, type: 3}
       propertyPath: m_LocalRotation.w
@@ -49118,11 +49155,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1387937053}
         m_TargetAssemblyTypeName: Level2Narrative, Assembly-CSharp
         m_MethodName: SetSword
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -50763,6 +50800,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1999772093}
     m_Modifications:
+    - target: {fileID: 2673732267784051697, guid: 5d028b72dbc9a8245b84529e924a47bc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3494866642512910921, guid: 5d028b72dbc9a8245b84529e924a47bc, type: 3}
       propertyPath: m_Name
       value: WoodHorizontalPlatform

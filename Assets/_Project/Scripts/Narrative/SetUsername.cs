@@ -7,7 +7,7 @@ public class SetUsername : MonoBehaviour
 {
     [SerializeField] private Character _playerCharacter;
 
-    void Start()
+    private void Start()
     {
         SaveData data = SaveSystem.Load();
         _playerCharacter.SetStandardText(data.username);

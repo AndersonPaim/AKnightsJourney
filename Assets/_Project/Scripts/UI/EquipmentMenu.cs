@@ -31,12 +31,12 @@ public class EquipmentMenu : MonoBehaviour
                 isEquiped = true;
             }
 
-            //if(data.weaponsUnlocked[i])
-            //{
+            if(data.weaponsUnlocked[i])
+            {
                 WeaponsUI weapon = Instantiate(_weaponUI, _weaponUIPosition);
                 _weaponUIList.Add(weapon);
                 weapon.SetupUI(_weapons[i], isEquiped, this);
-            //}
+            }
         }
     }
 

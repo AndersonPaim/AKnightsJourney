@@ -18,6 +18,7 @@ public class Level1Narrative : MonoBehaviour
 
     public void LoadNextLevel(string scene)
     {
+        GameManager.sInstance.GetScoreManager().SaveCoins();
         GameManager.sInstance.GetSceneController().SetScene(scene);
     }
 

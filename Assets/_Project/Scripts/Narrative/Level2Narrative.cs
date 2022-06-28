@@ -14,6 +14,7 @@ public class Level2Narrative : MonoBehaviour
     [SerializeField] private PlayableDirector _startTimeline;
     [SerializeField] private PlayableDirector _npcLeavingTimeline;
     [SerializeField] private Animator _uiOverlayAnimator;
+    [SerializeField] private PlayerWeaponsController _playerWeapons;
 
     private bool _willReceiveWeapon = false;
 
@@ -35,14 +36,21 @@ public class Level2Narrative : MonoBehaviour
         _swordSelection.SetActive(true);
     }
 
-    public void SetSword()
+    public void SetSword(int sword)
     {
         _swordSelection.SetActive(false);
         _flowchart.SendFungusMessage("WeaponSelected");
+
+        SaveData data = SaveSystem.localData;
+        data.weaponEquiped = sword;
+        data.weaponsUnlocked[sword] = true;
+        SaveSystem.Save();
+        _playerWeapons.SetSword();
     }
 
     public void LoadNextLevel(string scene)
     {
+        GameManager.sInstance.GetScoreManager().SaveCoins();
         GameManager.sInstance.GetSceneController().SetScene(scene);
     }
 

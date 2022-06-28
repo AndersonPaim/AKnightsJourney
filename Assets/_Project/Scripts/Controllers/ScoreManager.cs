@@ -21,6 +21,13 @@ public class ScoreManager : MonoBehaviour
         coinMultiplier = multiplier;
     }
 
+    public void SaveCoins()
+    {
+        SaveData data = SaveSystem.localData;
+        data.coins = _score;
+        SaveSystem.Save();
+    }
+
     private void Start()
     {
         SetupDelegates();
