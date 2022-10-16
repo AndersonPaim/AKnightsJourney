@@ -12702,6 +12702,10 @@ PrefabInstance:
       propertyPath: _checkpoints.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6854837884150805243, guid: 1bc1b2401024937459c9064561abca68, type: 3}
+      propertyPath: _score
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bc1b2401024937459c9064561abca68, type: 3}
 --- !u!1001 &6955156074774114311
