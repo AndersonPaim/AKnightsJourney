@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _levelSelection;
     [SerializeField] private GameObject _equipmentMenu;
     [SerializeField] private GameObject _settingsMenu;
+    [SerializeField] private GameObject _shopMenu;
     [SerializeField] private TextMeshProUGUI _coinsText;
 
     public void Start()
@@ -44,6 +45,7 @@ public class MainMenu : MonoBehaviour
         _settingsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
         _equipmentMenu.SetActive(false);
+        _shopMenu.SetActive(false);
         _mainMenu.SetActive(true);
     }
 
@@ -51,6 +53,12 @@ public class MainMenu : MonoBehaviour
     {
         _mainMenu.SetActive(false);
         _equipmentMenu.SetActive(true);
+    }
+
+    public void ShopButton()
+    {
+        _mainMenu.SetActive(false);
+        _shopMenu.SetActive(true);
     }
 
     public void QuitButton()

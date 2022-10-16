@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 582864733236518290}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor_simple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2559371047761533928}
   - component: {fileID: 2559371047758109642}
   - component: {fileID: 2559371047759239434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: wallNode1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2559371047761533930}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7819506046418694111}
   - component: {fileID: 7810110589278320757}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WoodThornFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7822217428735745697}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4.9617615, y: 2.973797, z: 4}

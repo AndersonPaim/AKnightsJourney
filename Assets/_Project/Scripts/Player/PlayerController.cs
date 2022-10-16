@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private bool _isDoubleJumping = false;
     private bool _isPaused = false;
     private bool _isVulnerable = true;
+    private bool _isTrapVulnerable = true;
     private bool _canMove = true;
     private bool _isDead = false;
 
@@ -394,6 +395,13 @@ public class PlayerController : MonoBehaviour, IDamageable
         _isVulnerable = true;
     }
 
+    private IEnumerator TrapVurnerabilityDelay()
+    {
+        _isTrapVulnerable = false;
+        yield return new WaitForSeconds(1);
+        _isTrapVulnerable = true;
+    }
+
     private void CameraShake(float amplitude, float frequency)
     {
         //_camera.transform.DOComplete();
@@ -421,14 +429,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    private void Death()
+    private void TrapDeath()
     {
-        if(!_isVulnerable)
+        if(!_isTrapVulnerable)
         {
             return;
         }
 
-        StartCoroutine(VurnerabilityDelay());
+        StartCoroutine(TrapVurnerabilityDelay());
         OnDeath?.Invoke();
     }
 
@@ -449,7 +457,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (collision.collider.gameObject.layer == trapsLayer)
         {
-            Death();
+            TrapDeath();
         }
     }
 }

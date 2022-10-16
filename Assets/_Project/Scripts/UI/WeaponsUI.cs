@@ -15,8 +15,13 @@ public class WeaponsUI : MonoBehaviour
     private EquipmentMenu _equipmentMenu;
     private WeaponData _weaponData;
 
-    public void SetupUI(WeaponData weapon, bool isEquiped, EquipmentMenu equipmentMenu)
+    public void SetupUI(WeaponData weapon, bool isEquiped, EquipmentMenu equipmentMenu, bool unlocked)
     {
+        if(!unlocked)
+        {
+            Destroy(_button.gameObject);
+        }
+
         _equipmentMenu = equipmentMenu;
         _weaponData = weapon;
 
