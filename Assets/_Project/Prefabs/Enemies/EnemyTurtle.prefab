@@ -208,7 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38105e9f1a0047243ab6530d5c0cccb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 3050346677310024207}
+  _meshRenderer:
+  - {fileID: 3050346677310024207}
   _defaultMaterial: {fileID: 2100000, guid: b3ad386aba28716448079dcf67d7aede, type: 2}
   _flashMaterial: {fileID: 2100000, guid: a9b13fbc3f0d8224ba7b1137a6094372, type: 2}
 --- !u!1 &3247530185775486042
