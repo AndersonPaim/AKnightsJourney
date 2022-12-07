@@ -6,6 +6,7 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private PlayerLedgeGrab _playerLeadgeGrab;
+    [SerializeField] private PlayerController _player;
 
     public delegate void AttackHandler(int attack);
     public AttackHandler OnStartAttack;
@@ -97,14 +98,14 @@ public class AnimationController : MonoBehaviour
     }
     private void ReceiveInputs(PlayerData playerData)
     {
-        Movement(playerData.Movement, playerData.Velocity);
+        Climb(playerData.Climbing);
         SetIsGrounded(playerData.OnGround);
+        Movement(playerData.Movement, playerData.Velocity);
         Jump(playerData.Jump);
         DoubleJump(playerData.DoubleJump);
         Attack(playerData.Attack);
         Dash(playerData.Dash);
         Hanging(playerData.Hanging);
-        Climb(playerData.Climbing);
     }
 
     private void SetIsGrounded(bool isGrounded)
@@ -134,6 +135,7 @@ public class AnimationController : MonoBehaviour
 
     private void Movement(float direction, float velocity)
     {
+
         if (direction != 0)
         {
             _animator.SetBool(AnimationParameters.ISWALKING, true);
@@ -141,6 +143,19 @@ public class AnimationController : MonoBehaviour
         else
         {
             _animator.SetBool(AnimationParameters.ISWALKING, false);
+        }
+
+        if(_player.IsHanging)
+        {
+            if(direction != 0 && direction != _player.LastDirection)
+            {
+                _playerLeadgeGrab.ClimbDown();
+                _animator.SetTrigger(AnimationParameters.CLIMBDOWN);
+            }
+            else if(direction != 0  && direction == _player.LastDirection)
+            {
+                _animator.SetBool(AnimationParameters.CLIMBING, true);
+            }
         }
 
         _animator.SetFloat(AnimationParameters.VELOCITY, velocity);

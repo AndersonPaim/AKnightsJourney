@@ -2687,15 +2687,13 @@ MonoBehaviour:
   _greenBox: []
   _redBox: []
   _redXoffset: 0.25
-  _redYoffset: 2.6
+  _redYoffset: 2.4
   _redXsize: 0.5
   _redYsize: 0.3
   _greenXoffset: 0.25
   _greenYoffset: 1.95
   _greenXsize: 0.5
   _greenYsize: 0.3
-  _rb: {fileID: 0}
-  _startingGrav: 0
   _groundMask:
     serializedVersion: 2
     m_Bits: 128
@@ -7939,6 +7937,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 748130899295218027, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 449721253}
     - target: {fileID: 748130899295218027, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
       propertyPath: _playerLeadgeGrab
       value: 

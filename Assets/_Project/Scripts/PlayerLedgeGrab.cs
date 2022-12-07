@@ -15,22 +15,35 @@ public class PlayerLedgeGrab : MonoBehaviour
     [SerializeField] private float _greenYoffset;
     [SerializeField] private float _greenXsize;
     [SerializeField] private float _greenYsize;
-    [SerializeField]private Rigidbody _rb;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private PlayerController _player;
     [SerializeField] private GameObject _playerModel;
+
+    private Rigidbody _rb;
 
     public void Climbing()
     {
         transform.DOMove(new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z), 0.2f).OnComplete(FinishClimbing);
     }
 
-    private void FinishClimbing()
+    public void ClimbDown()
     {
-        transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + (0.6f * _player.LastDirection)), 0.1f);
+        transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z - (0.2f * _player.LastDirection)), 0.05f);
+        ResetSettings();
+    }
+
+    public void ResetSettings()
+    {
         _player.IsHanging = false;
         _rb.useGravity = true;
     }
+
+    private void FinishClimbing()
+    {
+        transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + (0.6f * _player.LastDirection)), 0.05f);
+        ResetSettings();
+    }
+
 
     private void Start()
     {
@@ -67,10 +80,15 @@ public class PlayerLedgeGrab : MonoBehaviour
         _redBox = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y + _redYoffset, transform.position.z + ((_redXoffset * _player.LastDirection) * transform.localScale.z)), new Vector3(1, _redYsize, _redXsize), transform.localRotation, _groundMask);
         _greenBox = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y + _greenYoffset, transform.position.z + ((_greenXoffset * _player.LastDirection) * transform.localScale.z)), new Vector3(1, _greenYsize, _greenXsize), transform.localRotation, _groundMask);
 
-        if(_greenBox.Length > 0 && _redBox.Length == 0 && !_player.IsHanging && _player.isJumping)
+        if(_greenBox.Length > 0 && _redBox.Length == 0 && !_player.IsHanging && _player.IsJumping)
         {
             _player.IsHanging = true;
         }
+        else if(_greenBox.Length > 0 && _redBox.Length == 0 && !_player.IsHanging && _player.IsDoubleJumping)
+        {
+            _player.IsHanging = true;
+        }
+
 
         if(_player.IsHanging)
         {

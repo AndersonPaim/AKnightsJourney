@@ -58,7 +58,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     private CinemachineBasicMultiChannelPerlin _cameraNoise;
 
     public bool IsVulnerable => _isVulnerable;
-    public bool isJumping => _isJumping;
+    public bool IsJumping => _isJumping;
+    public bool IsDoubleJumping => _isDoubleJumping;
     public bool IsHanging {get ; set;}
     public float LastDirection => _lastDirection;
 

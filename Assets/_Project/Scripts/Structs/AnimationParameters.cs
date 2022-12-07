@@ -14,4 +14,5 @@ public static class AnimationParameters
     public const string DASH = "isDashing";
     public const string HANGING = "isHanging";
     public const string CLIMBING = "isClimbing";
+    public const string CLIMBDOWN = "ClimbDown";
 }
