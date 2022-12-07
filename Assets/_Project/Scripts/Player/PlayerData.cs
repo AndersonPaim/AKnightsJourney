@@ -12,4 +12,6 @@ public struct PlayerData
     public bool Dash;
     public bool OnGround;
     public bool Attack;
+    public bool Hanging;
+    public bool Climbing;
 }

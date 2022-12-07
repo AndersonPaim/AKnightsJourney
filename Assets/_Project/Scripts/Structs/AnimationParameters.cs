@@ -12,4 +12,6 @@ public static class AnimationParameters
     public const string VELOCITY = "Velocity";
     public const string ATTACK = "isAttacking";
     public const string DASH = "isDashing";
+    public const string HANGING = "isHanging";
+    public const string CLIMBING = "isClimbing";
 }

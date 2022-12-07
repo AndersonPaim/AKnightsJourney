@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private bool _isTrapVulnerable = true;
     private bool _canMove = true;
     private bool _isDead = false;
+    private bool _isClimbing = false;
 
     private Rigidbody _rb;
 
@@ -57,6 +58,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     private CinemachineBasicMultiChannelPerlin _cameraNoise;
 
     public bool IsVulnerable => _isVulnerable;
+    public bool isJumping => _isJumping;
+    public bool IsHanging {get ; set;}
+    public float LastDirection => _lastDirection;
 
     public void TakeDamage(float damage, GameObject attacker)
     {
@@ -119,6 +123,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         _rb = GetComponent<Rigidbody>();
         _playerRotationLeft = Quaternion.Euler(0, 180, 0);
         _playerRotationRight = Quaternion.Euler(0, 0, 0);
+        IsHanging = false;
         _playerData = new PlayerData();
         _cameraNoise = _camera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
 
@@ -197,6 +202,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         _playerData.Movement = _movementX;
         _playerData.Velocity = _velocity;
         _playerData.Attack = _isAttacking;
+        _playerData.Hanging = IsHanging;
+        _playerData.Climbing = _isClimbing;
+
+        _isClimbing = false;
     }
 
 
@@ -215,14 +224,14 @@ public class PlayerController : MonoBehaviour, IDamageable
             return;
         }
 
-        if (directionX != 0 && _isDashing == false)
+        if (directionX != 0 && !_isDashing && !IsHanging)
         {
             vel.z = directionX * _playerBalancer.speedMultiplier * _velocity;
             _rb.velocity = vel;
 
             _lastDirection = directionX;
         }
-        else if(directionX == 0 && _isDashing == false)
+        else if(directionX == 0 && !_isDashing && !IsHanging)
         {
             vel.z = _lastDirection * _playerBalancer.speedMultiplier * _velocity;
 
@@ -272,12 +281,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void PlayerRotation(float direction)
     {
-        if(direction < 0)
+        if(direction < 0 && !IsHanging)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, _playerRotationLeft, 1f);
             _isWalking = true;
         }
-        else if(direction > 0)
+        else if(direction > 0 && !IsHanging)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, _playerRotationRight, 1f);
             _isWalking = true;
@@ -313,6 +322,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (isJumping)
         {
+            if(IsHanging)
+            {
+                _isClimbing = true;
+            }
+
             if(!_canJump)
             {
                 return;

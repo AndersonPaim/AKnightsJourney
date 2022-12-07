@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
+    [SerializeField] private PlayerLedgeGrab _playerLeadgeGrab;
+
     public delegate void AttackHandler(int attack);
     public AttackHandler OnStartAttack;
     public AttackHandler OnStopAttack;
@@ -30,6 +32,11 @@ public class AnimationController : MonoBehaviour
     public void EnableAttackCollider()
     {
         _hitCollider.SetActive(true);
+    }
+
+    public void FinishClimbing()
+    {
+        _playerLeadgeGrab.Climbing();
     }
 
     public void DisableAttackCollider()
@@ -96,6 +103,8 @@ public class AnimationController : MonoBehaviour
         DoubleJump(playerData.DoubleJump);
         Attack(playerData.Attack);
         Dash(playerData.Dash);
+        Hanging(playerData.Hanging);
+        Climb(playerData.Climbing);
     }
 
     private void SetIsGrounded(bool isGrounded)
@@ -197,5 +206,15 @@ public class AnimationController : MonoBehaviour
     private void Dash(bool isDashing)
     {
        _animator.SetBool(AnimationParameters.DASH, isDashing);
+    }
+
+    private void Hanging(bool isHanging)
+    {
+       _animator.SetBool(AnimationParameters.HANGING, isHanging);
+    }
+
+    private void Climb(bool isClimbing)
+    {
+       _animator.SetBool(AnimationParameters.CLIMBING, isClimbing);
     }
 }
