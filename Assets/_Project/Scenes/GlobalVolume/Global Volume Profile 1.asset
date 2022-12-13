@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
   m_Name: Tonemapping
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2
 --- !u!114 &-3549865105484685786
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -121,13 +121,13 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.9893327, y: 1, z: 0.9886847, w: -0.00000008502166}
+    m_Value: {x: 0.8423506, y: 0.86598104, z: 1, w: 0.33763644}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.92701286, z: 0.96799535, w: 0}
+    m_Value: {x: 1, y: 0.70382786, z: 0.9064935, w: 0.13902679}
   highlights:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 1, z: 0.09340906, w: 0.09569379}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.94284266, z: 0.17763078, w: 0.37374738}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -178,10 +178,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.98
+    m_Value: 1.3
   contrast:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: -3
     min: -100
     max: 100
   colorFilter:
@@ -196,7 +196,7 @@ MonoBehaviour:
     min: -180
     max: 180
   saturation:
-    m_OverrideState: 0
-    m_Value: 5
+    m_OverrideState: 1
+    m_Value: 15
     min: -100
     max: 100

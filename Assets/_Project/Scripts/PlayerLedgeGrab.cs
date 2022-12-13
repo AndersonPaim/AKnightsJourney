@@ -40,8 +40,7 @@ public class PlayerLedgeGrab : MonoBehaviour
 
     private void FinishClimbing()
     {
-        transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + (0.6f * _player.LastDirection)), 0.05f);
-        ResetSettings();
+        transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + (0.6f * _player.LastDirection)), 0.05f).OnComplete(ResetSettings);
     }
 
 
