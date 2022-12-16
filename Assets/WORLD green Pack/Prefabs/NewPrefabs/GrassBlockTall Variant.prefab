@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1897746629428515865, guid: 0ae30a02cd29a4644b3d1573bc37c392, type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 3356882224621545666, guid: 0ae30a02cd29a4644b3d1573bc37c392, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +57,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3356882224621545669, guid: 0ae30a02cd29a4644b3d1573bc37c392, type: 3}
       propertyPath: m_Name
-      value: GrassBlockTall
+      value: GrassBlockTall Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3413957717445134703, guid: 0ae30a02cd29a4644b3d1573bc37c392, type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479758986699060606, guid: 0ae30a02cd29a4644b3d1573bc37c392, type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095284999518155481, guid: 0ae30a02cd29a4644b3d1573bc37c392, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ae30a02cd29a4644b3d1573bc37c392, type: 3}
