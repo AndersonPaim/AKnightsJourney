@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         StartCoroutine(VurnerabilityDelay());
         OnTakeDamage?.Invoke();
         Knockback(attacker);
+        StartCoroutine(HitStop());
     }
 
     private void Start()
@@ -155,6 +156,13 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         _playerBalancer.runSpeed *= 2;
         _canJump = true;
+    }
+
+    private IEnumerator HitStop()
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = 1;
     }
 
     private void Knockback(GameObject attacker)

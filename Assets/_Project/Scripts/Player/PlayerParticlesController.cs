@@ -9,6 +9,7 @@ public class PlayerParticlesController : MonoBehaviour
     [SerializeField] private ParticleSystem _runParticle;
     [SerializeField] private ParticleSystem _jumpParticle;
     [SerializeField] private ParticleSystem _doubleJumpParticle;
+    [SerializeField] private ParticleSystem _damageParticle;
 
     [SerializeField] private float _runningEmissionRate;
 
@@ -29,11 +30,13 @@ public class PlayerParticlesController : MonoBehaviour
     private void SetupDelegates()
     {
         GameManager.sInstance.GetPlayerController().OnPlayerInput += ReceiveInputs;
+        GameManager.sInstance.GetPlayerController().OnTakeDamage += DamageParticle;
     }
 
     private void RemoveDelegates()
     {
         GameManager.sInstance.GetPlayerController().OnPlayerInput -= ReceiveInputs;
+        GameManager.sInstance.GetPlayerController().OnTakeDamage -= DamageParticle;
     }
 
     private void ReceiveInputs(PlayerData playerData)
@@ -102,6 +105,11 @@ public class PlayerParticlesController : MonoBehaviour
     private void LandingParticle() //chama no evento de anima��o
     {
         _landingParticle.Play();
+    }
+
+    private void DamageParticle()
+    {
+        _damageParticle.Play();
     }
 
 }
