@@ -5,6 +5,7 @@ using UnityEngine;
 public class MeleeWeapon : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitParticle;
+    [SerializeField] private Animator _cameraShake;
 
     private bool _canDamage = true;
 
@@ -16,6 +17,7 @@ public class MeleeWeapon : MonoBehaviour
         if(damageable != null)
         {
             damageable.TakeDamage(100, gameObject);
+            _cameraShake.SetTrigger("Shake");
 
             if(_hitParticle != null && _canDamage)
             {

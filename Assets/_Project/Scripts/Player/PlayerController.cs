@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine.VFX;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -85,6 +86,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         Gravity();
     }
+
+    float time = 0;
 
     private void Update()
     {
@@ -404,7 +407,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         ResetForces();
         CameraShake(0, 0);
-
         Physics.IgnoreLayerCollision(8, 10, false);
         _isVulnerable = true;
         _isDashing = false;
