@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef159ea70e688f429203ad0f6e99b17, type: 3}
   m_Name: DrawFullscreenFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     renderPassEvent: 600
     blitMaterial: {fileID: 2100000, guid: 66e1332c2e7b24540aaa2a48ecba3030, type: 2}
