@@ -404,6 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 192627332}
   - component: {fileID: 192627331}
+  - component: {fileID: 192627333}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -432,7 +433,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 492721559}
   m_Follow: {fileID: 492721559}
   m_Lens:
-    FieldOfView: 78
+    FieldOfView: 85.09
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -465,6 +466,26 @@ Transform:
   m_Father: {fileID: 886573639}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 4.621, y: -90, z: 0}
+--- !u!95 &192627333
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192627330}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e3c7db1b6b08a3e4f9df97fb4763f37a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &218195397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitParticle: {fileID: 7328863247718476739, guid: cc279a9aa48ae8f44b4aff297cd200df, type: 3}
+  _cameraShake: {fileID: 192627333}
 --- !u!135 &426977452
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3392,6 +3414,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 748130898160144885, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
+      propertyPath: _cameraShake
+      value: 
+      objectReference: {fileID: 192627333}
+    - target: {fileID: 748130898614899910, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
+      propertyPath: _cameraShake
+      value: 
+      objectReference: {fileID: 192627333}
     - target: {fileID: 748130899295218024, guid: c77218b6daa82004d8fdd46c1be05b74, type: 3}
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
@@ -5392,7 +5422,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 78
+  field of view: 85.09
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

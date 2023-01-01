@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeWeapon : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitParticle;
-    [SerializeField] private Animator _cameraShake;
 
     private bool _canDamage = true;
 
@@ -17,11 +15,14 @@ public class MeleeWeapon : MonoBehaviour
         if(damageable != null)
         {
             damageable.TakeDamage(100, gameObject);
-            _cameraShake.SetTrigger("Shake");
+
+            VisualEffects.sInstance.CameraShake();
 
             if(_hitParticle != null && _canDamage)
             {
-                ParticleSystem particle = Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
+                Debug.Log("PARTICLE");
+                ParticleSystem particle = Instantiate(_hitParticle);
+                particle.transform.position = other.transform.position;
                 StartCoroutine(DestroyParticle(particle.gameObject, particle.main.duration));
             }
         }
@@ -31,7 +32,7 @@ public class MeleeWeapon : MonoBehaviour
             flash.Flash();
         }
 
-        StartCoroutine(DamageDelay());
+        //StartCoroutine(DamageDelay());
     }
 
     private IEnumerator DamageDelay()

@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
 {
     [SerializeField] private float _health;
-    [SerializeField] private RippleEffect _rippleEffect;
 
     private Coroutine _lastRoutine = null;
 
@@ -20,7 +19,7 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
         }
         else
         {
-            _rippleEffect.StartRippleEffect(transform.position);
+            VisualEffects.sInstance.StartRippleEffect(transform.position);
             _anim.SetTrigger("Die");
             _isDead = true;
             StartCoroutine(DestroyDelay(2));
@@ -117,7 +116,7 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
     private IEnumerator DestroyDelay(float delay)
     {
         yield return new WaitForSeconds(0.2f);
-        _rippleEffect.StopRippleEffect();
+        VisualEffects.sInstance.StopRippleEffect();
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
