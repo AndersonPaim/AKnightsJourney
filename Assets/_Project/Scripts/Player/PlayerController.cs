@@ -95,6 +95,13 @@ public class PlayerController : MonoBehaviour, IDamageable
         GroundCheck();
         OnPlayerInput?.Invoke(_playerData);
         _playerData = new PlayerData();
+
+        if(!_isGrounded)
+        {
+            Vector3 vel = _rb.velocity;
+            vel.y-= 18 * Time.deltaTime;
+            _rb.velocity=vel;
+        }
     }
 
     private void OnDestroy()
