@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
@@ -16,6 +14,11 @@ public class AnimationController : MonoBehaviour
     private Animator _animator;
 
     private int _attackComboIndex = 1;
+
+    public void Throw()
+    {
+        _animator.SetTrigger(AnimationParameters.THROW);
+    }
 
     public void StartAttack()
     {

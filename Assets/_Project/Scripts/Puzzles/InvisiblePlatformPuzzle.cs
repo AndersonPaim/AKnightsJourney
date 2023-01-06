@@ -3,16 +3,13 @@ using UnityEngine;
 
 public class InvisiblePlatformPuzzle : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _platformList;
-    [SerializeField] private Material _disabledMaterial;
-    [SerializeField] private Material _enabledMaterial;
+    [SerializeField] private List<InvisiblePlatform> _platformList;
 
     public void DisablePlatforms()
     {
-        foreach(GameObject platform in _platformList)
+        foreach(InvisiblePlatform platform in _platformList)
         {
-            platform.GetComponent<Collider>().enabled = false;
-            platform.GetComponent<MeshRenderer>().material = _disabledMaterial;
+            platform.DisablePlatform();
         }
     }
 
@@ -23,10 +20,9 @@ public class InvisiblePlatformPuzzle : MonoBehaviour
 
     private void EnablePlatforms()
     {
-        foreach(GameObject platform in _platformList)
+        foreach(InvisiblePlatform platform in _platformList)
         {
-            platform.GetComponent<Collider>().enabled = true;
-            platform.GetComponent<MeshRenderer>().material = _enabledMaterial;
+            platform.EnablePlatform();
         }
     }
 }

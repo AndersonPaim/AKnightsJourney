@@ -16,6 +16,9 @@ public class InputListener : MonoBehaviour
     public delegate void BackHandler();
     public BackHandler OnBack;
 
+    [SerializeField] private AnimationController _animController;
+    [SerializeField] private ThrowingSword _throwingSword;
+
     [SerializeField] private float _movementY;
     [SerializeField] private float _movementX;
     [SerializeField] private Vector2 _movementXY;
@@ -78,6 +81,7 @@ public class InputListener : MonoBehaviour
         _input.Player.Pause.performed -= _ => Pause();
         _input.Player.Back.performed -= _ => Pause();
         _input.Player.Attack.performed -= ctx => Attack(ctx);
+        _input.Player.Throw.performed -= ctx => Throw(ctx);
     }
 
     private void Initialize()
@@ -90,6 +94,7 @@ public class InputListener : MonoBehaviour
         _input.Player.Pause.performed += _ => Pause();
         _input.Player.Back.performed += _ => Back();
         _input.Player.Attack.performed += ctx => Attack(ctx);
+        _input.Player.Throw.performed += ctx => Throw(ctx);
     }
 
     private void CreateInputStruct()
@@ -156,6 +161,15 @@ public class InputListener : MonoBehaviour
         if (ctx.performed)
         {
             _dash = true;
+        }
+    }
+
+    private void Throw(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            _animController.Throw();
+            _throwingSword.ThrowSword();
         }
     }
 

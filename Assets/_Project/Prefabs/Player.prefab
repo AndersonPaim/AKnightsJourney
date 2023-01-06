@@ -14930,8 +14930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062d865ddf61df0488ec9df5a2be03a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitParticle: {fileID: 7516004826788876446, guid: fe8624b8239b6d44e8dba978b745de2a, type: 3}
-  _cameraShake: {fileID: 0}
+  _hitParticle: {fileID: 3702789409235752237, guid: 99af2538dbfaddd4f97dd424586148f8, type: 3}
 --- !u!135 &748130898160144884
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19942,7 +19941,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitParticle: {fileID: 2242307151870375819, guid: e73fa8383752f10479a811e96abf8c8c, type: 3}
-  _cameraShake: {fileID: 0}
 --- !u!1 &748130898908010986
 GameObject:
   m_ObjectHideFlags: 0
@@ -34803,7 +34801,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 114
