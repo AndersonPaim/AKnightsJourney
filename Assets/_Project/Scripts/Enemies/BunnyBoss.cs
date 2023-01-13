@@ -24,6 +24,7 @@ public class BunnyBoss : MonoBehaviour, IDamageable
     [SerializeField] List<Transform> _projectilePosList = new List<Transform>();
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _carrot;
+    [SerializeField] private Animator _anim;
     [SerializeField] private float _health;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _attackDistance;
@@ -34,7 +35,6 @@ public class BunnyBoss : MonoBehaviour, IDamageable
     private bool _isAttacking = false;
     private Vector3 _attackPos;
     private bossState _bossState = bossState.Idle;
-    private Animator _anim;
     private Rigidbody _rb;
     private float _playerDistance;
 
@@ -59,7 +59,6 @@ public class BunnyBoss : MonoBehaviour, IDamageable
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _anim = GetComponent<Animator>();
         StartCoroutine(Idle());
 
         OnStartBossHP?.Invoke(_health);

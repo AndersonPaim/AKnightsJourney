@@ -52,6 +52,8 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
     {
         base.FixedUpdate();
 
+        Move();
+
         if(_canSeePlayer)
         {
             ChasePlayer();

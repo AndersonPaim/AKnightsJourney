@@ -8,7 +8,7 @@ namespace Fungus.EditorUtils
 {
     [CanEditMultipleObjects]
     [CustomEditor (typeof(View))]
-    public class ViewEditor : Editor 
+    public class ViewEditor : Editor
     {
         static Color viewColor = Color.yellow;
 
@@ -109,8 +109,8 @@ namespace Fungus.EditorUtils
 
             serializedObject.ApplyModifiedProperties();
         }
-        
-        protected virtual void OnSceneGUI () 
+
+        protected virtual void OnSceneGUI ()
         {
             View t = target as View;
             if (t.enabled)
@@ -118,7 +118,7 @@ namespace Fungus.EditorUtils
                 EditViewBounds();
             }
         }
-        
+
         protected virtual void EditViewBounds()
         {
             View view = target as View;
@@ -134,30 +134,10 @@ namespace Fungus.EditorUtils
             handles[1] = view.transform.TransformPoint(new Vector3(0, viewSize, 0));
 
             Handles.color = Color.white;
-
-            for (int i = 0; i < 2; ++i)
-            {
-                var fmh_141_57_638067667446994499 = Quaternion.identity; Vector3 newPos = Handles.FreeMoveHandle(handles[i],
-                                                        HandleUtility.GetHandleSize(pos) * 0.1f,
-                                                        Vector3.zero,
-#if UNITY_5_6_OR_NEWER
-                                                        Handles.CubeHandleCap);
-#else
-                                                        Handles.CubeCap);
-#endif
-
-                if (newPos != handles[i])
-                {
-                    Undo.RecordObject(view, "Set View Size");
-                    view.ViewSize = (newPos - pos).magnitude;
-                    EditorUtility.SetDirty(view);
-                    break;
-                }
-            }
         }
 
         public static void DrawView(View view, bool drawInterior)
-        {   
+        {
             float height = CalculateLocalViewSize(view);
             float widthA = height * (view.PrimaryAspectRatio.x / view.PrimaryAspectRatio.y);
             float widthB = height * (view.SecondaryAspectRatio.x / view.SecondaryAspectRatio.y);
@@ -224,7 +204,7 @@ namespace Fungus.EditorUtils
                     verts[1] = view.transform.TransformPoint(new Vector3(widthA, height, 0));
                     verts[2] = view.transform.TransformPoint(new Vector3(widthB, height, 0));
                     verts[3] = view.transform.TransformPoint(new Vector3(widthB, -height, 0));
-                    
+
                     Handles.DrawSolidRectangleWithOutline(verts, fill, transparent);
                 }
 
@@ -235,7 +215,7 @@ namespace Fungus.EditorUtils
                     verts[1] = view.transform.TransformPoint(new Vector3(-widthA, height, 0));
                     verts[2] = view.transform.TransformPoint(new Vector3(widthA, height, 0));
                     verts[3] = view.transform.TransformPoint(new Vector3(widthA, -height, 0));
-                    
+
                     Handles.DrawSolidRectangleWithOutline(verts, transparent, outline );
                 }
             }
@@ -247,7 +227,7 @@ namespace Fungus.EditorUtils
                 verts[1] = view.transform.TransformPoint(new Vector3(-widthB, height, 0));
                 verts[2] = view.transform.TransformPoint(new Vector3(widthB, height, 0));
                 verts[3] = view.transform.TransformPoint(new Vector3(widthB, -height, 0));
-                
+
                 Handles.DrawSolidRectangleWithOutline(verts, transparent, outline );
             }
         }

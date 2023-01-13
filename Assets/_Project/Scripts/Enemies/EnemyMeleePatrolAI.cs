@@ -15,7 +15,6 @@ public class EnemyMeleePatrolAI : MonoBehaviour
 
     protected Rigidbody _rb;
     private bool _isPatrolling = true;
-    private int _direction = 1;
     private Quaternion _enemyRotationLeft;
     private Quaternion _enemyRotationRight;
 
@@ -25,6 +24,7 @@ public class EnemyMeleePatrolAI : MonoBehaviour
     protected bool _canMove = true;
     protected bool _isDead = false;
     protected bool _canAttack = true;
+    protected int _direction = 1;
 
     protected virtual void Start()
     {
@@ -35,11 +35,6 @@ public class EnemyMeleePatrolAI : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if(_canMove && !_isDead && !IsNearEdge())
-        {
-            _rb.velocity += transform.forward * _moveSpeed;
-        }
-
         LookForPlayer();
 
         if(IsHittingWall() || IsNearEdge())
@@ -52,6 +47,14 @@ public class EnemyMeleePatrolAI : MonoBehaviour
             {
                 ChangeEnemyRotation(1);
             }
+        }
+    }
+
+    protected virtual void Move()
+    {
+        if(_canMove && !_isDead && !IsNearEdge())
+        {
+            _rb.velocity += transform.forward * _moveSpeed;
         }
     }
 
