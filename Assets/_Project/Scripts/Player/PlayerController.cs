@@ -479,7 +479,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (other.gameObject.layer == checkpointLayer)
         {
             OnSetCheckpoint?.Invoke();
-            other.gameObject.layer = LayerMask.NameToLayer("Default");
+            other.gameObject.SetActive(false);
         }
     }
 

@@ -20,11 +20,11 @@ public class MainMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void PlayButton()
+    public void PlayButton(string scene)
     {
         //_mainMenu.SetActive(false);
         //_levelSelection.SetActive(true);
-        _sceneController.SetScene("LevelTutorial");
+        _sceneController.SetScene(scene);
     }
 
     public void ControlsButton()

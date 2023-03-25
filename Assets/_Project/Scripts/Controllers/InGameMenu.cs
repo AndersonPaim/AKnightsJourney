@@ -37,7 +37,7 @@ public class InGameMenu : MonoBehaviour
         GameManager.sInstance.GetInputListener().OnBack += BackInput;
         GameManager.sInstance.GetScoreManager().OnSetScore += SetScore;
         GameManager.sInstance.GetScoreManager().OnGetCoin += GetCoin;
-        GameManager.sInstance.OnFinish += Finish;
+        GameManager.sInstance.OnFinish += FinishScreen;
         GameManager.sInstance.OnGameOver += GameOver;
     }
 
@@ -47,7 +47,7 @@ public class InGameMenu : MonoBehaviour
         GameManager.sInstance.GetInputListener().OnBack -= BackInput;
         GameManager.sInstance.GetScoreManager().OnSetScore -= SetScore;
         GameManager.sInstance.GetScoreManager().OnGetCoin -= GetCoin;
-        GameManager.sInstance.OnFinish += Finish;
+        GameManager.sInstance.OnFinish += FinishScreen;
         GameManager.sInstance.OnGameOver -= GameOver;
     }
 
@@ -94,7 +94,7 @@ public class InGameMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void Finish()
+    public void FinishScreen()
     {
         OnPause?.Invoke(true);
         _canResume = false;

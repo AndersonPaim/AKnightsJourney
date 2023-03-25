@@ -7,6 +7,8 @@ public class ShootingPlant : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _shootPosition;
     [SerializeField] private float _shootingDelay;
+    [SerializeField] private float _shootForce;
+    [SerializeField] private Vector3 _shootDirection;
 
     private Animator _anim;
 
@@ -15,7 +17,7 @@ public class ShootingPlant : MonoBehaviour
         GameObject bullet = Instantiate(_bulletPrefab);
         bullet.transform.position = _shootPosition.transform.position;
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.up * 200, ForceMode.Force);
+        rb.AddForce(_shootDirection * _shootForce, ForceMode.Force);
     }
 
     private void Start()

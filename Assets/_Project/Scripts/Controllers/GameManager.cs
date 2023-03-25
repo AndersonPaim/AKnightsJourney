@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
 
     private void Finish()
     {
+        inGameMenu.FinishScreen();
         OnSetScore?.Invoke();
         OnFinish?.Invoke();
     }
@@ -153,10 +154,5 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         OnGameOver?.Invoke();
-    }
-
-    private void SetLevelCount()
-    {
-
     }
 }

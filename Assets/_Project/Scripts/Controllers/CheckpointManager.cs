@@ -49,13 +49,11 @@ public class CheckpointManager : MonoBehaviour
     {
         _currentCheckpoint++;
 
-        if (_checkpoints.Length == _currentCheckpoint + 1)
+        OnCheckpoint?.Invoke(_currentCheckpoint);
+
+        if (_currentCheckpoint >= _checkpoints.Length - 1)
         {
             OnLastCheckpoint?.Invoke();
-        }
-        else
-        {
-            OnCheckpoint?.Invoke(_currentCheckpoint);
         }
     }
 }
