@@ -80,6 +80,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         StartCoroutine(HitStop());
     }
 
+    public void SlimeJump()
+    {
+        Debug.Log("SLIME JUMP");
+        Vector3 moveVector = new Vector3(0, _playerBalancer.jumpForce * 3, 0);
+        Vector3 vel = _rb.velocity;
+        vel = vel + moveVector;
+        _rb.velocity = Vector3.ClampMagnitude(vel, _playerBalancer.jumpForce);
+    }
+
     private void Start()
     {
         Initialize();
@@ -359,7 +368,10 @@ public class PlayerController : MonoBehaviour, IDamageable
                 }
                 ResetForces();
 
-                _rb.AddForce(transform.up * _playerBalancer.jumpForce, ForceMode.Impulse);
+                Vector3 moveVector = new Vector3(0, _playerBalancer.jumpForce, 0);
+                Vector3 vel = _rb.velocity;
+                vel = vel + moveVector;
+                _rb.velocity = Vector3.ClampMagnitude(vel, _playerBalancer.jumpForce);
                 StartCoroutine(JumpCount());
             }
         }
@@ -400,7 +412,9 @@ public class PlayerController : MonoBehaviour, IDamageable
                 dir.z = -1;
             }
 
-            transform.DOMove(transform.position + (dir * 5), 0.2f).OnComplete(StopDash);
+            _rb.AddRelativeForce((dir * _playerBalancer.dashForce) * dir.z, ForceMode.Impulse);
+            //transform.DOMove(transform.position + (dir * 5), 0.2f).OnComplete(StopDash);
+            StartCoroutine(StopDash(_playerBalancer.dashTime));
             Physics.IgnoreLayerCollision(8, 10, true);
             _isVulnerable = false;
             _dashCollider.SetActive(true);
@@ -410,8 +424,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    private void StopDash()
+    private IEnumerator StopDash(float waitTime)
     {
+        yield return new WaitForSeconds(waitTime);
         ResetForces();
         CameraShake(0, 0);
         Physics.IgnoreLayerCollision(8, 10, false);

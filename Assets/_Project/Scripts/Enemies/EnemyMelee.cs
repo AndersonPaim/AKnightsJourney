@@ -8,6 +8,8 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
 
     private Coroutine _lastRoutine = null;
 
+    public bool IsDead => _isDead;
+
     public void TakeDamage(float damage, GameObject attacker)
     {
         _health -= damage;

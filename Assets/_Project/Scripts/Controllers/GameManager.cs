@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public SetScoreHandler OnSetScore;
 
     [SerializeField] private int _respawns;
+    [SerializeField] private int _levelIndex;
 
     [SerializeField] private CheckpointManager checkpointManager;
 
@@ -32,8 +33,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private ObjectPooler objectPooler;
 
+    [SerializeField] private TimerUI timerUI;
+
     [SerializeField] private SceneController sceneController;
     [SerializeField] private AnimationController animationController;
+
+    public int LevelIndex => _levelIndex;
 
     private void Awake()
     {
@@ -147,6 +152,7 @@ public class GameManager : MonoBehaviour
     private void Finish()
     {
         inGameMenu.FinishScreen();
+        timerUI.Finish();
         OnSetScore?.Invoke();
         OnFinish?.Invoke();
     }

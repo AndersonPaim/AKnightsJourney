@@ -56,9 +56,16 @@ public class ScoreManager : MonoBehaviour
     {
         SaveData data = SaveSystem.localData;
 
-        if (starsScore > data.stars[SceneController.currentScene - 1])
+        if(data.stars.Count <= GameManager.sInstance.LevelIndex)
         {
-            data.stars[SceneController.currentScene - 1] = starsScore;
+            data.stars.Add(starsScore);
+        }
+        else
+        {
+            if (starsScore > data.stars[GameManager.sInstance.LevelIndex])
+            {
+                data.stars[GameManager.sInstance.LevelIndex] = starsScore;
+            }
         }
 
         SaveSystem.Save();
