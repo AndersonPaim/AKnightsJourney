@@ -21,6 +21,7 @@ public class EnemyPig : EnemyMeleePatrolAI, IDamageable
             VisualEffects.sInstance.StartRippleEffect(transform.position);
             _anim.SetTrigger("Die");
             _isDead = true;
+            StopCoroutine(_lastRoutine);
             StartCoroutine(DestroyDelay(2));
             GetComponent<Collider>().enabled = false;
             _hitCollider.enabled = false;

@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelData : MonoBehaviour
 {
-    public delegate void SetLevelIndexHandler(LevelSettings settings);
-    public SetLevelIndexHandler OnSetLevelSettings;
-
     [SerializeField] private LevelSettings[] _levelSettings;
+    [SerializeField] private SceneController _sceneController;
 
     [SerializeField] private GameObject _levelObject;
     [SerializeField] private GameObject _gridObject;
@@ -24,7 +23,8 @@ public class LevelData : MonoBehaviour
         {
             GameObject levelObject = Instantiate(_levelObject);
             levelObject.transform.parent = _gridObject.transform;
-            OnSetLevelSettings?.Invoke(_levelSettings[i]);
+            LevelHighscore levelHighscore = levelObject.GetComponent<LevelHighscore>();
+            levelHighscore.Setup(_levelSettings[i], _sceneController);
         }
     }
 }

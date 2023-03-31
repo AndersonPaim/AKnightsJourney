@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator DestroyDelay()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6);
         Destroy(gameObject);
     }
 

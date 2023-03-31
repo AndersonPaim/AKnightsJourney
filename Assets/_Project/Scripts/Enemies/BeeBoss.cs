@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
+using System;
 
 public class BeeBoss : MonoBehaviour, IDamageable
 {
+    public static Action OnFinish;
+
     public delegate void BossHPHandler(float health);
     public BossHPHandler OnStartBossHP;
     public BossHPHandler OnUpdateBossHP;
@@ -81,9 +84,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
     private IEnumerator FinishLevel()
     {
         yield return new WaitForSeconds(2);
-        _screenFadeAnim.SetTrigger("Fade2");
-        yield return new WaitForSeconds(3);
-        _sceneController.SetScene("Level6");
+        OnFinish?.Invoke();
     }
 
     private IEnumerator AttackCooldown()
@@ -121,7 +122,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
         _anim.SetBool("isAttacking", false);
         _anim.SetBool("isIdle", false);
         _anim.SetBool("isMoving", true);
-        int pos = Random.Range(0, 4);
+        int pos = UnityEngine.Random.Range(0, 4);
         _attackPos = _idlePosition[pos].position;
         RotateBee(pos);
 

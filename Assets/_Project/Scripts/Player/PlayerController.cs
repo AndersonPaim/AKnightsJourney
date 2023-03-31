@@ -465,7 +465,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void GroundCheck()
     {
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.2f);
+        _isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.3f);
 
         if (_isGrounded)
         {

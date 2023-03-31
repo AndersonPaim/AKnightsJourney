@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062d865ddf61df0488ec9df5a2be03a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitParticle: {fileID: 7516004826788876446, guid: fe8624b8239b6d44e8dba978b745de2a, type: 3}
+  _hitParticle: {fileID: 2242307151870375819, guid: e73fa8383752f10479a811e96abf8c8c, type: 3}
 --- !u!1 &3247530185262667945
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   _attackDelay: 3
   _anim: {fileID: 3093246609039329813}
   _hitCollider: {fileID: 3152294320412156906}
-  _health: 0
+  _health: 200
 --- !u!114 &108095440
 MonoBehaviour:
   m_ObjectHideFlags: 0

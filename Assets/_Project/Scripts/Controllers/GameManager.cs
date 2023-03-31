@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void SetupDelegates()
     {
+        BeeBoss.OnFinish += Finish;
         playerController.OnDeath += PlayerDeath;
         playerController.OnTakeDamage += PlayerDamage;
         checkpointManager.OnSetRespawnPosition += SetPlayerRespawnPosition;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     private void RemoveDelegates()
     {
+        BeeBoss.OnFinish -= Finish;
         playerController.OnDeath -= PlayerDeath;
         playerController.OnTakeDamage -= PlayerDamage;
         checkpointManager.OnSetRespawnPosition -= SetPlayerRespawnPosition;

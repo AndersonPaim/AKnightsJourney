@@ -9,4 +9,5 @@ public class LevelSettings : ScriptableObject
     public string levelScene;
     [Tooltip("the number of the level to be showed on the ui")]
     public int levelNumber;
+    public bool isBoss;
 }
