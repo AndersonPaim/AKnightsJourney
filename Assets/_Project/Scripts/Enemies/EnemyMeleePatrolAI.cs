@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMeleePatrolAI : MonoBehaviour
 {
+    public static Action OnDie;
+
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rayDistance;
     [SerializeField] private float _detectPlayerDistance;

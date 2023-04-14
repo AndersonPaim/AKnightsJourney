@@ -17,8 +17,8 @@ MonoBehaviour:
   walkSpeed: 5
   runSpeed: 5
   speedMultiplier: 2
-  jumpForce: 9
+  jumpForce: 10
   dashForce: 40
-  dashTime: 0.15
+  dashTime: 0.12
   dashDirection: {x: 0, y: 0, z: 1}
   gravity: {x: 0, y: -13, z: 0}

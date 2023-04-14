@@ -1,17 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public delegate void SetScoreHandler(float stars);
+    public delegate void SetScoreHandler(float stars, float kills, float killsTarget, float coins, float coinsTarget, float lifes, float lifesTarget);
     public SetScoreHandler OnSetScore;
-    public SetScoreHandler OnGetCoin;
+    public Action<float> OnGetCoin;
 
     [SerializeField] private float _score;
-    [SerializeField] private float _scoreTarget1;
-    [SerializeField] private float _scoreTarget2;
-    [SerializeField] private float _scoreTarget3;
+    [SerializeField] private float _coinsTarget;
+    [SerializeField] private float _killsTarget;
+    [SerializeField] private float _lifesTarget;
+
+    private float _kills;
+    private float _coins;
+    private float _lifes;
 
     public float starsScore;
     public int coinMultiplier = 1;
@@ -30,6 +35,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        _lifes = _lifesTarget;
         SetupDelegates();
     }
 
@@ -42,13 +48,19 @@ public class ScoreManager : MonoBehaviour
     {
         GameManager.sInstance.OnSetScore += SetScore;
         GameManager.sInstance.GetPlayerController().OnDeath += Death;
+        EnemyMeleePatrolAI.OnDie += Kill;
+        BeeBoss.OnFinish += Kill;
+        FlyingEnemy.OnDie += Kill;
         Colletables.OnCollectItem += CollectItem;
     }
 
     private void RemoveDelegates()
     {
-        GameManager.sInstance.OnSetScore += SetScore;
+        GameManager.sInstance.OnSetScore -= SetScore;
         GameManager.sInstance.GetPlayerController().OnDeath -= Death;
+        EnemyMeleePatrolAI.OnDie -= Kill;
+        FlyingEnemy.OnDie -= Kill;
+        BeeBoss.OnFinish -= Kill;
         Colletables.OnCollectItem -= CollectItem;
     }
 
@@ -74,35 +86,42 @@ public class ScoreManager : MonoBehaviour
     private void CollectItem(int points)
     {
         _score += points * coinMultiplier;
+        _coins++;
         OnGetCoin?.Invoke(_score);
     }
 
     private void SetScore()
     {
-        if (_score < _scoreTarget1)
+        if (_kills >= _killsTarget)
         {
-            starsScore = 0;
-        }
-        else if(_score >= _scoreTarget1 && _score < _scoreTarget2)
-        {
-            starsScore = 1;
-        }
-        else if (_score >= _scoreTarget2 && _score < _scoreTarget3)
-        {
-            starsScore = 2;
-        }
-        else
-        {
-            starsScore = 3;
+            Debug.Log("ADD SCORE KILLS");
+            starsScore++;
         }
 
-        OnSetScore?.Invoke(starsScore);
+        if(_coins >= _coinsTarget)
+        {
+            Debug.Log("ADD SCORE COINS");
+            starsScore++;
+        }
+
+        if(_lifes >= _lifesTarget)
+        {
+            Debug.Log("ADD SCORE LIFE");
+            starsScore++;
+        }
+
+        OnSetScore?.Invoke(starsScore, _kills, _killsTarget, _coins, _coinsTarget, _lifes, _lifesTarget);
         SaveScore();
     }
 
     private void Death()
     {
-        //_score -= 5;
+        _lifes--;
+    }
+
+    private void Kill()
+    {
+        _kills++;
     }
 
 }

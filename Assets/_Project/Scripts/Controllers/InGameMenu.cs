@@ -136,9 +136,11 @@ public class InGameMenu : MonoBehaviour
         GameManager.sInstance.GetSceneController().SetScene("Menu");
     }
 
-    public void SetScore(float starsScore)
+    public void SetScore(float stars, float kills, float killsTarget, float coins, float coinsTarget, float lifes, float lifesTarget)
     {
-        switch (starsScore)
+        _finishMenu.GetComponent<FinishScreenUI>().Setup(stars, kills, killsTarget, coins, coinsTarget, lifes, lifesTarget);
+
+        switch (stars)
         {
             case 0:
                 _starBg[0].SetActive(true);

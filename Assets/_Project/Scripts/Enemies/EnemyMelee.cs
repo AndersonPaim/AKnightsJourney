@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
@@ -24,6 +23,7 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
             VisualEffects.sInstance.StartRippleEffect(transform.position);
             _anim.SetTrigger("Die");
             _isDead = true;
+            OnDie?.Invoke();
             StartCoroutine(DestroyDelay(2));
             GetComponent<Collider>().enabled = false;
             _hitCollider.enabled = false;

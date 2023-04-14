@@ -21,6 +21,7 @@ public class LevelHighscore : MonoBehaviour
 
     public void Setup(LevelSettings levelSettings, SceneController sceneController)
     {
+        Debug.Log("SETUP LEVEL");
         _levelSettings = levelSettings;
         _sceneController = sceneController;
         _data = SaveSystem.localData;
@@ -42,15 +43,11 @@ public class LevelHighscore : MonoBehaviour
 
     public void SetScene()
     {
-        Debug.Log("SET SCENE: " + _levelSettings.levelScene);
         _sceneController.SetScene(_levelSettings.levelScene);
     }
 
-    private IEnumerator LoadHighscore()
+    private void LoadHighscore()
     {
-        yield return new WaitForSeconds(1);
-        Debug.Log("LEVEL: " + _data.stars.Count + " : " + _levelSettings.levelNumber);
-
         if(SaveSystem.localData.stars.Count > _levelSettings.levelNumber)
         {
             TimeSpan time = _data.time[_levelSettings.levelNumber - 1];

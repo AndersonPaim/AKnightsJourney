@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour, IDamageable
 {
+    public static Action OnDie;
+
     [SerializeField] private GameObject _projectileObj;
     [SerializeField] private List<Transform> _projectilePosList;
     [SerializeField] private Rigidbody _rb;
@@ -41,6 +44,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
             StartCoroutine(DestroyDelay(2));
             _hitCollider.enabled = false;
             _isDead = true;
+            OnDie?.Invoke();
             _rb.useGravity = true;
             Physics.IgnoreLayerCollision(8, 10, true);
         }
