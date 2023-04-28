@@ -8,47 +8,72 @@ using TMPro;
 public class WeaponsUI : MonoBehaviour
 {
     [SerializeField] private GameObject _equipedObject;
+    [SerializeField] private GameObject _lockImage;
     [SerializeField] private TextMeshProUGUI _weaponName;
     [SerializeField] private Image _image;
-    [SerializeField] private Button _button;
+    [SerializeField] private Button _buyButton;
+    [SerializeField] private Button _equipButton;
+    [SerializeField] private int _itemID;
+    [SerializeField] private int _price;
 
-    private EquipmentMenu _equipmentMenu;
+    [SerializeField] private EquipmentMenu _equipmentMenu;
     private WeaponData _weaponData;
 
-    public void SetupUI(WeaponData weapon, bool isEquiped, EquipmentMenu equipmentMenu, bool unlocked)
+    private void Start()
     {
-        if(!unlocked)
-        {
-            Destroy(_button.gameObject);
-        }
+        Initialize();
+        SetupEvents();
+    }
 
-        _equipmentMenu = equipmentMenu;
-        _weaponData = weapon;
-
+    private void Initialize()
+    {
         SaveData data = SaveSystem.localData;
 
-        foreach(bool weapons in data.weaponsUnlocked)
+        if(data.weaponsUnlocked[_itemID])
         {
-            _weaponName.text = weapon.name;
-            _image.sprite = weapon.image;
+            _lockImage.SetActive(false);
+        }
+        else
+        {
+            _equipButton.gameObject.SetActive(false);
 
-            if(isEquiped)
+            if(data.coins < _price)
             {
-                _equipedObject.SetActive(true);
+                _buyButton.interactable = false;
             }
         }
 
-        _button.onClick.AddListener(EquipWeapon);
+        if(data.weaponEquiped == _itemID)
+        {
+            _equipedObject.SetActive(true);
+        }
     }
 
-    public void EquipWeapon()
+    private void SetupEvents()
+    {
+        _buyButton.onClick.AddListener(BuyWeapon);
+        _equipButton.onClick.AddListener(EquipWeapon);
+    }
+
+    private void EquipWeapon()
     {
         _equipedObject.SetActive(true);
-        _equipmentMenu.EquipWeapon(_weaponData.weaponNumber);
+        _equipmentMenu.EquipWeapon(_itemID);
     }
 
     public void DesequipWeapon()
     {
         _equipedObject.SetActive(false);
+    }
+
+    private void BuyWeapon()
+    {
+        SaveData data = SaveSystem.localData;
+        data.weaponsUnlocked[_itemID] = true;
+        data.coins -= _price;
+        SaveSystem.Save();
+        _lockImage.SetActive(false);
+        _equipButton.gameObject.SetActive(true);
+        Initialize();
     }
 }

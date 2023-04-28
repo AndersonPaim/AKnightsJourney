@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour
     private float _coins;
     private float _lifes;
 
-    public float starsScore;
+    public float starsScore = 0;
     public int coinMultiplier = 1;
 
     public void SetCoinMultiplier(int multiplier)
@@ -66,6 +66,8 @@ public class ScoreManager : MonoBehaviour
 
     private void SaveScore()
     {
+        SaveCoins();
+
         SaveData data = SaveSystem.localData;
 
         if(data.stars.Count <= GameManager.sInstance.LevelIndex)
