@@ -74,6 +74,7 @@ public class WeaponsUI : MonoBehaviour
         SaveSystem.Save();
         _lockImage.SetActive(false);
         _equipButton.gameObject.SetActive(true);
+        _equipmentMenu.UpdateCoins();
         Initialize();
     }
 }
