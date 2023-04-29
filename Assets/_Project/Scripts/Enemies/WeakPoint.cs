@@ -28,6 +28,6 @@ public class WeakPoint : MonoBehaviour
     private IEnumerator DestroyParticle(GameObject particle, float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(particle);
+        DestroyImmediate(particle);
     }
 }

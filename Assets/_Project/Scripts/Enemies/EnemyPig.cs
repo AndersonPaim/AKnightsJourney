@@ -151,7 +151,7 @@ public class EnemyPig : EnemyMeleePatrolAI, IDamageable
         yield return new WaitForSeconds(0.2f);
         VisualEffects.sInstance.StopRippleEffect();
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
 
     private void CancelAttack()

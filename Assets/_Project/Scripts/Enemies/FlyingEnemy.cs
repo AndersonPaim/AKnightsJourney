@@ -85,7 +85,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
         }
 
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
 
     private IEnumerator VulnerabilityDelay()

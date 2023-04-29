@@ -5,6 +5,8 @@ using Cinemachine;
 using DG.Tweening;
 using UnityEngine.VFX;
 using UnityEngine.Rendering.Universal;
+using Coimbra.Services;
+using _Project.Scripts.Managers;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField] private GameObject _dashCollider;
     [SerializeField] private List<VisualEffect> _slashEffects;
+    [SerializeField] private SoundEffect _attackSFX;
 
     private float _jumpsCount = 2;
     private float _movementX = 0;
@@ -55,6 +58,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Quaternion _playerRotationRight;
 
     private PlayerData _playerData;
+    private IAudioPlayer _audioPlayer;
 
     private CinemachineBasicMultiChannelPerlin _cameraNoise;
 
@@ -146,6 +150,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         _playerRotationRight = Quaternion.Euler(0, 0, 0);
         IsHanging = false;
         _playerData = new PlayerData();
+        _audioPlayer = ServiceLocator.Get<IAudioPlayer>();
         _cameraNoise = _camera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
 
         SetupDelegates();
@@ -163,6 +168,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnStartAttack(int attack)
     {
+        _audioPlayer.PlayAudio(_attackSFX, transform.position);
         _canJump = false;
         ResetForces();
         _playerBalancer.runSpeed *= 0.5f;

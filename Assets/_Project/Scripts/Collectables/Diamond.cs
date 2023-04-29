@@ -26,6 +26,6 @@ public class Diamond : Colletables
     protected override IEnumerator DestroyObject()
     {
         yield return new WaitForSeconds(destroyDelay);
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
 }

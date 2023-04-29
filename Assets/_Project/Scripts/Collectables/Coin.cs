@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Coimbra;
 
 public class Coin : Colletables
 {
@@ -24,6 +25,6 @@ public class Coin : Colletables
     protected override IEnumerator DestroyObject()
     {
         yield return new WaitForSeconds(destroyDelay);
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
 }

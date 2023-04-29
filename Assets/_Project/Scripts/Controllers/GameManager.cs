@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if(sInstance != null)
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
             return;
         }
         else

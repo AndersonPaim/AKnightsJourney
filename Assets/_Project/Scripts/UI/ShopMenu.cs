@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Coimbra;
 
 public class ShopMenu : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class ShopMenu : MonoBehaviour
     {
         foreach(GameObject item in _shopItensList)
         {
-            Destroy(item);
+            DestroyImmediate(item);
         }
 
         UpdateCoinsUI();

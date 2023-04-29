@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
 
     private void OnEnable()
@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
     private IEnumerator DestroyDelay()
     {
         yield return new WaitForSeconds(6);
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
 
 }
