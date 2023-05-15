@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Coimbra.Services;
+using _Project.Scripts.Managers;
 
 public abstract class Colletables : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public abstract class Colletables : MonoBehaviour
     public float destroyDelay;
 
     private Collider _collider;
+    protected IAudioPlayer _audioPlayer;
 
     public virtual void Start()
     {
@@ -21,6 +24,7 @@ public abstract class Colletables : MonoBehaviour
     protected virtual void Initialize()
     {
         _collider = GetComponent<Collider>();
+        _audioPlayer = ServiceLocator.Get<IAudioPlayer>();
     }
 
     protected void CollectItem()

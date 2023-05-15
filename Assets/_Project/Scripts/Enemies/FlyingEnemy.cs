@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Managers;
+using Coimbra.Services;
 using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour, IDamageable
@@ -16,10 +18,14 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
     [SerializeField] private float _shootDelay;
     [SerializeField] private float _shootForce;
     [SerializeField] private float _health;
+    [SerializeField] private SoundEffect _attackSFX;
+    [SerializeField] private SoundEffect _damageSFX;
+    [SerializeField] private SoundEffect _deathSFX;
 
     private Coroutine _lastRoutine = null;
     private bool _isDead = false;
     private bool _isVulnerable = true;
+    private IAudioPlayer _audioPlayer;
 
     public void TakeDamage(float damage, GameObject attacker)
     {
@@ -33,14 +39,17 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
 
         StartCoroutine(VulnerabilityDelay());
 
+        _anim.SetTrigger("TakeDamage");
+
         if(_health > 0)
         {
-            _anim.SetTrigger("TakeDamage");
+            _audioPlayer.PlayAudio(_damageSFX, transform.position);
         }
         else
         {
+            _audioPlayer.PlayAudio(_deathSFX, transform.position);
             _pathAnim.enabled = false;
-            _anim.SetTrigger("Die");
+            //_anim.SetTrigger("Die");
             StartCoroutine(DestroyDelay(2));
             _hitCollider.enabled = false;
             _isDead = true;
@@ -52,6 +61,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        _audioPlayer = ServiceLocator.Get<IAudioPlayer>();
         Coroutine coroutine = StartCoroutine(Shoot());
         _lastRoutine = coroutine;
     }
@@ -72,6 +82,8 @@ public class FlyingEnemy : MonoBehaviour, IDamageable
                 Rigidbody rb = obj.GetComponent<Rigidbody>();
                 rb.AddRelativeForce(Vector3.forward * _shootForce);
             }
+
+            _audioPlayer.PlayAudio(_attackSFX, transform.position);
 
             StartCoroutine(Shoot());
          }

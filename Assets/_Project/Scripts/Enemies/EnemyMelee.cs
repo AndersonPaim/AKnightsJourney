@@ -4,6 +4,8 @@ using UnityEngine;
 public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
 {
     [SerializeField] private float _health;
+    [SerializeField] private SoundEffect _deathSFX;
+    [SerializeField] private SoundEffect _damageSFX;
 
     private Coroutine _lastRoutine = null;
 
@@ -11,17 +13,26 @@ public class EnemyMelee : EnemyMeleePatrolAI, IDamageable
 
     public void TakeDamage(float damage, GameObject attacker)
     {
+        if(_isDead)
+        {
+            return;
+        }
+
         _health -= damage;
+        Debug.Log("TAKE DAMAGE");
 
         if(_health > 0)
         {
             _anim.SetTrigger("TakeDamage");
+            _audioPlayer.PlayAudio(_damageSFX, transform.position);
             Knockback(attacker);
         }
         else
         {
             VisualEffects.sInstance.StartRippleEffect(transform.position);
+            _audioPlayer.PlayAudio(_deathSFX, transform.position);
             _anim.SetTrigger("Die");
+            _anim.SetBool("IsDead", true);
             _isDead = true;
             OnDie?.Invoke();
             StartCoroutine(DestroyDelay(2));

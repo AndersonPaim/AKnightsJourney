@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using _Project.Scripts.Managers;
+using Coimbra.Services;
 
 public class EnemyMeleePatrolAI : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class EnemyMeleePatrolAI : MonoBehaviour
     [SerializeField] protected Collider _hitCollider;
 
     protected Rigidbody _rb;
+    protected IAudioPlayer _audioPlayer;
     private bool _isPatrolling = true;
     private Quaternion _enemyRotationLeft;
     private Quaternion _enemyRotationRight;
@@ -32,6 +35,7 @@ public class EnemyMeleePatrolAI : MonoBehaviour
     protected virtual void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _audioPlayer = ServiceLocator.Get<IAudioPlayer>();
         _enemyRotationLeft = Quaternion.Euler(0, 180, 0);
         _enemyRotationRight = Quaternion.Euler(0, 0, 0);
     }

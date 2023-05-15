@@ -1,6 +1,7 @@
 using UnityEngine;
-using DG.Tweening;
 using System.Collections;
+using _Project.Scripts.Managers;
+using Coimbra.Services;
 
 public class ThrowingSword : MonoBehaviour
 {
@@ -8,26 +9,37 @@ public class ThrowingSword : MonoBehaviour
     [SerializeField] private GameObject _throwingSwordObj;
     [SerializeField] private GameObject _originalSwordObj;
     [SerializeField] private Collider _hitCollider;
+    [SerializeField] private SoundEffect _attackSFX;
     [SerializeField] private float _throwDistance;
     [SerializeField] private float _travelTime;
 
     private bool _isThrowing = false;
     private bool _isReturning = false;
     private Vector3 _throwPos;
+    private IAudioPlayer _audioPlayer;
+
+    private void Start()
+    {
+        _audioPlayer = ServiceLocator.Get<IAudioPlayer>();
+    }
 
     public void ThrowSword()
     {
-        StartCoroutine(ThrowSwordDelay());
+        if(!_isThrowing && !_isReturning)
+        {
+            StartCoroutine(ThrowSwordDelay());
+        }
     }
 
     private IEnumerator ThrowSwordDelay()
     {
+        _isThrowing = true;
         yield return new WaitForSeconds(0.4f);
+        _audioPlayer.PlayAudio(_attackSFX, transform.position);
         _hitCollider.enabled = true;
         transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y + 1, _player.transform.position.z);
         _throwingSwordObj.SetActive(true);
         _originalSwordObj.SetActive(false);
-        _isThrowing = true;
         _throwPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + (_throwDistance * _player.LastDirection));
         StartCoroutine(ReturnSword());
     }

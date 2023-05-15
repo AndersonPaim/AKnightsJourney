@@ -7,6 +7,7 @@ public class Coin : Colletables
 {
     [SerializeField] private ParticleSystem _coinParticle1;
     [SerializeField] private ParticleSystem _coinParticle2;
+    [SerializeField] private SoundEffect _collectSFX;
 
     protected override void Initialize()
     {
@@ -20,6 +21,7 @@ public class Coin : Colletables
         base.OnEnterTrigger(other);
         _coinParticle1.Stop();
         _coinParticle2.Play();
+        _audioPlayer.PlayAudio(_collectSFX, transform.position);
     }
 
     protected override IEnumerator DestroyObject()

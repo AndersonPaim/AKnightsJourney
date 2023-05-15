@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Coimbra;
 
 public class Projectile : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        DestroyImmediate(gameObject);
+        gameObject.Dispose(true);
     }
 
     private void OnEnable()

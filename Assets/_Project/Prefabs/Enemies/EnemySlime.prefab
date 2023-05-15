@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1640584067334888627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.74, z: 0.0695}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1.784764}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2685844143237430640}
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 1040905597}
   _hitParticle: {fileID: 3702789409235752237, guid: 99af2538dbfaddd4f97dd424586148f8, type: 3}
+  _playerController: {fileID: 0}
 --- !u!1 &2685844143237430666
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +229,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
+  m_Radius: 0.8
   m_Height: 1.4955672
   m_Direction: 1
   m_Center: {x: 0, y: -0.33565643, z: 0}
@@ -252,7 +253,17 @@ MonoBehaviour:
   _attackDelay: 3
   _anim: {fileID: 1674891511841550411}
   _hitCollider: {fileID: 5844294958374916118}
-  _health: 300
+  _health: 100
+  _deathSFX:
+    Mixer: {fileID: 2470931837589216953, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
+    Clip: {fileID: 8300000, guid: ba6972d4b2c3fa64e81fbf1409d18ac2, type: 3}
+    Volume: 2
+    Is3D: 0
+  _damageSFX:
+    Mixer: {fileID: 2470931837589216953, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
+    Clip: {fileID: 8300000, guid: e3c74a003d831a643bde3b8069c84608, type: 3}
+    Volume: 0.5
+    Is3D: 0
 --- !u!114 &1403642654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +323,7 @@ GameObject:
   - component: {fileID: 5844294958374916118}
   - component: {fileID: 3120741017190640623}
   m_Layer: 8
-  m_Name: HitCollider
+  m_Name: SlimeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

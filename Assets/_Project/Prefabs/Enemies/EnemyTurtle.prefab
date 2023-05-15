@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3152294320412156908}
   - component: {fileID: 3152294320412156906}
-  - component: {fileID: 3152294320412156909}
   m_Layer: 8
-  m_Name: HitCollider
+  m_Name: TurtleEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,19 +45,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.55
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &3152294320412156909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3152294320412156911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 062d865ddf61df0488ec9df5a2be03a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitParticle: {fileID: 2242307151870375819, guid: e73fa8383752f10479a811e96abf8c8c, type: 3}
 --- !u!1 &3247530185262667945
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,6 +60,7 @@ GameObject:
   - component: {fileID: 3247530185262667948}
   - component: {fileID: 601092544100601950}
   - component: {fileID: 108095440}
+  - component: {fileID: 6382656119709446839}
   m_Layer: 8
   m_Name: EnemyTurtle
   m_TagString: Untagged
@@ -175,9 +162,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.8
-  m_Height: 2.1668766
+  m_Height: 1.7777779
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.24, z: 0}
 --- !u!114 &601092544100601950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +186,16 @@ MonoBehaviour:
   _anim: {fileID: 3093246609039329813}
   _hitCollider: {fileID: 3152294320412156906}
   _health: 200
+  _deathSFX:
+    Mixer: {fileID: 2470931837589216953, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
+    Clip: {fileID: 8300000, guid: ba6972d4b2c3fa64e81fbf1409d18ac2, type: 3}
+    Volume: 1
+    Is3D: 0
+  _damageSFX:
+    Mixer: {fileID: 2470931837589216953, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
+    Clip: {fileID: 8300000, guid: e3c74a003d831a643bde3b8069c84608, type: 3}
+    Volume: 1
+    Is3D: 0
 --- !u!114 &108095440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +212,19 @@ MonoBehaviour:
   - {fileID: 3050346677310024207}
   _defaultMaterial: {fileID: 2100000, guid: b3ad386aba28716448079dcf67d7aede, type: 2}
   _flashMaterial: {fileID: 2100000, guid: a9b13fbc3f0d8224ba7b1137a6094372, type: 2}
+--- !u!114 &6382656119709446839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3247530185262667945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062d865ddf61df0488ec9df5a2be03a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitParticle: {fileID: 3702789409235752237, guid: 99af2538dbfaddd4f97dd424586148f8, type: 3}
 --- !u!1 &3247530185775486042
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
+using _Project.Scripts.Managers;
+using Coimbra.Services;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -37,8 +39,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private SceneController sceneController;
     [SerializeField] private AnimationController animationController;
+    [SerializeField] private SoundEffect _finishSFX;
+    [SerializeField] private SoundEffect _gameOverSFX;
 
     public int LevelIndex => _levelIndex;
+    private IAudioPlayer _audioPlayer;
 
     private void Awake()
     {
@@ -51,6 +56,9 @@ public class GameManager : MonoBehaviour
         {
             sInstance = this;
         }
+
+        _audioPlayer = ServiceLocator.Get<IAudioPlayer>();
+
         SetupDelegates();
     }
 
@@ -157,10 +165,12 @@ public class GameManager : MonoBehaviour
         timerUI.Finish();
         OnSetScore?.Invoke();
         OnFinish?.Invoke();
+        _audioPlayer.PlayAudio(_finishSFX, transform.position);
     }
 
     private void GameOver()
     {
         OnGameOver?.Invoke();
+        _audioPlayer.PlayAudio(_gameOverSFX, transform.position);
     }
 }

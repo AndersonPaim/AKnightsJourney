@@ -17,6 +17,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
     {
         Idle,
         Attacking,
+        Shoot,
         Returning,
         AttackCooldown,
         Dead,
@@ -27,6 +28,9 @@ public class BeeBoss : MonoBehaviour, IDamageable
     [SerializeField] private GameObject _damageCollider;
     [SerializeField] private List<Transform> _idlePosition;
     [SerializeField] private float _health;
+    [SerializeField] private float _attackSpeed;
+    [SerializeField] private float _attackCooldown;
+    [SerializeField] private float _idleTime;
     [SerializeField] private Animator _screenFadeAnim;
     [SerializeField] private SceneController _sceneController;
 
@@ -78,7 +82,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
         _anim.SetBool("isAttacking", true);
         _damageCollider.SetActive(true);
 
-        transform.DOMove(_attackPos, 1).OnComplete(() => { ChangeState(bossState.AttackCooldown); });
+        transform.DOMove(_attackPos, _attackSpeed).OnComplete(() => { ChangeState(bossState.AttackCooldown); });
     }
 
     private IEnumerator FinishLevel()
@@ -92,7 +96,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
         _damageCollider.SetActive(false);
         _anim.SetBool("isAttacking", false);
         _anim.SetBool("isIdle", true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(_attackCooldown);
 
         if(_bossState != bossState.Dead)
         {
@@ -104,7 +108,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
     {
         _anim.SetBool("isMoving", false);
         _anim.SetBool("isIdle", true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(_idleTime);
 
         if(_bossState != bossState.Dead)
         {
@@ -126,7 +130,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
         _attackPos = _idlePosition[pos].position;
         RotateBee(pos);
 
-        transform.DOMove(_attackPos, 1).OnComplete(delegate {ChangeState(bossState.Idle);});
+        transform.DOMove(_attackPos, _attackSpeed).OnComplete(delegate {ChangeState(bossState.Idle);});
     }
 
     private async Task RotateBee(int pos)

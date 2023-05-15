@@ -7,6 +7,7 @@ using UnityEngine.VFX;
 using UnityEngine.Rendering.Universal;
 using Coimbra.Services;
 using _Project.Scripts.Managers;
+using Unity.Services.Analytics;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private GameObject _dashCollider;
     [SerializeField] private List<VisualEffect> _slashEffects;
     [SerializeField] private SoundEffect _attackSFX;
+    [SerializeField] private SoundEffect _damageSFX;
 
     private float _jumpsCount = 2;
     private float _movementX = 0;
@@ -75,6 +77,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             return;
         }
 
+        _audioPlayer.PlayAudio(_damageSFX, transform.position);
+
         Vector3 knockbackDirection = new Vector3(0, 0, gameObject.transform.position.z - attacker.transform.position.z);
         _rb.velocity = new Vector3(0, 0, knockbackDirection.z) * 40;
 
@@ -82,6 +86,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         OnTakeDamage?.Invoke();
         Knockback(attacker);
         StartCoroutine(HitStop());
+
+        DamageAnalytics(attacker);
     }
 
     public void SlimeJump()
@@ -91,6 +97,22 @@ public class PlayerController : MonoBehaviour, IDamageable
         Vector3 vel = _rb.velocity;
         vel = vel + moveVector;
         _rb.velocity = Vector3.ClampMagnitude(vel, _playerBalancer.jumpForce);
+    }
+
+    private void DamageAnalytics(GameObject attacker)
+    {
+        Dictionary<string, object> parameters = new Dictionary<string, object>()
+        {
+            { "Level", GameManager.sInstance.LevelIndex + 1 },
+            { "PositionX", transform.position.z },
+            { "PositionY", transform.position.y },
+            { "DamageSource", attacker.gameObject.name },
+        };
+
+        AnalyticsService.Instance.CustomData("Death", parameters);
+        AnalyticsService.Instance.Flush();
+
+        Debug.Log("SEND ANALYTICS: " + attacker.gameObject.name);
     }
 
     private void Start()
@@ -511,6 +533,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (collision.collider.gameObject.layer == trapsLayer)
         {
             TrapDeath();
+            DamageAnalytics(collision.gameObject);
         }
     }
 }
