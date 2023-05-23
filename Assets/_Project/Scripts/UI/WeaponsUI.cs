@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using DG.Tweening;
 using TMPro;
 
 public class WeaponsUI : MonoBehaviour
@@ -23,6 +23,16 @@ public class WeaponsUI : MonoBehaviour
     {
         Initialize();
         SetupEvents();
+    }
+
+    private void OnEnable()
+    {
+        //gameObject.transform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.2f);
+    }
+
+    private void OnDisable()
+    {
+        //gameObject.transform.DOScale(Vector3.zero, 0.2f);
     }
 
     private void Initialize()

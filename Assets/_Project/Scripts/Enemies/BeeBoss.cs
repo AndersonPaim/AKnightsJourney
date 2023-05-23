@@ -26,11 +26,14 @@ public class BeeBoss : MonoBehaviour, IDamageable
 
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _damageCollider;
+    [SerializeField] private GameObject _projetileObject;
     [SerializeField] private List<Transform> _idlePosition;
+    [SerializeField] private List<Transform> _projectilePosList;
     [SerializeField] private float _health;
     [SerializeField] private float _attackSpeed;
     [SerializeField] private float _attackCooldown;
     [SerializeField] private float _idleTime;
+    [SerializeField] private float _shootForce;
     [SerializeField] private Animator _screenFadeAnim;
     [SerializeField] private SceneController _sceneController;
 
@@ -57,6 +60,20 @@ public class BeeBoss : MonoBehaviour, IDamageable
         }
 
         OnUpdateBossHP?.Invoke(_health);
+    }
+
+    private void Shoot()
+    {
+        _anim.SetTrigger("Attack");
+
+        foreach(Transform pos in _projectilePosList)
+        {
+            GameObject obj = Instantiate(_projetileObject, pos.position, pos.rotation);
+            Rigidbody rb = obj.GetComponent<Rigidbody>();
+            rb.AddRelativeForce(Vector3.forward * _shootForce);
+        }
+
+        //_audioPlayer.PlayAudio(_attackSFX, transform.position);
     }
 
     private void Start()
@@ -106,6 +123,7 @@ public class BeeBoss : MonoBehaviour, IDamageable
 
     private IEnumerator Idle()
     {
+        Shoot();
         _anim.SetBool("isMoving", false);
         _anim.SetBool("isIdle", true);
         yield return new WaitForSeconds(_idleTime);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using DG.Tweening;
 
 public class LevelHighscore : MonoBehaviour
 {
@@ -34,6 +35,12 @@ public class LevelHighscore : MonoBehaviour
 
         SetLevelNumber();
         LoadHighscore();
+        //gameObject.transform.DOScale(Vector3.one, 0.2f);
+    }
+
+    private void OnDisable()
+    {
+        //gameObject.transform.DOScale(Vector3.zero, 0.2f);
     }
 
     private void SetLevelNumber()

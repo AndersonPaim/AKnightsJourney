@@ -170,6 +170,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        Debug.Log("GAME OVER");
+        Time.timeScale = 0;
         OnGameOver?.Invoke();
         _audioPlayer.PlayAudio(_gameOverSFX, transform.position);
     }

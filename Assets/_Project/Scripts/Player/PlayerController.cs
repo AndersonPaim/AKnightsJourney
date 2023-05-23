@@ -152,6 +152,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         GameManager.sInstance.GetAnimationController().OnStartAttack += OnStartAttack;
         GameManager.sInstance.GetAnimationController().OnStopAttack += OnStopAttack;
         GameManager.sInstance.OnFinish += FinishGame;
+        GameManager.sInstance.OnGameOver += FinishGame;
     }
 
     private void RemoveDelegates()
@@ -162,6 +163,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         GameManager.sInstance.GetAnimationController().OnStartAttack -= OnStartAttack;
         GameManager.sInstance.GetAnimationController().OnStopAttack -= OnStopAttack;
         GameManager.sInstance.OnFinish -= FinishGame;
+        GameManager.sInstance.OnGameOver -= FinishGame;
     }
 
     private void Initialize()
@@ -185,6 +187,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void FinishGame()
     {
+        Debug.Log("FinishGame");
         _isDead = true;
     }
 
@@ -209,7 +212,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.1f);
-        Time.timeScale = 1;
+
+        if(!_isDead)
+        {
+            Debug.Log("UNPAUSE");
+            Time.timeScale = 1;
+        }
     }
 
     private void Knockback(GameObject attacker)
@@ -217,7 +225,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         Vector3 knockbackDirection = new Vector3(0, 0, gameObject.transform.position.z - attacker.transform.position.z);
         ResetForces();
         StartCoroutine(MoveCooldown());
-        Debug.Log("KNOCKBACK: " + knockbackDirection.z);
         _rb.velocity = new Vector3(0, 0, knockbackDirection.z) * 20;
     }
 
