@@ -2,6 +2,9 @@
 using System;
 using UnityEngine;
 using TMPro;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using Unity.Services.Leaderboards;
 
 public class TimerUI : MonoBehaviour
 {
@@ -28,6 +31,7 @@ public class TimerUI : MonoBehaviour
             }
         }
 
+        AddLeaderboard();
         SaveSystem.Save();
     }
 
@@ -67,13 +71,30 @@ public class TimerUI : MonoBehaviour
             TimeSpan elapsedTime = DateTime.Now - _startTime;
             _currentTime = elapsedTime;
 
-            if (_currentTime != TimeSpan.Zero)
-            {
-                elapsedTime += _currentTime;
-            }
             string timeText = string.Format("{0:00}:{1:00}:{2:000}", elapsedTime.Minutes, elapsedTime.Seconds, elapsedTime.Milliseconds);
             _timerText.SetText(timeText);
         }
+    }
+
+    private async UniTask AddLeaderboard()
+    {
+        string level = "";
+
+        switch(GameManager.sInstance.LevelIndex)
+        {
+            case 0:
+                level = "LEVEL1";
+                break;
+            case 1:
+                level = "LEVEL2";
+                break;
+            case 2:
+                level = "LEVEL3";
+                break;
+        }
+
+        await LeaderboardsService.Instance.AddPlayerScoreAsync(level, _currentTime.TotalSeconds);
+        //var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync("my-first-leaderboard");
     }
 
     private void PauseTimer()
