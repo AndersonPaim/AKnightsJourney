@@ -22,7 +22,6 @@ public class LevelHighscore : MonoBehaviour
 
     public void Setup(LevelSettings levelSettings, SceneController sceneController)
     {
-        Debug.Log("SETUP LEVEL");
         _levelSettings = levelSettings;
         _sceneController = sceneController;
         _data = SaveSystem.localData;
@@ -57,9 +56,12 @@ public class LevelHighscore : MonoBehaviour
     {
         if(SaveSystem.localData.stars.Count > _levelSettings.levelNumber)
         {
-            TimeSpan time = _data.time[_levelSettings.levelNumber - 1];
-            string timeText = string.Format("{0:00}:{1:00}:{2:000}", time.Minutes, time.Seconds, time.Milliseconds);
-            _fastestText.text = timeText;
+            if(_data.time.Count > _levelSettings.levelNumber)
+            {
+                TimeSpan time = _data.time[_levelSettings.levelNumber - 1];
+                string timeText = string.Format("{0:00}:{1:00}:{2:000}", time.Minutes, time.Seconds, time.Milliseconds);
+                _fastestText.text = timeText;
+            }
 
             switch (_data.stars[_levelSettings.levelNumber - 1])
             {

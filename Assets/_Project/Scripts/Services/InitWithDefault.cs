@@ -19,9 +19,11 @@ public class InitWithDefault : MonoBehaviour
     [SerializeField] private GameObject _usernameMenu;
     [SerializeField] private Button _updateUsernameButton;
     [SerializeField] private TMP_InputField _usernameInput;
+    [SerializeField] private TextMeshProUGUI _usernameText;
 
-    async void Awake()
+    private async void Awake()
     {
+        Time.timeScale = 1;
         var options = new InitializationOptions();
         options.SetEnvironmentName("testing");
         await UnityServices.InitializeAsync(options);
@@ -34,6 +36,11 @@ public class InitWithDefault : MonoBehaviour
 
     private async Task SignInAnonymouslyAsync()
     {
+        if(AuthenticationService.Instance.IsAuthorized)
+        {
+            return;
+        }
+
         try
         {
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
@@ -57,9 +64,11 @@ public class InitWithDefault : MonoBehaviour
         {
             Debug.LogException(ex);
         }
+
+        _usernameText.text = await AuthenticationService.Instance.GetPlayerNameAsync();
     }
 
-    private void ShowUsernamePopUp()
+    public void ShowUsernamePopUp()
     {
         _usernamePopUp.SetActive(true);
         _usernameMenu.transform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 0.2f);
@@ -78,5 +87,7 @@ public class InitWithDefault : MonoBehaviour
         (
             ()=>_usernamePopUp.SetActive(false)
         );
+
+        _usernameText.text = await AuthenticationService.Instance.GetPlayerNameAsync();
     }
 }

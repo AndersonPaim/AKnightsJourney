@@ -14,5 +14,6 @@ public class SaveData
     //weapons
     public List<bool> weaponsUnlocked = new List<bool>();
     public int weaponEquiped = 0;
+    public bool tutorial = true;
 }
 

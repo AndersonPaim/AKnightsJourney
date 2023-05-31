@@ -401,6 +401,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                 {
                     _isDoubleJumping = true;
                 }
+
                 ResetForces();
 
                 Vector3 moveVector = new Vector3(0, _playerBalancer.jumpForce, 0);
@@ -420,8 +421,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     private IEnumerator JumpCount()
     {
         yield return new WaitForFixedUpdate();
-        _jumpsCount--; //a verifica��o de ch�o anulava esse comando | arrumar depois
         _isJumping = true;
+        yield return new WaitForSeconds(0.1f);
+        _jumpsCount--;
     }
 
     private IEnumerator MoveCooldown()

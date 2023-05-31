@@ -35,6 +35,11 @@ public class TimerUI : MonoBehaviour
         SaveSystem.Save();
     }
 
+    public void Pause()
+    {
+        PauseTimer();
+    }
+
     public void UnPause()
     {
         _startTime = DateTime.Now - _currentTime;
