@@ -96,6 +96,9 @@ public class TimerUI : MonoBehaviour
             case 2:
                 level = "LEVEL3";
                 break;
+            case 3:
+                level = "LEVEL4";
+                break;
         }
 
         await LeaderboardsService.Instance.AddPlayerScoreAsync(level, _currentTime.TotalSeconds);

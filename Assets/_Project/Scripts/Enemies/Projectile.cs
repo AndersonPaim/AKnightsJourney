@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
 
             if(_hitParticle != null)
             {
-                ParticleSystem particle = Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
+                //ParticleSystem particle = Instantiate(_hitParticle, other.transform.position, other.transform.rotation);
             }
         }
 
