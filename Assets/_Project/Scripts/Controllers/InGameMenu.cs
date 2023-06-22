@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Audio;
 
 public class InGameMenu : MonoBehaviour
 {
@@ -16,14 +17,31 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] private GameObject[] _starBg;
     [SerializeField] private GameObject[] _star;
     [SerializeField] private TextMeshProUGUI _coinsText;
+    [SerializeField] private AudioMixer _gameMixer;
 
     private bool _isPaused = false;
     private bool _canResume = true;
+    private bool _settingsOpen = false;
+
+    public void OpenSettings()
+    {
+        _settingsOpen = true;
+        _gameMixer.SetFloat("effectsVolume", -80);
+    }
+
+    public void CloseSettings()
+    {
+        _settingsOpen = false;
+    }
 
     private void Start()
     {
         SetupDelegates();
         Resume();
+
+        SaveData data = SaveSystem.Load();
+        _gameMixer.SetFloat("effectsVolume", Mathf.Log10(data.soundfxVolume) * 20);
+        _gameMixer.SetFloat("musicVolume", Mathf.Log10(data.musicVolume) * 20);
     }
 
     private void OnDestroy()
@@ -78,6 +96,7 @@ public class InGameMenu : MonoBehaviour
 
     public void Pause()
     {
+        _gameMixer.SetFloat("effectsVolume", -80);
         OnPause?.Invoke(true);
         _isPaused = true;
         Time.timeScale = 0;
@@ -87,6 +106,7 @@ public class InGameMenu : MonoBehaviour
 
     public void GameOver()
     {
+        _gameMixer.SetFloat("effectsVolume", -80);
         OnPause?.Invoke(true);
         _canResume = false;
         Time.timeScale = 0;
@@ -96,6 +116,7 @@ public class InGameMenu : MonoBehaviour
 
     public void FinishScreen()
     {
+        _gameMixer.SetFloat("effectsVolume", -80);
         OnPause?.Invoke(true);
         _canResume = false;
         Time.timeScale = 0;
@@ -105,18 +126,19 @@ public class InGameMenu : MonoBehaviour
 
     public void Resume()
     {
+        if(_settingsOpen)
+        {
+            _settingsMenu.SetActive(false);
+            _settingsOpen = false;
+            return;
+        }
+
+        _gameMixer.SetFloat("effectsVolume", 0);
         OnPause?.Invoke(false);
         _isPaused = false;
         Time.timeScale = 1;
         _pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void Settings()
-    {
-        _pauseMenu.SetActive(false);
-        _settingsMenu.SetActive(true);
-        _canResume = false;
     }
 
     public void BackButton()

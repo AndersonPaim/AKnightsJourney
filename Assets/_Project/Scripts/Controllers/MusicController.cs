@@ -16,34 +16,13 @@ public class MusicController : MonoBehaviour
     private void Start()
     {
         Initialize();
-        SetupDelegates();
-    }
-
-    private void OnDestroy()
-    {
-        RemoveDelegates();
-    }
-
-    private void SetupDelegates()
-    {
-        _settingsMenu.OnSetMusicVolume += SetMusicVolume;
-    }
-
-    private void RemoveDelegates()
-    {
-        _settingsMenu.OnSetMusicVolume -= SetMusicVolume;
     }
 
     private void Initialize()
     {
-        _audioMixer.SetFloat("musicVolume", Mathf.Log10(SaveSystem.localData.musicVolume) *20);
-
+        SaveData data = SaveSystem.Load();
+        _audioMixer.SetFloat("musicVolume", Mathf.Log10(data.musicVolume) * 20);
         PlayMusic(_bgMusic);
-    }
-
-    private void SetMusicVolume(float volume)
-    {
-        _audioMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
     }
 
     private void PlayMusic(AudioClip musicClip)

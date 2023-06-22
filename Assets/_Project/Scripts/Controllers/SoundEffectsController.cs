@@ -47,7 +47,6 @@ public class SoundEffectsController : MonoBehaviour
         GameManager.sInstance.GetCheckPointManager().OnCheckpoint += CheckPoint;
         Colletables.OnCollectItem += CollectItem;
         GameManager.sInstance.GetInGameMenu().OnPause += PauseAudio;
-        GameManager.sInstance.GetSettingsMenu().OnSetEffectsVolume += SetEffectsVolume;
     }
 
     private void RemoveDelegates()
@@ -57,12 +56,11 @@ public class SoundEffectsController : MonoBehaviour
         GameManager.sInstance.GetCheckPointManager().OnCheckpoint -= CheckPoint;
         Colletables.OnCollectItem -= CollectItem;
         GameManager.sInstance.GetInGameMenu().OnPause -= PauseAudio;
-        GameManager.sInstance.GetSettingsMenu().OnSetEffectsVolume += SetEffectsVolume;
     }
 
-    private void SetEffectsVolume(float volume)
+    private void SetEffectsVolume(float volume, AudioMixer mixer)
     {
-        _audioMixer.SetFloat("effectsVolume", Mathf.Log10(volume) * 20);
+        mixer.SetFloat("effectsVolume", Mathf.Log10(volume) * 20);
     }
 
     private void PauseAudio(bool isPaused)

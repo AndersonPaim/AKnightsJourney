@@ -224,7 +224,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8c3e92a1897122469d9163ffbf518e3, type: 2}
-  m_sharedMaterial: {fileID: 1653631458307283989, guid: e0962d31f1f084fa3ba7147d76f5b6e8, type: 2}
+  m_sharedMaterial: {fileID: -5273025616175670827, guid: f8c3e92a1897122469d9163ffbf518e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -626,14 +626,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 28512404}
-  - component: {fileID: 28512405}
   m_Layer: 0
   m_Name: AudioVolumeController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &28512404
 Transform:
   m_ObjectHideFlags: 0
@@ -649,18 +648,6 @@ Transform:
   m_Father: {fileID: 805867307}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &28512405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28512403}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91237a96d9820c84baa345138eaf5c7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &34407355
 GameObject:
   m_ObjectHideFlags: 0
@@ -9995,17 +9982,17 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1948350054}
-  m_FillRect: {fileID: 0}
-  m_HandleRect: {fileID: 0}
+  m_FillRect: {fileID: 933250573}
+  m_HandleRect: {fileID: 1415958451}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 10
+  m_MinValue: 0.01
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1466948394}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SoundfxVolume
         m_Mode: 0
@@ -16632,7 +16619,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1020183922}
   m_OnClick:
     m_PersistentCalls:
@@ -16648,6 +16635,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1466948392}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1020183921
 MonoBehaviour:
@@ -20780,7 +20779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1040, y: -157.34526}
+  m_AnchoredPosition: {x: 1048, y: -157.34526}
   m_SizeDelta: {x: 278.16, y: 227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1252156807
@@ -21618,7 +21617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1314466776
 Transform:
   m_ObjectHideFlags: 0
@@ -21648,7 +21647,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -21744,7 +21743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1314466777}
   _bgMusic: {fileID: 8300000, guid: 56c1216fae36ac4439f66b18175dee80, type: 3}
-  _settingsMenu: {fileID: 0}
+  _settingsMenu: {fileID: 1466948394}
   _audioMixer: {fileID: 24100000, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
 --- !u!1 &1320089376
 GameObject:
@@ -21859,10 +21858,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1480608358}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: BackButton
-        m_Mode: 1
+      - m_Target: {fileID: 1466948392}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -21970,7 +21969,7 @@ MonoBehaviour:
   m_text: Sound Fx
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8c3e92a1897122469d9163ffbf518e3, type: 2}
-  m_sharedMaterial: {fileID: 1653631458307283989, guid: e0962d31f1f084fa3ba7147d76f5b6e8, type: 2}
+  m_sharedMaterial: {fileID: -5273025616175670827, guid: f8c3e92a1897122469d9163ffbf518e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -22425,17 +22424,17 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2041701001}
-  m_FillRect: {fileID: 0}
-  m_HandleRect: {fileID: 0}
+  m_FillRect: {fileID: 580230130}
+  m_HandleRect: {fileID: 1479710840}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 10
+  m_MinValue: 0.01
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1466948394}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: MusicVolume
         m_Mode: 0
@@ -24478,6 +24477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1466948393}
+  - component: {fileID: 1466948394}
   m_Layer: 0
   m_Name: Settings
   m_TagString: Untagged
@@ -24508,6 +24508,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1466948394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466948392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1571ae1cf2ae521409094f36ca37b3d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundfxSlider: {fileID: 640576040}
+  _musicSlider: {fileID: 1330321691}
+  _gameMixer: {fileID: 24100000, guid: 305c6f09d22b6294ca4064a362c6e6d8, type: 2}
 --- !u!1 &1479034995
 GameObject:
   m_ObjectHideFlags: 0
@@ -26804,7 +26819,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 732, y: -157.34526}
+  m_AnchoredPosition: {x: 740, y: -157.34526}
   m_SizeDelta: {x: 278.16, y: 227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1611677362
@@ -27124,7 +27139,7 @@ MonoBehaviour:
   m_text: SETTINGS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8c3e92a1897122469d9163ffbf518e3, type: 2}
-  m_sharedMaterial: {fileID: 2269793554123077917, guid: dc2cc93475f76427c86a8262bee36b88, type: 2}
+  m_sharedMaterial: {fileID: -5273025616175670827, guid: f8c3e92a1897122469d9163ffbf518e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -27987,7 +28002,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8, y: -20}
-  m_SizeDelta: {x: 443, y: 100}
+  m_SizeDelta: {x: 48, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1654057295
 MonoBehaviour:

@@ -67,21 +67,17 @@ namespace _Project.Scripts.Managers
         private void Initialize()
         {
             SaveData data = SaveSystem.Load();
-            //_gameAudioMixer.SetFloat("EffectsVolume", Mathf.Log10(data.SoundfxVolume) * 20);
-            //_gameAudioMixer.SetFloat("MusicVolume", Mathf.Log10(data.MusicVolume) * 20);
+            _gameAudioMixer.SetFloat("EffectsVolume", Mathf.Log10(data.soundfxVolume) * 20);
+            _gameAudioMixer.SetFloat("MusicVolume", Mathf.Log10(data.musicVolume) * 20);
         }
 
         private void SetupEvents()
         {
-            //OnMusicVolumeUpdate.AddListener(MusicVolume);
-            //OnEffectsVolumeUpdate.AddListener(EffectsVolume);
             GameManager.sInstance.GetInGameMenu().OnPause += PauseAudio;
         }
 
         private void DestroyEvents()
         {
-            //OnMusicVolumeUpdate.RemoveAllListeners();
-            //OnEffectsVolumeUpdate.RemoveAllListeners();
             GameManager.sInstance.GetInGameMenu().OnPause -= PauseAudio;
         }
 
@@ -97,21 +93,22 @@ namespace _Project.Scripts.Managers
             }
         }
 
-        /*private void EffectsVolume(ref EventContext context, in OnEffectsVolumeUpdate e)
+        private void EffectsVolume(float volume, AudioMixer mixer)
         {
-            _gameAudioMixer.SetFloat("EffectsVolume", Mathf.Log10(e.Volume) * 20);
-            SaveData data = SaveSystem.LocalData;
-            data.SoundfxVolume = e.Volume;
+            mixer.SetFloat("EffectsVolume", Mathf.Log10(volume) * 20);
+            mixer.SetFloat("LevelVolume", Mathf.Log10(volume) * 20);
+            SaveData data = SaveSystem.localData;
+            data.soundfxVolume = volume;
             SaveSystem.Save();
         }
 
-        private void MusicVolume(ref EventContext context, in OnMusicVolumeUpdate e)
+        private void MusicVolume(float volume, AudioMixer mixer)
         {
-            _gameAudioMixer.SetFloat("MusicVolume", Mathf.Log10(e.Volume) * 20);
-            SaveData data = SaveSystem.LocalData;
-            data.MusicVolume = e.Volume;
+            mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+            SaveData data = SaveSystem.localData;
+            data.musicVolume = volume;
             SaveSystem.Save();
-        }*/
+        }
 
         public void Dispose()
 		{ }

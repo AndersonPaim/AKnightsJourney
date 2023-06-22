@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour
     public void SaveCoins()
     {
         SaveData data = SaveSystem.localData;
-        data.coins = _score;
+        data.coins += _score;
         SaveSystem.Save();
     }
 
