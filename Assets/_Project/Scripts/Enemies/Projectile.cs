@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Coimbra;
+using UnityEngine.VFX;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitParticle;
+    [SerializeField] private GameObject _trailEffect;
+    [SerializeField] private VisualEffect _explosionEffect;
 
     protected virtual void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+        _trailEffect.SetActive(false);
+        _explosionEffect.gameObject.SetActive(true);
 
         if(damageable != null)
         {
@@ -21,17 +26,19 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        gameObject.Dispose(true);
+        StartCoroutine(DestroyDelay(0.15f));
     }
 
     private void OnEnable()
     {
-        StartCoroutine(DestroyDelay());
+        _trailEffect.SetActive(true);
+        _explosionEffect.gameObject.SetActive(false);
+        StartCoroutine(DestroyDelay(6));
     }
 
-    private IEnumerator DestroyDelay()
+    private IEnumerator DestroyDelay(float delay)
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(delay);
         DestroyImmediate(gameObject);
     }
 
